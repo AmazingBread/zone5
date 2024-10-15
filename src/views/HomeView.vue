@@ -1,38 +1,72 @@
-<!-- src/views/ApplicationForm.vue -->
 <template>
-    <div>
-        <h1>신청 양식</h1>
-        <form @submit.prevent="submitForm"> <!-- 폼 제출 시 submitForm 호출 -->
-            <div>
-                <label for="name">이름:</label>
-                <input type="text" id="name" v-model="name" required />
+    <div class="container mt-5">
+        <h2 class="mb-4">bonobono 스타트 신청서</h2>
+        <form @submit.prevent="submitForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">이름</label>
+                <input type="text" class="form-control" id="name" v-model="name" required>
             </div>
-            <div>
-                <label for="payment">입금 유무:</label>
-                <input type="checkbox" id="payment" v-model="hasPaid" /> 입금 완료
+            <div class="mb-3">
+                <label class="form-label">소속</label>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="affiliation" id="bonobono" value="보노보노" v-model="formData.affiliation">
+                        <label class="form-check-label" for="bonobono">보노보노</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
+                        <label class="form-check-label" for="shoulder">어깨탈골</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
+                        <label class="form-check-label" for="swimmy">스위미</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="affiliation" id="other" value="기타" v-model="formData.affiliation">
+                        <label class="form-check-label" for="other">기타</label>
+                        <input type="text" class="form-control mt-2" v-model="formData.otherAffiliation" placeholder="기타를 입력하세요" v-if="formData.affiliation === '기타'">
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="message">남기고 싶은 말:</label>
-                <textarea id="message" v-model="messageContent" rows="4" required></textarea>
+            <div class="mb-3">
+                <label class="form-label">입금 계좌번호 안내</label>
+                <h4>79420390777 카카오뱅크 배하정 (보노보노)</h4>
             </div>
-            <button type="submit">신청</button>
+            <div class="mb-3">
+                <label for="message" class="form-label">하고싶은말</label>
+                <textarea class="form-control" id="message" v-model="formData.message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">신청</button>
         </form>
-        <p v-if="message">{{ message }}</p>
 
-        <h2>신청 목록</h2>
-        <table>
+        <h2 class="mt-5">신청 목록</h2>
+        <table class="table mt-3">
             <thead>
             <tr>
-                <th>이름</th>
-                <th>입금 유무</th>
-                <th>남기고 싶은 말</th>
+                <th scope="col" style="width: 25%;">이름</th>
+                <th scope="col" style="width: 25%;">소속</th>
+                <th scope="col" style="width: 25%;">입금 확인</th>
+                <th scope="col" style="width: 25%;">비고</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="applicant in applicants" :key="applicant.id">
-                <td>{{ applicant.name }}</td>
-                <td>{{ applicant.hasPaid ? '완료' : '미완료' }}</td>
-                <td>{{ applicant.message }}</td>
+            <tr v-for="(item, index) in applicants" :key="index">
+                <td>{{ item.name }}</td>
+                <td>{{ item.affiliation }}<span v-if="item.affiliation === '기타'"> ({{ item.otherAffiliation }})</span></td>
+                <td>
+                    <button
+                        class="btn"
+                        :class="{
+                            'btn-success': item.paid,
+                            'btn-warning': !item.paid, // 주황색 버튼
+                        }"
+                        style="padding: 0.2rem 0.5rem; font-size: 0.7rem;"
+                        @click="togglePayment(item)"
+                    >
+                        {{ item.paid ? '입금 확인' : '입금 확인중' }}
+                    </button>
+                </td>
+                <td>{{ item.message }}</td>
             </tr>
             </tbody>
         </table>
@@ -40,87 +74,68 @@
 </template>
 
 <script>
-import { db } from '../firebase'; // firebase.js 가져오기
-import { ref as dbRef, get, push } from 'firebase/database'; // Firebase Database의 ref와 get, push 가져오기
 
 export default {
-    data() {
+    data(){
         return {
-            name: '', // 신청자의 이름
-            hasPaid: false, // 입금 유무 체크박스
-            messageContent: '', // 남기고 싶은 말
-            message: '', // 성공/오류 메시지
-            applicants: [] // 신청자 목록
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/applicants.json",
+            name      :'',
+            formData  :{
+                affiliation     :'',
+                otherAffiliation:'',
+                paid   :false,
+                message           :''
+            },
+            applicants:[],
+            result   :''
         };
     },
-    mounted() {
-        this.fetchApplicants(); // 컴포넌트가 마운트될 때 신청자 목록 가져오기
+    mounted(){
+        this.fetchApplicants();
     },
-    methods: {
-        validateForm() {
-            if (!this.name || !this.messageContent) {
-                alert('모든 필드를 작성해주세요.');
-                return false;
-            }
-            return true;
+    methods:{
+        togglePayment(item) {
+            item.paid = !item.paid; // paid 상태를 토글
+            console.log(item.name + '의 입금 상태가 변경되었습니다: ' + item.paid);
+            // 필요한 경우 서버에 상태를 업데이트하는 로직을 추가할 수 있습니다.
         },
-        async checkNameExists(name) {
-            try {
-                const nameRef = dbRef(db, 'applicants'); // 'applicants' 노드 참조
-                const snapshot = await get(nameRef);
-                return snapshot.val() && Object.values(snapshot.val()).some(applicant => applicant.name === name);
-            } catch (error) {
-                console.error("이름 중복 확인 중 오류 발생:", error);
-                return false; // 오류 발생 시 false 반환
-            }
+        validateForm(){
+            return this.name && this.formData.affiliation;
         },
-        async fetchApplicants() {
-            try {
-                const nameRef = dbRef(db, 'applicants'); // 'applicants' 노드 참조
-                const snapshot = await get(nameRef);
-                if (snapshot.exists()) {
-                    // 신청자 목록 업데이트
-                    this.applicants = Object.keys(snapshot.val()).map(key => ({
-                        id: key,
-                        ...snapshot.val()[key]
-                    }));
-                } else {
-                    this.applicants = []; // 데이터가 없으면 빈 배열
-                }
-            } catch (error) {
+        fetchApplicants(){
+            this.$axios.get(this.apiUrl).then(response => {
+                this.applicants = response.data || [];
+            }).catch(error => {
                 console.error("신청자 목록 가져오기 오류:", error);
-            }
+            });
         },
-        async submitForm() {
-            if (!this.validateForm()) {
-                return; // 필드 유효성 검사 실패 시 종료
-            }
-
-            const nameExists = await this.checkNameExists(this.name);
-            if (nameExists) {
-                this.message = '동일 이름이 있습니다.';
+        submitForm(){
+            if(!this.validateForm()){
+                alert('모든 필드를 작성해주세요.');
                 return;
             }
 
             const applicantData = {
-                name: this.name, // 신청자의 이름
-                hasPaid: this.hasPaid, // 입금 유무
-                message: this.messageContent // 남기고 싶은 말
+                name            :this.name,
+                affiliation     :this.formData.affiliation,
+                otherAffiliation:this.formData.otherAffiliation,
+                paid   :this.formData.paid,
+                message           :this.formData.message
             };
 
-            // Firebase Realtime Database에 데이터 추가
-            push(dbRef(db, 'applicants'), applicantData) // push 메서드를 사용하여 데이터 추가
-                .then(() => {
-                    this.message = '신청이 완료되었습니다.'; // 완료 메시지 표시
-                    this.fetchApplicants(); // 신청자 목록 갱신
-                    // 양식 초기화
-                    this.name = '';
-                    this.hasPaid = false; // 체크박스 초기화
-                    this.messageContent = ''; // 메시지 초기화
-                })
-                .catch((error) => {
+            this.$axios.post(this.apiUrl, applicantData).then(() => {
+                this.result = '신청이 완료되었습니다.';
+                this.fetchApplicants(); // 신청자 목록 갱신
+                this.name = '';
+                this.formData = {
+                    affiliation     :'',
+                    otherAffiliation:'',
+                    paid   :'',
+                    message           :''
+                };
+            }).catch(error => {
                 console.error('데이터 저장 오류:', error);
-                this.message = '데이터 저장 오류가 발생했습니다.';
+                this.result = '데이터 저장 오류가 발생했습니다.';
             });
         }
     }
@@ -129,50 +144,4 @@ export default {
 
 <style>
 /* 스타일 추가 (예: form 스타일링) */
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: auto;
-}
-
-label {
-    margin-top: 10px;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-p {
-    color: green; /* 성공 메시지 색상 */
-    margin-top: 15px;
-}
-
-/* 테이블 스타일 */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
-}
-
-th {
-    background-color: #f2f2f2;
-}
 </style>
