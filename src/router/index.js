@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from "../views/HomeView.vue";
+import AdminView from "../views/AdminView.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
     path: "/",
     name: "HomeView",
     component: HomeView,
+  },
+  {
+    path: "/0330",
+    name: "AdminView",
+    component: AdminView,
   },
   {
     path: "/about",

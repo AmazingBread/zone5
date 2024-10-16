@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-5">
-        <h4 class="mb-4">bonobono 10월 20일 12시-2시</h4>
+        <h2 class="mb-4">bonobono 관리자 화면</h2>
         <form @submit.prevent="submitForm">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">이름</label>
@@ -67,13 +67,23 @@
                             'btn-warning': !item.paid,
                         }"
                         style="padding: 0.2rem 0.5rem; font-size: 0.9rem;"
+                        @click="togglePayment(item.key)"
                     >
                         {{ item.paid ? '입금 확인' : '입금 확인중' }}
                     </button>
                 </td>
+                <td style="width:50px;">
+                    <button @click="deleteApplicant(item.key)" class="btn btn-danger btn-sm">삭제</button>
+                </td>
             </tr>
             </tbody>
         </table>
+        <div class="mb-5">
+            <p>신청자 : {{ applicants.length }} 명</p>
+            <p>받을돈 : {{ (applicants.length * 25000).toLocaleString() }} 원</p>
+            <p>줄돈 : {{ ((applicants.length * 15000) + 100000).toLocaleString() }} 원</p>
+        </div>
+        <div class="pb-5"></div>
     </div>
 </template>
 
@@ -99,17 +109,20 @@ export default {
     },
     methods:{
         togglePayment(key) {
-            const item = this.applicants[key];
-            item.paid = !item.paid;
-
-            // Firebase에 상태 업데이트
-            this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, item)
-            .then(() => {
-                console.log('입금 상태가 업데이트되었습니다.');
-            })
-                .catch(error => {
-                console.error('입금 상태 업데이트 오류:', error);
-            });
+            const applicant = this.applicants.find(item => item.key === key);
+            if (applicant) {
+                applicant.paid = !applicant.paid; // 토글
+                // Firebase에 변경 사항 저장
+                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
+                .then(() => {
+                    this.fetchApplicants(); // 신청자 목록 갱신
+                })
+                     .catch(error => {
+                    console.error('입금 상태 업데이트 오류:', error);
+                });
+            } else {
+                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
+            }
         },
         validateForm(){
             return this.name && this.formData.affiliation;
@@ -155,12 +168,16 @@ export default {
             });
         },
         deleteApplicant(key) {
-            // Firebase에서 데이터 삭제
-            this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-                this.fetchApplicants(); // 신청자 목록 갱신
-            }).catch(error => {
-                console.error('삭제 오류:', error);
-            });
+            // 삭제 확인 창 띄우기
+            const confirmDelete = confirm("진짜로 삭제하냐?");
+            if (confirmDelete) {
+                // Firebase에서 데이터 삭제
+                this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
+                    this.fetchApplicants(); // 신청자 목록 갱신
+                }).catch(error => {
+                    console.error('삭제 오류:', error);
+                });
+            }
         }
     }
 };
