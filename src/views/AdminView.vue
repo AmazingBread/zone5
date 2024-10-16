@@ -51,14 +51,14 @@
 
         <table class="table mt-3">
             <tbody>
-            <tr v-for="(item, index) in applicants" :key="item.key"> <!-- key를 index로 사용 -->
-                <td style="width:20px;">{{ index + 1  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
+            <tr v-for="(item, index) in applicants.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
+                <td style="width:20px;">{{ applicants.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td style="width:60px;">{{ item.name }}</td>
-                <td style="width:60px;">
+                <td :style="{ width: item.message ? '60px' : 'auto' }" :colspan="!item.message ? 2 : 1">
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;">{{ item.message }}</td>
+                <td v-if="item.message" style="white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;">{{ item.message }}</td>
                 <td style="width:84px;">
                     <button
                         class="btn"
