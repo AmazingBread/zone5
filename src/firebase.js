@@ -1,6 +1,7 @@
 // src/firebase.js
 import { initializeApp } from 'firebase/app'; // Firebase 앱 초기화
 import { getDatabase } from 'firebase/database'; // Realtime Database 사용
+import { getAnalytics, logEvent  } from 'firebase/analytics'; // Firebase Analytics 모듈 추가
 
 // Firebase 구성 객체
 const firebaseConfig = {
@@ -18,3 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Realtime Database 가져오기
 export const db = getDatabase(app); // Firebase Database 초기화 및 내보내기
+// Firebase Analytics 초기화
+export const analytics = getAnalytics(app); // Firebase Analytics 초기화 및 내보내기
+
+// 페이지 로드 이벤트를 추적
+logEvent(analytics, 'page_view');
