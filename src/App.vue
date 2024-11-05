@@ -2,13 +2,38 @@
     <div id="app">
         <Header /> <!-- 헤더 컴포넌트 추가 -->
         <div class="container mobile-fixed">
-            <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/start')" >10월 27일 8-10시 START CLASS 오픈</button>
+        <!--    <a-->
+        <!--        href="https://www.instagram.com/bonobono_moolbono/"-->
+        <!--        target="_blank"-->
+        <!--        class="btn btn-dark w-100 mb-1"-->
+        <!--        style="font-size: 12px; display: block; text-align: center;"-->
+        <!--    >10월 27일 촬영분은 인스타 댓글/DM으로 신청해주세요</a>-->
+            <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/bear')" >
+                북극곰 축제 갈사람 요요 다붙으라
+            </button>
+            <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/cheering')" >
+                통영 트라이에슬론 응원게시판
+            </button>
+            <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/cheering_changwon')" >
+                창원클럽대항전 응원게시판
+            </button>
+            <!--<a-->
+            <!--    href="/chang.xls"-->
+            <!--    target="_blank"-->
+            <!--    class="btn btn-danger w-100 mb-1"-->
+            <!--    style="font-size: 12px; display: block; text-align: center;"-->
+            <!--    download="창원대회_대진표.xls"-->
+            <!--&gt;창원대회 대진표 확인바람 [다운로드]</a>-->
             <a
-                href="https://www.instagram.com/bonobono_moolbono/"
+                href="/kim.xlsx"
                 target="_blank"
-                class="btn btn-dark w-100 mb-3"
+                class="btn btn-dark w-100 mb-1"
                 style="font-size: 12px; display: block; text-align: center;"
-            >10월 20일 촬영분은 인스타 댓글/DM으로 신청해주세요</a>
+                download="김해대회_대진표.xlsx"
+            >김해대회 대진표 확인바람 [다운로드]</a>
+            <button type="submit" class="btn btn-primary w-100 mb-3" style="font-size: 12px;" @click="$router.push('/open_water')" >
+                바수 갈사람 요요 다붙으라
+            </button>
             <router-view />
         </div>
         <Footer /> <!-- 헤더 컴포넌트 추가 -->

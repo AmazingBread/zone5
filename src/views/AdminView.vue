@@ -3,18 +3,18 @@
         <h2 class="page_title mb-4">관리자 화면</h2>
         <table class="table mt-3">
             <tbody>
-            <tr v-for="(item, index) in applicants.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
-                <td style="width:10px;">
+            <tr v-for="(item, index) in apiData.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
+                <td style="width:20px;">
                     <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 </td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:10px;font-size:12px;">{{ applicants.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:60px;font-size:12px;">{{ item.name }}</td>
+                <td style="width:20px;font-size:12px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
+                <td style="width:50px;font-size:12px;">{{ item.name }}</td>
                 <td style="font-size:12px;">
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="width: 80px; font-size:12px;">{{ item.openClass }}</td>
-                <td style="width: 70px; font-size:12px;" class="text-center">
+                <td style="width: 75px; font-size:12px;">{{ item.openClass }}</td>
+                <td style="width: 60px; font-size:12px;" class="text-center">
                     <button
                         class="btn"
                         :class="{
@@ -27,7 +27,7 @@
                         {{ item.paid ? '입금' : '미입금' }}
                     </button>
                 </td>
-                <td style="width:60px;">
+                <td style="width:50px;">
                     <button @click="deleteApplicant(item.key)" class="btn btn-danger btn-sm" style="font-size:10px">삭제</button>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
         <div class="paidTable">
             <dl style="margin-right: 20px;">
                 <dt>신청자 / 입금자</dt>
-                <dd>{{ applicants.length }}명 / {{ paidApplicantsCount }}명</dd>
+                <dd>{{ apiData.length }}명 / {{ paidApplicantsCount }}명</dd>
             </dl>
 
             <dl style="margin-right: 20px;">
@@ -91,32 +91,42 @@
 </template>
 
 <script>
+import {getDatabase, onValue, ref} from "firebase/database";
+
 export default {
     data(){
         return {
             apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/applicants.json",
             exemptCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/exemptCount.json",
             nonAttendeeCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/nonAttendeeCount.json",
-            applicants:[],
+            apiData:[],
             result   :'',
             applicantCount: 0,
             exemptCount: 0,
             nonAttendeeCount: 0,
-            interval: '',
+            db: null, // 데이터베이스 참조 추가
         };
     },
     mounted(){
-        this.fetchApplicants();
-        this.interval = setInterval(() => {
-            this.fetchApplicants(); // 1분마다 데이터 갱신
-        }, 60000); // 60000ms = 1분
+        this.db = getDatabase(); // Firebase 데이터베이스 초기화
+        this.getData();
+        // 데이터 변경 감지를 위해 리스너 추가
+        const dataRef = ref(this.db, 'applicants'); // cheering 경로에 대한 참조
+        onValue(dataRef, (snapshot) => {
+            const getData = snapshot.val() || {};
+            this.apiData = Object.keys(getData)
+                .filter(key => key !== 'exemptCount') // exemptCount를 제외
+                .map(key => ({
+                    key: key, // Firebase에서의 고유 키
+                    ...getData[key] // 나머지 데이터
+                }));
+        });
     },
     beforeUnmount() {
-        clearInterval(this.interval); // 컴포넌트가 파괴될 때 인터벌 해제
     },
     computed: {
         paidApplicantsCount() {
-            return this.applicants.filter(applicant => applicant.paid).length;
+            return this.apiData.filter(applicant => applicant.paid).length;
         }
     },
     methods:{
@@ -134,13 +144,13 @@ export default {
             }
         },
         togglePayment(key) {
-            const applicant = this.applicants.find(item => item.key === key);
+            const applicant = this.apiData.find(item => item.key === key);
             if (applicant) {
                 applicant.paid = !applicant.paid; // 토글
                 // Firebase에 변경 사항 저장
                 this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
                 .then(() => {
-                    this.fetchApplicants(); // 신청자 목록 갱신
+                    this.getData(); // 신청자 목록 갱신
                 })
                      .catch(error => {
                     console.error('입금 상태 업데이트 오류:', error);
@@ -149,21 +159,21 @@ export default {
                 console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
             }
         },
-        validateForm(){
-            return this.name && this.formData.affiliation;
-        },
-        fetchApplicants() {
+        // validateForm(){
+        //     return this.name && this.formData.affiliation;
+        // },
+        getData() {
             // 신청자 목록 가져오기
             this.$axios.get(this.apiUrl)
             .then(response => {
-                const applicantsData = response.data || {};
-                this.applicants = Object.keys(applicantsData)
+                const apiData = response.data || {};
+                this.apiData = Object.keys(apiData)
                  .map(key => ({
                      key: key, // Firebase에서의 고유 키
-                     ...applicantsData[key] // 나머지 데이터
+                     ...apiData[key] // 나머지 데이터
                  }));
 
-                console.log('applicantsData', applicantsData);
+                console.log('apiData', apiData);
             })
                  .catch(error => {
                 console.error("신청자 목록 가져오기 오류:", error);
@@ -205,7 +215,7 @@ export default {
             if (confirmDelete) {
                 // Firebase에서 데이터 삭제
                 this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-                    this.fetchApplicants(); // 신청자 목록 갱신
+                    this.getData(); // 신청자 목록 갱신
                 }).catch(error => {
                     console.error('삭제 오류:', error);
                 });

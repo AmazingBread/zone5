@@ -1,10 +1,21 @@
 <template>
     <div>
+        <div class="mb-3" @click="$router.push('/cheering_changwon')" style="cursor: pointer;">
+            <img src="@/assets/image/cheering_changwon.jpg" class="img-fluid" alt="bear" />
+            <!--<img src="@/assets/image/cheering.png" class="img-fluid" alt="cheering" />-->
+            <!--<img src="@/assets/image/main.gif" class="img-fluid" alt="메인" />-->
+        </div>
         <div class="row justify-content-center">
             <div class="col-6 mb-3" @click="$router.push('/start')">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/cls01.jpg" class="img-fluid" alt="썸네일" />
-                    <p class="text-center mt-2 text-primary">START CLASS (모집중)<br>10. 27 SUN 08시 - 10시</p>
+                    <p class="text-center mt-2 ">START CLASS (마감)<br>10. 27 SUN 08시 - 10시</p>
+                </div>
+            </div>
+            <div class="col-6 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/goods.jpg" class="img-fluid" alt="굿즈" />
+                    <p class="text-center mt-2 text-secondary">(굿즈 coming soon)</p>
                 </div>
             </div>
             <div class="col-6 mb-3">
