@@ -15,9 +15,9 @@
         <div class="banner">
             <img src="@/assets/photo/banner4.jpg" alt="부찌" class="ad-image" />
         </div>
-        <div class="banner">
-            <img src="@/assets/photo/banner5.jpg" alt="순대" class="ad-image" />
-        </div>
+        <!--<div class="banner">-->
+        <!--    <img src="@/assets/photo/banner5.jpg" alt="순대" class="ad-image" />-->
+        <!--</div>-->
         <div class="banner">
             <img src="@/assets/photo/banner6.jpg" alt="부동산" class="ad-image" />
         </div>

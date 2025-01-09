@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--<img src="@/assets/image/bear.png" class="img-fluid" alt="bear" />-->
-        <h2 class="page_title mb-4">11월 10일 일요일 6시 송정 바수</h2>
+        <h2 class="page_title mb-4">11월 24일 일요일 라온호텔앞 6시 30분</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
@@ -16,15 +16,10 @@
                         <input class="form-check-input" type="radio" name="affiliation" id="bonobono" value="보노보노" v-model="formData.affiliation" ref="affiliationRadios">
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
-                        <label class="form-check-label" for="shoulder">음파핫</label>
-                    </div>
-
                     <!-- 기타 옵션 -->
-                    <div class="form-check mt-3 d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
+                    <div class="form-check d-inline-block d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="other" value="기타" v-model="formData.affiliation">
-                        <label class="form-check-label me-2" for="other">기타</label> <!-- 오른쪽 마진 추가 -->
+                        <label class="form-check-label me-2" for="other">&nbsp;기타</label> <!-- 오른쪽 마진 추가 -->
                         <input
                             type="text"
                             class="form-control"
@@ -41,13 +36,14 @@
                 <label for="size" class="form-label fw-bold">장소 시간 확인하세요</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
                     <option value="" disabled>바수 장소 및 시간</option>
-                    <option value="장소, 시간 확인함">11월 10일 송정 죽도주차장 6시 집합</option>
+                    <option value="장소, 시간 확인함">11월 24일 송정 라온호텔앞 6시 30분 집합</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">보노보노 바다수영 안내</label>
                 <p style="font-size:12px;">
+                    ※ 수트, 부이, 핀등 개인장비 준비해서 오세요<br>
                     1. 공지된 시간에 주차장에 모여 준비합니다.<br>
                     2. 20분 내외 준비후 백사장에서 체조후 입수<br>
                     3. 거리는 바다 사정에따라 약 1.5키로 - 2키로 사이예상<br>
@@ -89,11 +85,11 @@
         <table class="table mt-3">
             <tbody>
             <tr v-for="(item, index) in apiData.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
-                <td style="width:20px;">
-                    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
-                </td> <!-- 번호를 1부터 시작하도록 설정 -->
+                <!--<td style="width:20px;">-->
+                <!--    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">-->
+                <!--</td> -->
                 <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:60px;">{{ item.name }}</td>
+                <td style="width:100px;">{{ item.name }}</td>
                 <td>
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
@@ -177,24 +173,25 @@ export default {
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
                 this.$refs.nameInput.focus(); // 이름 입력 필드에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // 최상단으로 스크롤
+                this.$refs.nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!affiliation) {
                 this.showMessage("누구냐 너....", 2);
                 this.$refs.affiliationRadios.focus(); // 소속 라디오 버튼에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.affiliationRadios.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!ok) {
                 this.showMessage("장소 시간 한번더 확인!!!", 3);
                 this.$refs.sizeSelect.focus(); // 수업 선택 드롭다운에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.sizeSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
                 this.showMessage("면책 동의좀 해주이소..", 4);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
+                this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             return true; // 모든 필드가 유효한 경우

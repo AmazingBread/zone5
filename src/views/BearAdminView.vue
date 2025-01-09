@@ -8,7 +8,7 @@
                     <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 </td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td style="width:20px;font-size:12px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:50px;font-size:12px;">{{ item.name }}</td>
+                <td style="font-size:12px;">{{ item.name }}</td>
                 <td style="font-size:12px;">
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
@@ -115,7 +115,6 @@ export default {
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
-                .filter(key => key !== 'bear_exemptCount') // exemptCount를 제외
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
                     ...getData[key] // 나머지 데이터

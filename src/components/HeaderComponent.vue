@@ -2,7 +2,7 @@
     <div class="header">
         <router-link to="/">
             <h1>
-                <img src="@/assets/image/logo.jpg" style="height: 50px;" alt="로고">
+                <img src="@/assets/image/n_logo.jpg" style="height: 50px;" alt="로고">
             </h1>
         </router-link>
     </div>

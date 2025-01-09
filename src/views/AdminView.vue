@@ -13,7 +13,7 @@
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="width: 75px; font-size:12px;">{{ item.openClass }}</td>
+                <!--<td style="width: 75px; font-size:12px;">{{ item.openClass }}</td>-->
                 <td style="width: 60px; font-size:12px;" class="text-center">
                     <button
                         class="btn"
@@ -35,56 +35,61 @@
         </table>
         <div class="paidTable">
             <dl style="margin-right: 20px;">
-                <dt>신청자 / 입금자</dt>
-                <dd>{{ apiData.length }}명 / {{ paidApplicantsCount }}명</dd>
+                <dt>입금자 / 신청자</dt>
+                <dd>{{ paidApplicantsCount }}명 / {{ apiData.length }}명</dd>
             </dl>
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 25000).toLocaleString() }}원</dd>
+                <dd>{{ (paidApplicantsCount * 18000).toLocaleString() }}원 / 18,000원 x{{ paidApplicantsCount }}명</dd>
             </dl>
 
+            <!--<dl style="margin-right: 20px;">-->
+            <!--    <dt>레대비 낼돈</dt>-->
+            <!--    <dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 15000) + 100000).toLocaleString() }}원 ({{paidApplicantsCount - nonAttendeeCount}}명)</dd>-->
+            <!--</dl>-->
             <dl style="margin-right: 20px;">
                 <dt>레대비 낼돈</dt>
-                <dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 15000) + 100000).toLocaleString() }}원 ({{paidApplicantsCount - nonAttendeeCount}}명)</dd>
+                <dd>150,000원 (1레인 50,000원)</dd>
             </dl>
 
-            <dl style="margin-right: 20px; display: flex; align-items: center;">
-                <dt>입장 면제</dt>
-                <dd>
-                    <button class="btn btn-outline-secondary" @click="updateExemptCount(exemptCount > 0 ? exemptCount-- : 0)">-</button>
-                    <input
-                        type="number"
-                        class="form-control"
-                        v-model.number="exemptCount"
-                        @input="updateExemptCount"
-                        placeholder="ex) 1"
-                        style="width: 50px; text-align: center; margin: 0 2px;"
-                    >
-                    <button class="btn btn-outline-secondary" @click="updateExemptCount(exemptCount++)">+</button>
-                </dd>
-            </dl>
+            <!--<dl style="margin-right: 20px; display: flex; align-items: center;">-->
+            <!--    <dt>입장 면제</dt>-->
+            <!--    <dd>-->
+            <!--        <button class="btn btn-outline-secondary" @click="updateExemptCount(exemptCount > 0 ? exemptCount&#45;&#45; : 0)">-</button>-->
+            <!--        <input-->
+            <!--            type="number"-->
+            <!--            class="form-control"-->
+            <!--            v-model.number="exemptCount"-->
+            <!--            @input="updateExemptCount"-->
+            <!--            placeholder="ex) 1"-->
+            <!--            style="width: 50px; text-align: center; margin: 0 2px;"-->
+            <!--        >-->
+            <!--        <button class="btn btn-outline-secondary" @click="updateExemptCount(exemptCount++)">+</button>-->
+            <!--    </dd>-->
+            <!--</dl>-->
 
-            <dl style="margin-right: 20px; display: flex; align-items: center;">
-                <dt>돈내고 안온사람</dt>
-                <dd>
-                    <button class="btn btn-outline-secondary" @click="updateNonAttendeeCount(nonAttendeeCount > 0 ? nonAttendeeCount-- : 0)">-</button>
-                    <input
-                        type="number"
-                        class="form-control"
-                        v-model.number="nonAttendeeCount"
-                        @input="updateNonAttendeeCount"
-                        placeholder="ex) 1"
-                        style="width: 50px; text-align: center; margin: 0 2px;"
-                    >
-                    <button class="btn btn-outline-secondary" @click="updateNonAttendeeCount(nonAttendeeCount++)" style="margin-right:5px;">+</button>
-                    (환불 : {{ ((nonAttendeeCount * 25000)).toLocaleString() }}원)
-                </dd>
-            </dl>
-            <dl style="margin-right: 20px;">
-                <dt>실제차액</dt>
-                <dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 25000) - (( (paidApplicantsCount - nonAttendeeCount) * 15000) + 100000) - (exemptCount * 25000)).toLocaleString() }} 원</dd>
-            </dl>
+            <!--<dl style="margin-right: 20px; display: flex; align-items: center;">-->
+            <!--    <dt>돈내고 안온사람</dt>-->
+            <!--    <dd>-->
+            <!--        <button class="btn btn-outline-secondary" @click="updateNonAttendeeCount(nonAttendeeCount > 0 ? nonAttendeeCount&#45;&#45; : 0)">-</button>-->
+            <!--        <input-->
+            <!--            type="number"-->
+            <!--            class="form-control"-->
+            <!--            v-model.number="nonAttendeeCount"-->
+            <!--            @input="updateNonAttendeeCount"-->
+            <!--            placeholder="ex) 1"-->
+            <!--            style="width: 50px; text-align: center; margin: 0 2px;"-->
+            <!--        >-->
+            <!--        <button class="btn btn-outline-secondary" @click="updateNonAttendeeCount(nonAttendeeCount++)" style="margin-right:5px;">+</button>-->
+            <!--        (환불 : {{ ((nonAttendeeCount * 10000)).toLocaleString() }}원)-->
+            <!--    </dd>-->
+            <!--</dl>-->
+            <!--<dl style="margin-right: 20px;">-->
+            <!--    <dt>실제차액</dt>-->
+            <!--    &lt;!&ndash;<dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 10000) - (( (paidApplicantsCount - nonAttendeeCount) * 15000) + 100000) - (exemptCount * 25000)).toLocaleString() }} 원</dd>&ndash;&gt;-->
+            <!--    <dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 10000) - (( (paidApplicantsCount - nonAttendeeCount) * 15000) + 100000) - (exemptCount * 25000)).toLocaleString() }} 원</dd>-->
+            <!--</dl>-->
         </div>
         <div class="pb-5"></div>
     </div>

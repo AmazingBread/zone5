@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">스타트데이 10월 27일 08시-10시</h2>
+        <img src="@/assets/image/cls06.jpg" class="img-fluid" alt="썸네일">
+        <h2 class="page_title mb-4">📣📣박대한쌤 특강+훈련📣📣<br>2월 9일 일요일 2시<br>선착순 30명</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
@@ -17,11 +18,19 @@
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
-                        <label class="form-check-label" for="shoulder">어깨탈골</label>
+                        <label class="form-check-label" for="shoulder">팀어깨이</label>
                     </div>
                     <div class="form-check d-inline-block"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                        <label class="form-check-label" for="swimmy">스위미</label>
+                        <label class="form-check-label" for="swimmy">팀스위미</label>
+                    </div>
+                    <div class="form-check d-inline-block"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">
+                        <label class="form-check-label" for="gosu">팀고수정</label>
+                    </div>
+                    <div class="form-check d-inline-block"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
+                        <label class="form-check-label" for="zoo">팀동물원</label>
                     </div>
 
                     <!-- 기타 옵션 -->
@@ -32,7 +41,7 @@
                             type="text"
                             class="form-control"
                             v-model="formData.otherAffiliation"
-                            placeholder="ex) 고수정 친구"
+                            placeholder="ex) 배하정 지인"
                             :disabled="formData.affiliation !== '기타'"
                             style="width: auto; flex-grow: 1;"
                         >
@@ -41,24 +50,20 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="openClass" class="form-label fw-bold">수업 선택</label>
+                <label for="openClass" class="form-label fw-bold">비용 확인</label>
                 <select class="form-select" id="openClass" v-model="formData.openClass" ref="openClassSelect">
-                    <option value="" disabled>수업을 선택하세요</option>
-                    <option value="마스터즈반">1반. 대회 마스터즈반 (대회 나가요) </option>
-                    <option value="대회뉴비반">2반. 대회 뉴비반 (스탓 잘 못해요)</option>
-                    <option value="수영간지반">3반. 수영은 간지반 (대회 안가요, 영법 봐줘요)</option>
+                    <option value="" disabled>비용 확인</option>
+                    <option value="비용 확인">특강비 1만 + 레대비 8,000 (입장료별도)</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">스타트 수업 안내</label>
+                <label class="form-label fw-bold">보노보노 훈련 안내</label>
                 <p style="font-size:12px;">
-                    1. 수업은 정각에 체조로 시작 됩니다. 정각 까지 입수해 주세요<br>
-                    2. 체조후 초,중,고 레벨로 15분간 워밍업 진행<br>
-                    3. 워밍업 후 통제에 따라 신청 하신 반으로 이동<br>
-                    3-1. 기초반은 담당강사가 지도 (장미쌤 or 꾸꾸쌤)<br>
-                    4. 마무리 10분전 쯔음 릴스타임이 있습니다<br>
-                    5. 촬영된 영상은 인스타그램 댓글/DM 으로 신청하세요<br><br>
+                    📣📣 훈련장소는 보노보노 공지방에 안내됩니다📣📣<br>
+                    1. 훈련은 시작전 미리 입수해 주세요<br>
+                    2. 촬영이 가능하면 마무리 10분전 쯔음 릴스타임이 있습니다<br>
+                    3. 촬영된 영상은 인스타그램 댓글/DM 으로 신청하세요<br><br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -83,25 +88,28 @@
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
-
-
-
-
-
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">신청</button>
+            <button
+                type="submit"
+                class="btn w-100"
+                :class="apiData.length === 30 ? 'btn-danger' : 'btn-primary'"
+                :disabled="apiData.length === 30"
+            >
+                선착순 {{apiData.length === 30 ? '마감' : '신청'}} ({{apiData.length}} / 30)
+            </button>
 
 
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 25,000원</p>
+                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 18,000원</p>
                 <div class="refund-policy">
                     <p>※ 환불규정</p>
                     <ul>
-                        <li>입장 최소 인원 10명 달성 시 전액 환불 가능. 입장 최소 인원 달성 시 추가 안내 예정.</li>
-                        <li>입장 최소 인원 미달 시 입장료(15,000원)만 환급됨을 알려드리며 널리 양해 바랍니다. 미달 시 환불 절차가 진행됩니다.</li>
-                        <li>입장 최소 인원 결정 및 환불은 스탓벙 진행 후 확정하며 진행 당일 환불 예정입니다. 진행 후에 최종 환불됩니다.</li>
+                        <li>입장 최소 인원 10명 미달 시 훈련 취소 전액 환불 가능.</li>
+                        <li>훈련 취소 시 개별 환불 절차가 진행됩니다.</li>
+                        <li>입금 후 미참석자는 환불 불가</li>
+                        <!--<li>입장 최소 인원 결정 및 환불은 스탓벙 진행 후 확정하며 진행 당일 환불 예정입니다. 진행 후에 최종 환불됩니다.</li>-->
                     </ul>
                 </div>
 
@@ -114,12 +122,12 @@
                     <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 </td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:60px;">{{ item.name }}</td>
+                <td style="width:80px;">{{ item.name }}</td>
                 <td>
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="width: 90px">{{ item.openClass }}</td>
+                <!--<td style="width: 90px">{{ item.openClass }}</td>-->
                 <td style="width:60px;" class="text-center">
                     <button
                         class="btn"
@@ -211,24 +219,25 @@ export default {
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
                 this.$refs.nameInput.focus(); // 이름 입력 필드에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // 최상단으로 스크롤
+                this.$refs.nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!affiliation) {
                 this.showMessage("누구냐 너....", 2);
                 this.$refs.affiliationRadios.focus(); // 소속 라디오 버튼에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.affiliationRadios.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!openClass) {
-                this.showMessage("당신의 선택은 두구두구...", 3);
+                this.showMessage("얼만지 압니꺼?", 3);
                 this.$refs.openClassSelect.focus(); // 수업 선택 드롭다운에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.openClassSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
                 this.showMessage("면책 동의좀 해주이소..", 4);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
+                this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             return true; // 모든 필드가 유효한 경우
@@ -301,7 +310,7 @@ export default {
         copyAccountNumber(event) {
             event.preventDefault(); // 기본 동작 방지
             // 참조된 계좌번호 텍스트 가져오기
-            const accountText = '79420390777 카카오뱅크 25,000원'
+            const accountText = '79420390777 카카오뱅크 18,000원'
 
             // 클립보드에 텍스트 복사
             navigator.clipboard.writeText(accountText)

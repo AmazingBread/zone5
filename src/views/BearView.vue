@@ -1,6 +1,7 @@
 <template>
     <div>
-        <img src="@/assets/image/bear.png" class="img-fluid" alt="bear" />
+        <img src="@/assets/image/bear_main.jpg" class="img-fluid" alt="썸네일" />
+        <!--<img src="@/assets/image/bear.png" class="img-fluid" alt="bear" />-->
         <h2 class="page_title mb-4">북극곰축제 10월 30일 신청</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
@@ -85,16 +86,8 @@
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
-
-
-
-
-
             </div>
-
             <button type="submit" class="btn btn-primary w-100">신청</button>
-
-
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
                 <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 30,000원</p>
@@ -107,7 +100,6 @@
                         <!--<li>입장 최소 인원 결정 및 환불은 스탓벙 진행 후 확정하며 진행 당일 환불 예정입니다. 진행 후에 최종 환불됩니다.</li>-->
                     </ul>
                 </div>
-
             </div>
         </form>
         <table class="table mt-3">
@@ -117,7 +109,7 @@
                     <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 </td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:60px;">{{ item.name }}</td>
+                <td>{{ item.name }}</td>
                 <td>
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
@@ -214,24 +206,25 @@ export default {
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
                 this.$refs.nameInput.focus(); // 이름 입력 필드에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // 최상단으로 스크롤
+                this.$refs.nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!affiliation) {
                 this.showMessage("누구냐 너....", 2);
                 this.$refs.affiliationRadios.focus(); // 소속 라디오 버튼에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.affiliationRadios.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!size) {
                 this.showMessage("티샤스 사이즈 골라주이소...", 3);
                 this.$refs.sizeSelect.focus(); // 수업 선택 드롭다운에 포커스
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.$refs.sizeSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
                 this.showMessage("면책 동의좀 해주이소..", 4);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
+                this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             return true; // 모든 필드가 유효한 경우

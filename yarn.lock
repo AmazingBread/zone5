@@ -11,6 +11,22 @@
     "event-pubsub" "4.3.0"
     "js-message" "1.0.7"
 
+"@ag-grid-community/core@32.3.3":
+  "integrity" "sha512-JMr5ahDjjl+pvQbBM1/VrfVFlioCVnMl1PKWc6MC1ENhpXT1+CPQdfhUEUw2VytOulQeQ4eeP0pFKPuBZ5Jn2g=="
+  "resolved" "https://registry.npmjs.org/@ag-grid-community/core/-/core-32.3.3.tgz"
+  "version" "32.3.3"
+  dependencies:
+    "ag-charts-types" "10.3.3"
+    "tslib" "^2.3.0"
+
+"@ag-grid-community/theming@^32.3.3":
+  "integrity" "sha512-yIM2Ff0zxveVqUB0Uy4c0pe2q3MrFc6PrZvPcI/aLTYgmlEliWbO1PzWh8zIiRlgc6AxLT3c6ky9nvkRYzGohg=="
+  "resolved" "https://registry.npmjs.org/@ag-grid-community/theming/-/theming-32.3.3.tgz"
+  "version" "32.3.3"
+  dependencies:
+    "@ag-grid-community/core" "32.3.3"
+    "tslib" "^2.6.3"
+
 "@ampproject/remapping@^2.1.0":
   "integrity" "sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w=="
   "resolved" "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
@@ -2290,6 +2306,11 @@
   "resolved" "https://registry.npmjs.org/address/-/address-1.2.2.tgz"
   "version" "1.2.2"
 
+"ag-charts-types@10.3.3":
+  "integrity" "sha512-8rmyquaTkwfP4Lzei/W/cbkq9wwEl8+grIo3z97mtxrMIXh9sHJK1oJipd/u08MmBZrca5Jjtn5F1+UNPu/4fQ=="
+  "resolved" "https://registry.npmjs.org/ag-charts-types/-/ag-charts-types-10.3.3.tgz"
+  "version" "10.3.3"
+
 "agent-base@^6.0.2", "agent-base@6":
   "integrity" "sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ=="
   "resolved" "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
@@ -2637,6 +2658,11 @@
   "integrity" "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww=="
   "resolved" "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   "version" "1.0.0"
+
+"bootstrap-icons@^1.11.3":
+  "integrity" "sha512-+3lpHrCw/it2/7lBL15VR0HEumaBss0+f/Lb6ZvHISn1mlK83jjFpooTLsMWbIjJMDjDjOExMsTxnXSIT4k4ww=="
+  "resolved" "https://registry.npmjs.org/bootstrap-icons/-/bootstrap-icons-1.11.3.tgz"
+  "version" "1.11.3"
 
 "bootstrap@^5.3.3":
   "integrity" "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
@@ -7063,10 +7089,10 @@
   "resolved" "https://registry.npmjs.org/true-case-path/-/true-case-path-2.2.1.tgz"
   "version" "2.2.1"
 
-"tslib@^2.0.3", "tslib@^2.1.0":
-  "integrity" "sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg=="
-  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.5.0.tgz"
-  "version" "2.5.0"
+"tslib@^2.0.3", "tslib@^2.1.0", "tslib@^2.3.0", "tslib@^2.6.3":
+  "integrity" "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz"
+  "version" "2.8.1"
 
 "type-check@^0.4.0", "type-check@~0.4.0":
   "integrity" "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew=="

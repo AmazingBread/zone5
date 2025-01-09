@@ -2,6 +2,7 @@ html {
 	font-size: 14px;
 }
 body {
+	overflow-x: hidden;
 	font-size: 1rem;
 }
 select {
@@ -54,7 +55,7 @@ select {
 		display: flex;
 		flex-wrap: wrap;
 		dt {
-			width: 110px; /* 타이틀 넓이 설정 */
+			width: 130px; /* 타이틀 넓이 설정 */
 			font-weight: bold;
 		}
 
