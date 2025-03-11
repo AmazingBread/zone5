@@ -41,7 +41,7 @@
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 18000).toLocaleString() }}원 / 18,000원 x{{ paidApplicantsCount }}명</dd>
+                <dd>{{ (paidApplicantsCount * 8000).toLocaleString() }}원 / 8,000원 x{{ paidApplicantsCount }}명</dd>
             </dl>
 
             <!--<dl style="margin-right: 20px;">-->
@@ -50,7 +50,7 @@
             <!--</dl>-->
             <dl style="margin-right: 20px;">
                 <dt>레대비 낼돈</dt>
-                <dd>100,000원 (1레인 50,000원)</dd>
+                <dd>150,000원 (1레인 50,000원)</dd>
             </dl>
 
             <!--<dl style="margin-right: 20px; display: flex; align-items: center;">-->
@@ -101,9 +101,9 @@ import {getDatabase, onValue, ref} from "firebase/database";
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/applicants.json",
-            exemptCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/exemptCount.json",
-            nonAttendeeCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/nonAttendeeCount.json",
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/bread.json",
+            exemptCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/bread_exemptCount.json",
+            nonAttendeeCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/bread_nonAttendeeCount.json",
             apiData:[],
             result   :'',
             applicantCount: 0,
@@ -116,11 +116,11 @@ export default {
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'applicants'); // cheering 경로에 대한 참조
+        const dataRef = ref(this.db, 'bread'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
-                .filter(key => key !== 'exemptCount') // exemptCount를 제외
+                .filter(key => key !== 'bread_exemptCount') // exemptCount를 제외
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
                     ...getData[key] // 나머지 데이터

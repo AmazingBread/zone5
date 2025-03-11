@@ -8,12 +8,45 @@
         <!--        class="btn btn-dark w-100 mb-1"-->
         <!--        style="font-size: 12px; display: block; text-align: center;"-->
         <!--    >10월 27일 촬영분은 인스타 댓글/DM으로 신청해주세요</a>-->
-            <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/group_buying')" >
-                요헤미티 공동구매 마감 오프라인 수령중
-            </button>
-            <button type="submit" class="btn btn-primary w-100 mb-1" style="font-size: 12px;" >
-                보노보노 레대 훈련 설쉬고 합시다
-            </button>
+        <!--    <div class="row p-1">-->
+        <!--        <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/group_buying')" >-->
+        <!--            요헤미티 공동구매 마감 오프라인 수령중-->
+        <!--        </button>-->
+        <!--    </div>-->
+            <div class="row">
+                <div class="col-12 p-1">
+                    <div style="text-align: center;" class="btn btn-info w-100 mb-1">
+                        해운대 실시간 바다수온 <strong>{{$store.state.waterTempData}}도</strong> [{{$store.state.waterRecordTime}}]
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 p-1">
+                    <button
+                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
+                        @click="$router.push({ path: '/basu', query: { spotid: '42897' } })"
+                    >
+                        송정날씨
+                    </button>
+                </div>
+                <div class="col-4 p-1">
+                    <button
+                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
+                        @click="$router.push({ path: '/basu', query: { spotid: '218644' } })"
+                    >
+                        광안리날씨
+                    </button>
+                </div>
+                <div class="col-4 p-1">
+                    <button
+                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
+                        @click="$router.push({ path: '/basu', query: { spotid: '5752427' } })"
+                    >
+                        해운대날씨
+                    </button>
+                </div>
+            </div>
+
             <!--<button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/bear')" >-->
             <!--    북극곰 축제 성공적 완료 (영상은 DB으로 영상 주소전달드림)-->
             <!--</button>-->

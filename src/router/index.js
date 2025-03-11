@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import StartView from "../views/StartView.vue";
+import BreadView from "../views/StartBreadView.vue";
 import TrainingView from "../views/TrainingView.vue";
 import EventView from "../views/EventView.vue";
 import CheeringView from "../views/CheeringView.vue";
@@ -15,6 +16,7 @@ import GoodsSocksView from "../views/GoodsSocksView.vue";
 import GoodsView from "../views/GoodsView.vue";
 
 import AdminView from "../views/AdminView.vue";
+import BreadAdminView from "../views/AdminBreadView.vue";
 import TrainingAdminView from "../views/TrainingAdminView.vue";
 import EventAdminView from "../views/EventAdminView.vue";
 import BearAdminView from "../views/BearAdminView.vue";
@@ -24,6 +26,7 @@ import GoodsSwimWearAdminView from "../views/GoodsSwimWearAdminView.vue";
 import GoodsSocksAdminView from "../views/GoodsSocksAdminView.vue";
 import groupBuyingAdminView from "../views/groupBuyingAdminView.vue";
 import MainView from "../views/MainView.vue";
+import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../firebase'; // firebase.js 경로
 
@@ -37,10 +40,22 @@ const routes = [
     meta: { title: '보노보노 물보노' }, // 타이틀 설정
   },
   {
+    path: "/basu",
+    name: "BasuWeather",
+    component: BasuView,
+    meta: { title: '보노보노 바수날씨' }, // 타이틀 설정
+  },
+  {
     path: "/start",
     name: "StartView",
     component: StartView,
     meta: { title: '보노보노 START' }, // 타이틀 설정
+  },
+  {
+    path: "/bread",
+    name: "breadView",
+    component: BreadView,
+    meta: { title: '보노보노 빵쌤 훈련' }, // 타이틀 설정
   },
   {
     path: "/training",
@@ -113,6 +128,12 @@ const routes = [
     name: "AdminView",
     component: AdminView,
     meta: { title: '보노보노 start 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/bread0330",
+    name: "BreadAdminView",
+    component: BreadAdminView,
+    meta: { title: '보노보노 빵쌤 관리자' }, // 타이틀 설정
   },
   {
     path: "/training0330",

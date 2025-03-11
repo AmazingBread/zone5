@@ -1,9 +1,20 @@
 <template>
     <div>
-        <div class="col-12 mb-3">
-            <div class="thumbnail-box">
-                <img src="@/assets/image/cls06.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/start')"/>
-                <p class="text-center mt-2 text-primary">📣📣박대한쌤 특강+훈련📣📣<br>2월 9일 일요일 2시<br>선착순 30명</p>
+        <!--<div class="mb-3">-->
+        <!--    <img src="@/assets/image/review.jpg" class="img-fluid" alt="review" />-->
+        <!--</div>-->
+        <div class="row justify-content-center m-0">
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/cls02.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/start')"/>
+                    <p class="text-center mt-2 text-primary">📣📣이후영쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>선착순 30명</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/cls03.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/bread')"/>
+                    <p class="text-center mt-2 text-danger">📣📣빵쌤 평영MSG특강 + 훈련📣📣<br>3월 16일 일요일 11시<br>선착순 30명 (마감)</p>
+                </div>
             </div>
         </div>
         <img src="@/assets/image/goods_socks.jpg" class="img-fluid" alt="썸네일" />
