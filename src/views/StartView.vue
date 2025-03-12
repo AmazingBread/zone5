@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="@/assets/image/cls02.jpg" class="img-fluid" alt="썸네일">
+        <img src="@/assets/image/class_hoo.jpg" class="img-fluid" alt="썸네일">
         <h2 class="page_title mb-4">📣📣이후영쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>선착순 30명</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
