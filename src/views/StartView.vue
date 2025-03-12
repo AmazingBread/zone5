@@ -29,7 +29,7 @@
                         <label class="form-check-label" for="gosu">팀고수정</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
+                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀ZOO" v-model="formData.affiliation">
                         <label class="form-check-label" for="zoo">팀ZOO</label>
                     </div>
 
