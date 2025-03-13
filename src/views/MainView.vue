@@ -12,7 +12,7 @@
             </div>
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
-                    <img src="@/assets/image/ulsan_00.png" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
+                    <img src="@/assets/image/ulsan_00.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
                     <p class="text-center mt-2 text-primary">📣📣보노보노 울산 남구 대회 신청📣📣<br>3월 18일 신청마감</p>
                 </div>
             </div>

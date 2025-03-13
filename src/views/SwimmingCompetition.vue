@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2 class="page_title mb-4">보노보노 울산 남구 대회 4월 13일 일요일</h2>
-        <img src="@/assets/image/ulsan_00.png" class="img-fluid" alt="ulsan" />
+        <img src="@/assets/image/ulsan_00.png" class="img-fluid" alt="ulsan" style="width: 100%" />
         <img src="@/assets/image/ulsan_02.jpg" class="img-fluid" alt="ulsan" />
         <img src="@/assets/image/ulsan_03.jpg" class="img-fluid" alt="ulsan" />
         <img src="@/assets/image/ulsan_04.jpg" class="img-fluid" alt="ulsan" />
