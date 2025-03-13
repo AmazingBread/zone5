@@ -10,6 +10,8 @@ import groupBuying from "../views/groupBuying.vue";
 
 import BearView from "../views/BearView.vue";
 import OpenWaterView from "../views/OpenWaterView.vue";
+import SwimmingCompetition from "../views/SwimmingCompetition.vue";
+import AdminSwimmingCompetition from "../views/AdminSwimmingCompetition.vue";
 import GoodsCapView from "../views/GoodsCapView.vue";
 import GoodsSwimWearView from "../views/GoodsSwimWearView.vue";
 import GoodsSocksView from "../views/GoodsSocksView.vue";
@@ -80,6 +82,18 @@ const routes = [
     name: "OpenWaterView",
     component: OpenWaterView,
     meta: { title: '보노보노 바다수영' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition",
+    name: "SwimmingCompetition",
+    component: SwimmingCompetition,
+    meta: { title: '보노보노 대회' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition0330",
+    name: "AdminSwimmingCompetition",
+    component: AdminSwimmingCompetition,
+    meta: { title: '보노보노 대회 관리자' }, // 타이틀 설정
   },
   {
     path: "/goods",

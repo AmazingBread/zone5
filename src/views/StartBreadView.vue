@@ -1,7 +1,7 @@
 <template>
     <div>
         <img src="@/assets/image/cls03.jpg" class="img-fluid" alt="썸네일">
-        <h2 class="page_title mb-4">📣📣빵쌤 평영 MSG특강+훈련📣📣<br>3월 16일 일요일 11시<br>선착순 {{firstComeLimit}}명 (마감)</h2>
+        <h2 class="page_title mb-4">📣📣빵쌤 평영 MSG특강+훈련📣📣<br>3월 16일 일요일 11시<br>선착순 {{firstComeLimit}}명 </h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">

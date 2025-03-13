@@ -12,8 +12,14 @@
             </div>
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
+                    <img src="@/assets/image/ulsan_00.png" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
+                    <p class="text-center mt-2 text-primary">📣📣보노보노 울산 남구 대회 신청📣📣<br>3월 18일 신청마감</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
                     <img src="@/assets/image/cls03.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/bread')"/>
-                    <p class="text-center mt-2 text-danger">📣📣빵쌤 평영MSG특강 + 훈련📣📣<br>3월 16일 일요일 11시<br>선착순 30명 (마감)</p>
+                    <p class="text-center mt-2 text-primary">📣📣빵쌤 평영MSG특강 + 훈련📣📣<br>3월 16일 일요일 11시<br>선착순 30명</p>
                 </div>
             </div>
         </div>
