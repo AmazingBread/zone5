@@ -198,7 +198,7 @@
                     {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ formatPhone(item.phone) }}, {{ item.tsize }}
                 </div>
                 <div class="font-weight-bold">
-                    {{ item.group }} {{ item.events1 }} {{ item.events2 }}
+                    {{ item.group }}, {{ item.events1 }}, {{ item.events2 }}
                 </div>
             </div>
         </div>
