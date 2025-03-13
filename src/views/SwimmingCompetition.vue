@@ -20,7 +20,7 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="age" class="form-label fw-bold">3. 생년월일(910102-1234567) 이런형식</label>
+                <label for="age" class="form-label fw-bold">3. 생년월일(910102) 이런형식</label>
                 <input type="text" class="form-control" id="age" v-model="formData.age" ref="age">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
@@ -104,12 +104,38 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="size" class="form-label fw-bold">8. 돈낼거</label>
+                <label class="form-label fw-bold">8. 티샤스 사이즈</label>
+                <div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="tsize" id="tsize" value="S" v-model="formData.tsize" ref="tsize">
+                        <label class="form-check-label" for="tsize">S</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="tsize" id="tsize" value="M" v-model="formData.tsize" ref="tsize">
+                        <label class="form-check-label" for="tsize">M</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="tsize" id="tsize" value="L" v-model="formData.tsize" ref="tsize">
+                        <label class="form-check-label" for="tsize">L</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="tsize" id="tsize" value="XL" v-model="formData.tsize" ref="tsize">
+                        <label class="form-check-label" for="tsize">XL</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="tsize" id="tsize" value="XXL" v-model="formData.tsize" ref="tsize">
+                        <label class="form-check-label" for="tsize">XXL</label>
+                    </div>
+                </div>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 8">{{errorMessage[0]}}</p>
+            </div>
+            <div class="mb-3">
+                <label for="size" class="form-label fw-bold">9. 돈낼거</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
                     <option value="" disabled>돈낼거 확인</option>
                     <option value="장소, 시간 확인함">대회비 2.5만 + 먹을거 1만 = 3.5만</option>
                 </select>
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 8">{{errorMessage[0]}}</p>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">보노보노 대회 안내</label>
@@ -143,7 +169,7 @@
                     비록 자필서명이 없더라도 면책동의 후 행사신청 또는 참석 시 본 동호회에 면책동의를 한것으로 간주한다.<br>
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 10">{{errorMessage[0]}}</p>
             </div>
             <button type="submit" class="btn btn-primary w-100">대회신청</button>
         </form>
@@ -195,6 +221,7 @@ export default {
                 group      :'',
                 events1      :'',
                 events2      :'',
+                tsize      :'',
                 paid   :"",
                 ok:'',
                 liabilityAgreement: ''
@@ -251,7 +278,7 @@ export default {
         //     });
         // },
         validateForm() {
-            const { name, sex, age, phone, group, events1, events2, ok, liabilityAgreement } = this.formData;
+            const { name, sex, age, phone, group, events1, events2, tsize ok, liabilityAgreement } = this.formData;
 
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
@@ -295,14 +322,20 @@ export default {
                 this.$refs.events2.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
+            if (!tsize) {
+                this.showMessage("티샤스 골라야지" , 8); // 사용자에게 메시지 표시
+                this.$refs.tsize.focus(); // 이름 입력 필드에 포커스
+                this.$refs.tsize.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
+                return false;
+            }
             if (!ok) {
-                this.showMessage("돈 확인!!!", 8);
+                this.showMessage("돈 확인!!!", 9);
                 this.$refs.sizeSelect.focus(); // 수업 선택 드롭다운에 포커스
                 this.$refs.sizeSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
-                this.showMessage("면책 동의좀 해주이소..", 9);
+                this.showMessage("면책 동의좀 해주이소..", 10);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
                 this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -343,8 +376,10 @@ export default {
                 age               :this.formData.age,
                 phone             :this.formData.phone,
                 group             :this.formData.group,
-                events1            :this.formData.events1,
-                events2            :this.formData.events2,
+                events1           :this.formData.events1,
+                events2           :this.formData.events2,
+                tsize             :this.formData.tsize,
+
                 paid              :false,
                 ok                :this.formData.ok,
                 liabilityAgreement: this.formData.liabilityAgreement // 면책 동의 추가
@@ -362,6 +397,7 @@ export default {
                     group            :'',
                     events1              :'',
                     events2              :'',
+                    tsize              :'',
                     paid              :'',
                     ok                :'',
                     liabilityAgreement: '' // 초기화
