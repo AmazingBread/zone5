@@ -169,7 +169,7 @@
 
                 <!-- 하단 사용자 정보 -->
                 <div class="font-weight-bold mt-1">
-                    {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ item.phone }}
+                    {{ item.name }}, {{ item.sex }}, {{ formatJumin(item.age) }}, {{ formatPhone(item.phone) }}
                 </div>
                 <div class="font-weight-bold">
                     {{ item.group }} {{ item.events1 }} {{ item.events2 }}
@@ -372,6 +372,15 @@ export default {
                 alert(this.result)
             });
         },
+        formatJumin(jumin) {
+            if (!jumin || jumin.length < 8) return jumin; // 예외 처리
+            return jumin.slice(0, 6) + '-' + jumin.charAt(7) + '*******';
+        },
+        // 전화번호 포맷 (맨 뒤 4자리 가리기)
+        formatPhone(phone) {
+            if (!phone || phone.length < 4) return phone; // 예외 처리
+            return phone.slice(0, -4) + '****';
+        }
         // deleteApplicant(key) {
         //     // Firebase에서 데이터 삭제
         //     this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
