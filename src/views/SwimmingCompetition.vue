@@ -55,24 +55,24 @@
                 <label class="form-label fw-bold">6. 종목 1</label>
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="fr25_1" value="자유형 25" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="fr25_1">자유형 25</label>
+                        <input class="form-check-input" type="radio" name="events1" id="fr25_1" value="자유형25" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="fr25_1">자유형25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="fr100_1" value="자유형 100" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="fr100_1">자유형 100</label>
+                        <input class="form-check-input" type="radio" name="events1" id="fr100_1" value="자유형100" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="fr100_1">자유형100</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="bk25_1" value="배영 25" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="bk25_1">배영 25</label>
+                        <input class="form-check-input" type="radio" name="events1" id="bk25_1" value="배영25" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="bk25_1">배영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="br25_1" value="평영 25" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="br25_1">평영 25</label>
+                        <input class="form-check-input" type="radio" name="events1" id="br25_1" value="평영25" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="br25_1">평영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="im100_1" value="개혼 100" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="im100_1">개혼 100</label>
+                        <input class="form-check-input" type="radio" name="events1" id="im100_1" value="개인혼영100" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="im100_1">개인혼영100</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 6">{{errorMessage[0]}}</p>
@@ -81,24 +81,24 @@
                 <label class="form-label fw-bold">7. 종목 2</label>
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="fr25_2" value="자유형 25" v-model="formData.events2" ref="events2">
-                        <label class="form-check-label" for="fr25_2">자유형 25</label>
+                        <input class="form-check-input" type="radio" name="events2" id="fr25_2" value="자유형25" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="fr25_2">자유형25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="fr100_2" value="자유형 100" v-model="formData.events2" ref="events2">
-                        <label class="form-check-label" for="fr100_2">자유형 100</label>
+                        <input class="form-check-input" type="radio" name="events2" id="fr100_2" value="자유형100" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="fr100_2">자유형100</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="bk25_2" value="배영 25" v-model="formData.events2" ref="events2">
-                        <label class="form-check-label" for="bk25_2">배영 25</label>
+                        <input class="form-check-input" type="radio" name="events2" id="bk25_2" value="배영25" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="bk25_2">배영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="br25_2" value="평영 25" v-model="formData.events2" ref="events2">
-                        <label class="form-check-label" for="br25_2">평영 25</label>
+                        <input class="form-check-input" type="radio" name="events2" id="br25_2" value="평영25" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="br25_2">평영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="im100_2" value="개혼100" v-model="formData.events2" ref="events2">
-                        <label class="form-check-label" for="im100_2">개혼100</label>
+                        <input class="form-check-input" type="radio" name="events2" id="im100_2" value="개인혼영100" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="im100_2">개인혼영100</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
@@ -195,7 +195,7 @@
 
                 <!-- 하단 사용자 정보 -->
                 <div class="font-weight-bold mt-1">
-                    {{ item.name }}, {{ item.sex }}, {{ formatJumin(item.age) }}, {{ formatPhone(item.phone) }}
+                    {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ formatPhone(item.phone) }}, {{ item.tsize }}
                 </div>
                 <div class="font-weight-bold">
                     {{ item.group }} {{ item.events1 }} {{ item.events2 }}
