@@ -172,6 +172,18 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 10">{{errorMessage[0]}}</p>
             </div>
             <button type="submit" class="btn btn-primary w-100">대회신청</button>
+            <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
+                <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
+                <p class="highlighted-text" ref="accountText">{{accountText}}</p>
+                <div class="refund-policy">
+                    <p>※ 환불규정</p>
+                    <ul>
+                        <li>대회 신청마감후 환불 불가</li>
+                        <li>입금 후 미참석자는 환불 불가</li>
+                    </ul>
+                </div>
+
+            </div>
         </form>
         <div class="mt-3">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">대회 신청자 {{apiData.length}}명</p>
@@ -231,6 +243,7 @@ export default {
             applicantCount: 0, // 전역 변수 초기화
             errorMessage:'',
             db: null, // 데이터베이스 참조 추가
+            accountText: '79420390777 카카오뱅크 35,0000원'
         };
     },
     mounted(){
@@ -416,6 +429,20 @@ export default {
         formatPhone(phone) {
             if (!phone || phone.length < 4) return phone; // 예외 처리
             return phone.slice(0, -4) + '****';
+        },
+        copyAccountNumber(event) {
+            event.preventDefault(); // 기본 동작 방지
+            // 참조된 계좌번호 텍스트 가져오기
+
+
+            // 클립보드에 텍스트 복사
+            navigator.clipboard.writeText(this.accountText)
+            .then(() => {
+                alert("계좌번호가 복사되었습니다: ");
+            })
+                      .catch(error => {
+                console.error("계좌번호 복사 실패:", error);
+            });
         }
         // deleteApplicant(key) {
         //     // Firebase에서 데이터 삭제
