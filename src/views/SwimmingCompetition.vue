@@ -278,7 +278,7 @@ export default {
         //     });
         // },
         validateForm() {
-            const { name, sex, age, phone, group, events1, events2, tsize ok, liabilityAgreement } = this.formData;
+            const { name, sex, age, phone, group, events1, events2, tsize, ok, liabilityAgreement } = this.formData;
 
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
