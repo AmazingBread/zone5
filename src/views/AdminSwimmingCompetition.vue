@@ -166,6 +166,7 @@
                         class="btn"
                         :class="{ 'btn-success': item.paid, 'btn-warning': !item.paid }"
                         style="padding: 0.2rem 0.5rem; font-size:10px"
+                        @click="togglePayment(item.key)"
                     >
                         {{ item.paid ? '대회비 입완' : '대회비 미입금' }}
                     </button>
@@ -173,10 +174,10 @@
 
                 <!-- 하단 사용자 정보 -->
                 <div class="font-weight-bold mt-1">
-                    {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ item.phone }}
+                    {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ item.phone }}, {{ item.tsize }}
                 </div>
                 <div class="font-weight-bold">
-                    {{ item.group }} {{ item.events1 }} {{ item.events2 }}
+                    {{ item.group }}, {{ item.events1 }}, {{ item.events2 }}
                 </div>
             </div>
         </div>
@@ -383,6 +384,22 @@ export default {
             }).catch(error => {
                 console.error('삭제 오류:', error);
             });
+        },
+        togglePayment(key) {
+            const applicant = this.apiData.find(item => item.key === key);
+            if (applicant) {
+                applicant.paid = !applicant.paid; // 토글
+                // Firebase에 변경 사항 저장
+                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
+                .then(() => {
+                    this.getData(); // 신청자 목록 갱신
+                })
+                     .catch(error => {
+                    console.error('입금 상태 업데이트 오류:', error);
+                });
+            } else {
+                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
+            }
         },
     }
 };
