@@ -71,6 +71,10 @@
                         <label class="form-check-label" for="br25_1">평영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="events1" id="fl25_1" value="접영25" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="fl25_1">접영25</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events1" id="im100_1" value="개인혼영100" v-model="formData.events1" ref="events1">
                         <label class="form-check-label" for="im100_1">개인혼영100</label>
                     </div>
@@ -95,6 +99,10 @@
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events2" id="br25_2" value="평영25" v-model="formData.events2" ref="events2">
                         <label class="form-check-label" for="br25_2">평영25</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="events2" id="fl25_2" value="접영25" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" for="fl25_2">접영25</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events2" id="im100_2" value="개인혼영100" v-model="formData.events2" ref="events2">
