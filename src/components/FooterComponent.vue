@@ -1,6 +1,6 @@
 <template>
     <div class="footer mobile-fixed">
-        <Banner v-if="this.$route.path !== '/0330'"/>
+        <!--<Banner v-if="this.$route.path !== '/0330'"/>-->
         <div style="margin:10px 0; padding: 10px 0;">
             <a href="https://www.instagram.com/bonobono_moolbono" target="_blank" class="instagram-link" style="text-decoration-line: none; ">
                 <img src="@/assets/image/insta.png" alt="Instagram Icon" style="width:20px" />
