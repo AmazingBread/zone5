@@ -101,10 +101,10 @@
             <button
                 type="submit"
                 class="btn w-100"
-                :class="apiData.length >= 30 ? 'btn-danger' : 'btn-primary'"
-                :disabled="apiData.length >= 30"
+                :class="apiData.length >= 100 ? 'btn-danger' : 'btn-primary'"
+                :disabled="apiData.length >= 100"
             >
-                선착순 {{apiData.length >= 30 ? '마감' : '신청'}} ({{apiData.length}} / 30)
+                선착순 {{apiData.length >= 100 ? '마감' : '신청'}} ({{apiData.length}} / 100)
             </button>
 
 
