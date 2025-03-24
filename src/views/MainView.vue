@@ -6,7 +6,7 @@
         <div class="row justify-content-center m-0">
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
-                    <img src="@/assets/image/class_park.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/start')"/>
+                    <img src="@/assets/image/class_park0.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/start')"/>
                     <p class="text-center mt-2 text-primary">📣📣박대한쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>인원제한없음</p>
                 </div>
             </div>
