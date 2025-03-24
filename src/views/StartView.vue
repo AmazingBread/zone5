@@ -2,6 +2,10 @@
     <div>
         <img src="@/assets/image/class_park.jpg" class="img-fluid" alt="썸네일">
         <h2 class="page_title mb-4">📣📣박대한쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>인원제한없음</h2>
+        <img src="@/assets/image/park1.png" class="img-fluid" alt="썸네일">
+        <img src="@/assets/image/park2.png" class="img-fluid" alt="썸네일">
+        <img src="@/assets/image/park3.png" class="img-fluid" alt="썸네일">
+        <img src="@/assets/image/park4.png" class="img-fluid" alt="썸네일">
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
