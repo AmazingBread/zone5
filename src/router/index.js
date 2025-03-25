@@ -7,6 +7,7 @@ import EventView from "../views/EventView.vue";
 import CheeringView from "../views/CheeringView.vue";
 import CheeringViewChangwon from "../views/CheeringView_changwon.vue";
 import groupBuying from "../views/groupBuying.vue";
+import groupBuying2 from "../views/groupBuying2.vue";
 
 import BearView from "../views/BearView.vue";
 import OpenWaterView from "../views/OpenWaterView.vue";
@@ -138,6 +139,12 @@ const routes = [
     meta: { title: '보노보노 요해미티 공동구매' }, // 타이틀 설정
   },
   {
+    path: "/group_buying2",
+    name: "groupBuying2",
+    component: groupBuying2,
+    meta: { title: '보노보노 요해미티 공동구매' }, // 타이틀 설정
+  },
+  {
     path: "/0330",
     name: "AdminView",
     component: AdminView,
@@ -193,6 +200,12 @@ const routes = [
   },
   {
     path: "/group_buying0330",
+    name: "groupBuyingAdminView",
+    component: groupBuyingAdminView,
+    meta: { title: '보노보노 요해미티 공동구매 - 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/group_buying20330",
     name: "groupBuyingAdminView",
     component: groupBuyingAdminView,
     meta: { title: '보노보노 요해미티 공동구매 - 관리자' }, // 타이틀 설정

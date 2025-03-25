@@ -190,7 +190,7 @@ import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK�
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/group_buying.json",
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/group_buying2.json",
             formData  :{
                 checked      :'',
                 name      :'',
@@ -225,7 +225,7 @@ export default {
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'group_buying'); // cheering 경로에 대한 참조
+        const dataRef = ref(this.db, 'group_buying2'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
