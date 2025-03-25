@@ -110,8 +110,8 @@
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">구매방법 안내</label>
                 <p style="font-size:12px;">
-                    1. 워터 (1통 10알) 6,900원 입니다. 50통 부터인데 넘을듯.<br>
-                    2. 젤 (1팩 10개) 15,500원 30개 이상 함 해보입시다.<br>
+                    1. 워터 (1통 10알) 6,900원 입니다.(50통 이하시 공구취소)<br>
+                    2. 젤 (1팩 10개) 15,500원 (30팩 이하시 공구취소)<br>
                     3. 제품수령은 보노보노 오프라인 모임으로 수령가능 (택배x)<br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
