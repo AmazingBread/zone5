@@ -10,6 +10,15 @@
                     <p class="text-center mt-2 text-primary">📣📣박대한쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>인원제한없음</p>
                 </div>
             </div>
+            <div class="mb-3" @click="$router.push('/group_buying')" style="cursor: pointer;">
+                <img src="@/assets/image/yohemite.png" class="img-fluid" alt="buying" />
+            </div>
+            <p style="text-align: center; padding: 10px;">
+                요헤미티 공동구매
+                <!--📣📣요헤미티 할인코드📣📣<br>-->
+                <!--1. 개인구매 10프로 할인코드 - DM 문의바람<br>-->
+                <!--2. 단채구매 40프로 이상 할인 - 12월 5일 마감<br>-->
+            </p>
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/ulsan_00.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
@@ -23,10 +32,10 @@
             <!--    </div>-->
             <!--</div>-->
         </div>
-        <img src="@/assets/image/goods_socks.jpg" class="img-fluid" alt="썸네일" />
-        <p style="text-align: center; padding: 10px;">
-            📣📣보노보노 양마루 준비중📣📣<br>
-        </p>
+        <!--<img src="@/assets/image/goods_socks.jpg" class="img-fluid" alt="썸네일" />-->
+        <!--<p style="text-align: center; padding: 10px;">-->
+        <!--    📣📣보노보노 양마루 준비중📣📣<br>-->
+        <!--</p>-->
         <!--<img src="@/assets/image/korea_masters.jpg" class="img-fluid" alt="썸네일" />-->
         <!--<video-->
         <!--    autoplay-->
@@ -36,15 +45,7 @@
         <!--    controls-->
         <!--&gt;-->
         <!--</video>-->
-        <div class="mb-3" @click="$router.push('/group_buying')" style="cursor: pointer;">
-            <img src="@/assets/image/yohemite.png" class="img-fluid" alt="buying" />
-        </div>
-        <p style="text-align: center; padding: 10px;">
-            요헤미티 공동구매
-            <!--📣📣요헤미티 할인코드📣📣<br>-->
-            <!--1. 개인구매 10프로 할인코드 - DM 문의바람<br>-->
-            <!--2. 단채구매 40프로 이상 할인 - 12월 5일 마감<br>-->
-        </p>
+
         <!--<div class="mb-3" @click="$router.push('/bear')" style="cursor: pointer;">-->
         <!--    <img src="@/assets/image/bear_main.jpg" class="img-fluid" alt="썸네일" />-->
         <!--</div>-->
