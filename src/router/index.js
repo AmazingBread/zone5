@@ -28,6 +28,7 @@ import GoodsCapAdminView from "../views/GoodsCapAdminView.vue";
 import GoodsSwimWearAdminView from "../views/GoodsSwimWearAdminView.vue";
 import GoodsSocksAdminView from "../views/GoodsSocksAdminView.vue";
 import groupBuyingAdminView from "../views/groupBuyingAdminView.vue";
+import groupBuyingAdminView2 from "../views/groupBuyingAdminView2.vue";
 import MainView from "../views/MainView.vue";
 import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
@@ -206,8 +207,8 @@ const routes = [
   },
   {
     path: "/group_buying20330",
-    name: "groupBuyingAdminView",
-    component: groupBuyingAdminView,
+    name: "groupBuyingAdminView2",
+    component: groupBuyingAdminView2,
     meta: { title: '보노보노 요해미티 공동구매 - 관리자' }, // 타이틀 설정
   },
   // {
