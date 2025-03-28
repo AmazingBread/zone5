@@ -30,6 +30,7 @@ import GoodsSocksAdminView from "../views/GoodsSocksAdminView.vue";
 import groupBuyingAdminView from "../views/groupBuyingAdminView.vue";
 import groupBuyingAdminView2 from "../views/groupBuyingAdminView2.vue";
 import MainView from "../views/MainView.vue";
+import DietView from "../views/diet.vue";
 import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../firebase'; // firebase.js 경로
@@ -42,6 +43,12 @@ const routes = [
     name: "MainView",
     component: MainView,
     meta: { title: '보노보노 물보노' }, // 타이틀 설정
+  },
+  {
+    path: "/diet",
+    name: "DietTracker",
+    component: DietView,
+    meta: { title: '보노보노 살빼자' }, // 타이틀 설정
   },
   {
     path: "/basu",
