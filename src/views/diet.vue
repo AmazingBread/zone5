@@ -49,6 +49,13 @@
                     <button @click="saveWeight('준스기', apiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="mb-3 d-flex align-items-center">
+                    <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">승언</label>
+                    <input type="text" class="form-control me-2" v-model="apiData['승언']" ref="nameInput">
+                    <button @click="saveWeight('승언', apiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                </div>
+            </div>
         </div>
 
 
@@ -72,7 +79,8 @@ export default {
                 '영은': 0,
                 '시리': 0,
                 '장미': 0,
-                '준스기': 0
+                '준스기': 0,
+                '승언':0,
             },
             chartData: []
 
@@ -159,6 +167,7 @@ export default {
             const siri = [];
             const juns = [];
             const silver = [];
+            const pool = [];
 
             // Firebase에서 가져온 데이터를 기반으로 날짜별로 몸무게 데이터 추출
             this.chartData.forEach(entry => {
@@ -166,11 +175,13 @@ export default {
                 dates.push(date); // 날짜 배열에 추가
 
                 // 사람별 몸무게 데이터를 시리즈로 추가
-                bread.push(parseFloat(entry.돼빵 || 0)); // 돼빵
-                silver.push(parseFloat(entry.영은 || 0)); // 냄비
-                rose.push(parseFloat(entry.장미 || 0));  // 장미
-                siri.push(parseFloat(entry.시리 || 0));  // 시리
-                juns.push(parseFloat(entry.준스기 || 0));  // 준슥
+                bread.push(parseFloat(entry.돼빵 || 0));
+                silver.push(parseFloat(entry.영은 || 0));
+                rose.push(parseFloat(entry.장미 || 0));
+                siri.push(parseFloat(entry.시리 || 0));
+                juns.push(parseFloat(entry.준스기 || 0));
+                pool.push(parseFloat(entry.승언 || 0));
+
             });
 
 
@@ -230,6 +241,7 @@ export default {
                 }],
 
                 legend: {
+                    enabled: false,
                     align: 'left',
                     verticalAlign: 'top',
                     borderWidth: 0
@@ -277,6 +289,9 @@ export default {
                 }, {
                     name: '장미',
                     data: rose
+                }, {
+                    name: '승언',
+                    data: pool
                 }]
             });
         },
