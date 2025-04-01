@@ -1,10 +1,10 @@
 <template>
     <div>
         <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
-        <h2 class="page_title">4월 10일 마감 11일 주문</h2>
+        <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
         <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
         <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
-        <h2 class="page_title">4월 10일 마감 11일 주문</h2>
+        <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3" style="padding:10px; border-radius: 5px; border:1px solid #dee2e6;">

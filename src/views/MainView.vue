@@ -14,7 +14,7 @@
                 <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
             </div>
             <p style="text-align: center; padding: 10px;">
-                보노보노 요헤미티 공동구매
+                보노보노 요헤미티 공동구매 6일마감
                 <!--📣📣요헤미티 할인코드📣📣<br>-->
                 <!--1. 개인구매 10프로 할인코드 - DM 문의바람<br>-->
                 <!--2. 단채구매 40프로 이상 할인 - 12월 5일 마감<br>-->
