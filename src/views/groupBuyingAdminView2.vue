@@ -87,10 +87,10 @@
                 <dt>워터200</dt>
                 <dd>{{ goodsCount }}개 /&nbsp; <strong>{{ (goodsCount * 6200).toLocaleString() }}원</strong>&nbsp; / &nbsp; <strong>{{ ((goodsCount * 6900)-(goodsCount * 6200)).toLocaleString() }}원</strong></dd>
             </dl>
-            <dl style="margin-right: 20px; background: orangered; color:#fff;">
-                <dt>보틀 7500원</dt>
-                <dd>문찌리 1개 입완</dd>
-            </dl>
+            <!--<dl style="margin-right: 20px; background: orangered; color:#fff;">-->
+            <!--    <dt>보틀 7500원</dt>-->
+            <!--    <dd>문찌리 1개 입완</dd>-->
+            <!--</dl>-->
             <!--<dl style="margin-right: 20px;">-->
             <!--    <dt>실제차액</dt>-->
             <!--</dl>-->

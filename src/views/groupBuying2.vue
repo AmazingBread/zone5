@@ -81,25 +81,25 @@
                             <p>{{ (formData[type.model] * 6900).toLocaleString() }} 원</p>
                         </div>
                     </div>
-                    <div class="item-container">
-                        <div class="counter-section">
-                            <label for="gelCount" class="form-label fw-bold">요해미티-에너지젤</label>
-                            <div class="counter-container">
-                                <button type="button" @click="decrement('gelCount')">-</button>
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    id="gelCount"
-                                    v-model="formData.gelCount"
-                                    min="0"
-                                >
-                                <button type="button" @click="increment('gelCount')">+</button>
-                            </div>
-                        </div>
-                        <div class="price-section">
-                            <p>{{ (formData.gelCount * 15500).toLocaleString() }} 원</p>
-                        </div>
-                    </div>
+                    <!--<div class="item-container">-->
+                    <!--    <div class="counter-section">-->
+                    <!--        <label for="gelCount" class="form-label fw-bold">요해미티-에너지젤</label>-->
+                    <!--        <div class="counter-container">-->
+                    <!--            <button type="button" @click="decrement('gelCount')">-</button>-->
+                    <!--            <input-->
+                    <!--                type="number"-->
+                    <!--                class="form-control"-->
+                    <!--                id="gelCount"-->
+                    <!--                v-model="formData.gelCount"-->
+                    <!--                min="0"-->
+                    <!--            >-->
+                    <!--            <button type="button" @click="increment('gelCount')">+</button>-->
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--    <div class="price-section">-->
+                    <!--        <p>{{ (formData.gelCount * 15500).toLocaleString() }} 원</p>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                     <div class="sum-section">
                         <strong>총합계</strong>
                         <span class="price">{{ (totalPrice).toLocaleString() }} 원</span>
