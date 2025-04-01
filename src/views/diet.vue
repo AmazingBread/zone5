@@ -134,14 +134,6 @@ export default {
                 const today = this.today; // 예: '2025-03-28'
                 let todayData = apiData[today] || {}; // 오늘의 데이터 (없으면 빈 객체)
 
-                // 오늘 데이터가 없다면 전날 데이터 찾기
-                if (Object.keys(todayData).length === 0) {
-                    let yesterday = new Date(this.today); // today를 기반으로 전날 계산
-                    yesterday.setDate(yesterday.getDate() - 1); // 하루 전으로 설정
-                    const yesterdayDate = yesterday.toISOString().split('T')[0]; // 전날 날짜
-
-                    todayData = apiData[yesterdayDate] || {}; // 전날 데이터 (없으면 빈 객체)
-                }
 
                 // apiData 변수에 오늘(또는 전날) 데이터 할당
                 this.apiData = todayData;
