@@ -6,13 +6,13 @@
         <div class="d-flex gap-2 p-1">
             <div class="mb-3 d-flex align-items-center">
                 <label for="bread" class="form-label fw-bold me-2" style="white-space: nowrap;">돼빵</label>
-                <input type="text" class="form-control me-2" v-model="apiData['돼빵']" ref="nameInput">
-                <button @click="saveWeight('돼빵', apiData['돼빵'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['돼빵']" ref="nameInput">
+                <button @click="saveWeight('돼빵', toDayApiData['돼빵'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
             <div class="mb-3 d-flex align-items-center">
                 <label for="rose" class="form-label fw-bold me-2" style="white-space: nowrap;">영은</label>
-                <input type="text" class="form-control me-2" v-model="apiData['영은']" ref="nameInput">
-                <button @click="saveWeight('영은', apiData['영은'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['영은']" ref="nameInput">
+                <button @click="saveWeight('영은', toDayApiData['영은'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
@@ -20,13 +20,13 @@
         <div class="d-flex gap-2 p-1">
             <div class="mb-3 d-flex align-items-center">
                 <label for="siri" class="form-label fw-bold me-2" style="white-space: nowrap;">시리</label>
-                <input type="text" class="form-control me-2" v-model="apiData['시리']" ref="nameInput">
-                <button @click="saveWeight('시리', apiData['시리'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['시리']" ref="nameInput">
+                <button @click="saveWeight('시리', toDayApiData['시리'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
             <div class="mb-3 d-flex align-items-center">
                 <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">장미</label>
-                <input type="text" class="form-control me-2" v-model="apiData['장미']" ref="nameInput">
-                <button @click="saveWeight('장미', apiData['장미'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['장미']" ref="nameInput">
+                <button @click="saveWeight('장미', toDayApiData['장미'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
@@ -34,13 +34,13 @@
         <div class="d-flex gap-2 p-1">
             <div class="mb-3 d-flex align-items-center">
                 <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">준스기</label>
-                <input type="text" class="form-control me-2" v-model="apiData['준스기']" ref="nameInput">
-                <button @click="saveWeight('준스기', apiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['준스기']" ref="nameInput">
+                <button @click="saveWeight('준스기', toDayApiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
             <div class="mb-3 d-flex align-items-center">
                 <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">승언</label>
-                <input type="text" class="form-control me-2" v-model="apiData['승언']" ref="nameInput">
-                <button @click="saveWeight('승언', apiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['승언']" ref="nameInput">
+                <button @click="saveWeight('승언', toDayApiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
 <script>
 import Highcharts from 'highcharts';
 import 'highcharts/modules/series-label';
-import { getDatabase, ref, onValue, set, get } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
+import { getDatabase, ref, child, onValue, set, get } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
 
 export default {
@@ -61,8 +61,9 @@ export default {
             apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/diet.json",
             today :'',
             yesterday :'',
-            apiData: {},
+            apiData: [],
             yesterDayApiData: {},
+            toDayApiData: {},
             // apiData: {
             //     '돼빵': 0,
             //     '영은': 0,
@@ -81,15 +82,14 @@ export default {
         this.getYesterday()
         this.getData()
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'diet'); // cheering 경로에 대한 참조
-        onValue(dataRef, (snapshot) => {
-            const getData = snapshot.val() || {};
-            this.apiData = Object.keys(getData)
-                                  .map(key => ({
-                key: key, // Firebase에서의 고유 키
-                ...getData[key] // 나머지 데이터
-            }));
-        });
+        // const dataRef = child(ref(this.db), `diet/${this.today}`); // cheering 경로에 대한 참조
+        // onValue(dataRef, (snapshot) => {
+        //     const getData = snapshot.val() || {};
+        //     this.toDayApiData = Object.keys(getData).map(key => ({
+        //         key: key, // Firebase에서의 고유 키
+        //         ...getData[key] // 나머지 데이터
+        //     }));
+        // });
     },
     computed: {
     },
@@ -103,9 +103,8 @@ export default {
                 console.log(`${name}의 몸무게 저장 성공`);
                 // 어제 데이터와 비교하여 오늘 없는 데이터도 함께 저장
                 if (this.yesterDayApiData) {
-                    console.log('this.yesterDayApiData', this.yesterDayApiData);
                     Object.keys(this.yesterDayApiData).forEach(yesterdayName => {
-                        if (!this.apiData[yesterdayName]) { // 오늘 데이터에 없는 이름이면 저장
+                        if (this.yesterDayApiData[yesterdayName] && !this.toDayApiData[yesterdayName]) {
                             const missingWeightRef = ref(this.db, 'diet/' + this.today + '/' + yesterdayName);
                             set(missingWeightRef, this.yesterDayApiData[yesterdayName])
                             .then(() => {
@@ -146,7 +145,7 @@ export default {
 
 
                 // apiData 변수에 오늘(또는 전날) 데이터 할당
-                this.apiData = todayData;
+                this.toDayApiData = todayData;
                 this.createChart()
             })
              .catch(error => {
