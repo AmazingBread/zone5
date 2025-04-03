@@ -192,7 +192,7 @@ export default {
                     type: "line",
                     zoomType: 'x',
                     height:500,
-                    marginTop: 30,
+                    marginTop: 60,
                     marginBottom: 50, // 범례 공간을 위해 여유 추가
                     // scrollablePlotArea: {
                     //     minWidth: 700
@@ -252,7 +252,7 @@ export default {
                 }],
 
                 legend: {
-                    enabled: false,
+                    enabled: true,
                     align: 'left',
                     verticalAlign: 'top',
                     borderWidth: 0
