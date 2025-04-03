@@ -3,58 +3,44 @@
         <div id="container"></div>
         <div class="mb-3 text-center">{{today}} 몸무게</div>
         <!-- 돼빵 입력란 -->
-        <div class="row">
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="bread" class="form-label fw-bold me-2" style="white-space: nowrap;">돼빵</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['돼빵']" ref="nameInput">
-                    <button @click="saveWeight('돼빵', apiData['돼빵'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+        <div class="d-flex gap-2 p-1">
+            <div class="mb-3 d-flex align-items-center">
+                <label for="bread" class="form-label fw-bold me-2" style="white-space: nowrap;">돼빵</label>
+                <input type="text" class="form-control me-2" v-model="apiData['돼빵']" ref="nameInput">
+                <button @click="saveWeight('돼빵', apiData['돼빵'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
-            <!-- 영은 입력란 -->
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="rose" class="form-label fw-bold me-2" style="white-space: nowrap;">영은</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['영은']" ref="nameInput">
-                    <button @click="saveWeight('영은', apiData['영은'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+            <div class="mb-3 d-flex align-items-center">
+                <label for="rose" class="form-label fw-bold me-2" style="white-space: nowrap;">영은</label>
+                <input type="text" class="form-control me-2" v-model="apiData['영은']" ref="nameInput">
+                <button @click="saveWeight('영은', apiData['영은'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
         <!-- 시리 입력란 -->
-        <div class="row">
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="siri" class="form-label fw-bold me-2" style="white-space: nowrap;">시리</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['시리']" ref="nameInput">
-                    <button @click="saveWeight('시리', apiData['시리'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+        <div class="d-flex gap-2 p-1">
+            <div class="mb-3 d-flex align-items-center">
+                <label for="siri" class="form-label fw-bold me-2" style="white-space: nowrap;">시리</label>
+                <input type="text" class="form-control me-2" v-model="apiData['시리']" ref="nameInput">
+                <button @click="saveWeight('시리', apiData['시리'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
-            <!-- 장미 입력란 -->
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">장미</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['장미']" ref="nameInput">
-                    <button @click="saveWeight('장미', apiData['장미'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+            <div class="mb-3 d-flex align-items-center">
+                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">장미</label>
+                <input type="text" class="form-control me-2" v-model="apiData['장미']" ref="nameInput">
+                <button @click="saveWeight('장미', apiData['장미'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
         <!-- 준스기 입력란 -->
-        <div class="row">
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">준스기</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['준스기']" ref="nameInput">
-                    <button @click="saveWeight('준스기', apiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+        <div class="d-flex gap-2 p-1">
+            <div class="mb-3 d-flex align-items-center">
+                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">준스기</label>
+                <input type="text" class="form-control me-2" v-model="apiData['준스기']" ref="nameInput">
+                <button @click="saveWeight('준스기', apiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
-            <div class="col-6">
-                <div class="mb-3 d-flex align-items-center">
-                    <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">승언</label>
-                    <input type="text" class="form-control me-2" v-model="apiData['승언']" ref="nameInput">
-                    <button @click="saveWeight('승언', apiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
-                </div>
+            <div class="mb-3 d-flex align-items-center">
+                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">승언</label>
+                <input type="text" class="form-control me-2" v-model="apiData['승언']" ref="nameInput">
+                <button @click="saveWeight('승언', apiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
@@ -74,14 +60,17 @@ export default {
         return {
             apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/diet.json",
             today :'',
-            apiData: {
-                '돼빵': 0,
-                '영은': 0,
-                '시리': 0,
-                '장미': 0,
-                '준스기': 0,
-                '승언':0,
-            },
+            yesterday :'',
+            apiData: {},
+            yesterDayApiData: {},
+            // apiData: {
+            //     '돼빵': 0,
+            //     '영은': 0,
+            //     '시리': 0,
+            //     '장미': 0,
+            //     '준스기': 0,
+            //     '승언':0,
+            // },
             chartData: []
 
         };
@@ -89,6 +78,7 @@ export default {
     mounted(){
         this.db = getDatabase();
         this.getToday()
+        this.getYesterday()
         this.getData()
         // 데이터 변경 감지를 위해 리스너 추가
         const dataRef = ref(this.db, 'diet'); // cheering 경로에 대한 참조
@@ -105,11 +95,29 @@ export default {
     },
     methods:{
         saveWeight(name, weight){
-            // Firebase의 diet 경로에 이름을 key로 하여 데이터를 저장
+            // this.yesterDayApiData
+
             const weightRef = ref(this.db, 'diet/' + this.today + '/' + name);
             set(weightRef, weight)
             .then(() => {
                 console.log(`${name}의 몸무게 저장 성공`);
+                // 어제 데이터와 비교하여 오늘 없는 데이터도 함께 저장
+                if (this.yesterDayApiData) {
+                    console.log('this.yesterDayApiData', this.yesterDayApiData);
+                    Object.keys(this.yesterDayApiData).forEach(yesterdayName => {
+                        if (!this.apiData[yesterdayName]) { // 오늘 데이터에 없는 이름이면 저장
+                            const missingWeightRef = ref(this.db, 'diet/' + this.today + '/' + yesterdayName);
+                            set(missingWeightRef, this.yesterDayApiData[yesterdayName])
+                            .then(() => {
+                                console.log(`${yesterdayName}의 몸무게 ${this.yesterDayApiData[yesterdayName]} 저장 완료`);
+                            })
+                             .catch(error => {
+                                console.error(`${yesterdayName} 저장 오류:`, error);
+                            });
+                        }
+                    });
+                }
+
                 this.getData()
             })
              .catch(error => {
@@ -129,10 +137,12 @@ export default {
                     date: key, // Firebase에서의 고유 키
                     ...apiData[key] // 나머지 데이터
                 }));
-                console.log('this.chartData', this.chartData)
-                // 오늘 날짜 (this.today 사용)
-                const today = this.today; // 예: '2025-03-28'
-                let todayData = apiData[today] || {}; // 오늘의 데이터 (없으면 빈 객체)
+
+                let todayData = apiData[this.today] || {}; // 오늘의 데이터 (없으면 빈 객체)
+                this.yesterDayApiData = apiData[this.yesterday] || {};
+
+                console.log('this.today', this.today);
+                console.log('this.yesterday', this.yesterday);
 
 
                 // apiData 변수에 오늘(또는 전날) 데이터 할당
@@ -164,7 +174,8 @@ export default {
             // Firebase에서 가져온 데이터를 기반으로 날짜별로 몸무게 데이터 추출
             this.chartData.forEach(entry => {
                 const date = entry.date; // Firebase에서의 날짜
-                dates.push(date); // 날짜 배열에 추가
+                const formattedDate = date.slice(5); // 앞의 "2025-" 제거 → "04-01"
+                dates.push(formattedDate); // 날짜 배열에 추가
 
                 // 사람별 몸무게 데이터를 시리즈로 추가
                 bread.push(parseFloat(entry.돼빵 || 0));
@@ -179,6 +190,11 @@ export default {
 
             Highcharts.chart('container', {
                 chart: {
+                    type: "line",
+                    zoomType: 'x',
+                    height:500,
+                    marginTop: 30,
+                    marginBottom: 50, // 범례 공간을 위해 여유 추가
                     // scrollablePlotArea: {
                     //     minWidth: 700
                     // }
@@ -195,13 +211,17 @@ export default {
 
                 xAxis: {
                     categories: dates, // 날짜
-                    tickInterval: 1, // * 24 * 3600 * 1000, // one week
-                    tickWidth: 0,
+                    tickInterval:1,
+                    // tickInterval: Math.ceil(dates.length / 3), // 전체 개수를 3등분하여 간격 설정
+                    // tickInterval: 1 * 24 * 3600 * 1000, // one week
+                    // tickWidth: 0,
+                    minRange: 1, // 너무 크면 줌 제한됨
                     gridLineWidth: 1,
                     labels: {
-                        align: 'left',
+                        enabled: true,
+                        align: 'center',
                         x: 3,
-                        y: -3
+                        y: 20
                     }
                 },
 
@@ -293,6 +313,16 @@ export default {
             const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줍니다.
             const day = String(today.getDate()).padStart(2, '0');
             this.today = `${year}-${month}-${day}`;
+        },
+        getYesterday() {
+            const today = new Date();
+            today.setDate(today.getDate() - 1); // 하루 전으로 설정
+
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // 월 보정
+            const day = String(today.getDate()).padStart(2, '0');
+
+            this.yesterday = `${year}-${month}-${day}`;
         }
     }
 };
