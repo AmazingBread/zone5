@@ -286,24 +286,27 @@ export default {
                 },
 
                 series: [{
-                    name: '돼빵',
-                    data: bread
-                }, {
-                    name: '영은',
-                    data: silver
-                }, {
-                    name: '시리',
-                    data: siri
-                }, {
-                    name: '준슥',
-                    data: juns
-                }, {
-                    name: '장미',
-                    data: rose
-                }, {
-                    name: '승언',
-                    data: pool
-                }]
+                        name: '돼빵',
+                        data: bread
+                    }, {
+                        name: '영은',
+                        data: silver
+                    }, {
+                        name: '시리',
+                        data: siri
+                    }, {
+                        name: '준슥',
+                        data: juns
+                    }, {
+                        name: '장미',
+                        data: rose
+                    }, {
+                        name: '승언',
+                        data: pool
+                    }],
+                credits: {
+                    enabled: false  // Highcharts 로고 제거
+                },
             });
         },
         getToday() {
