@@ -1,5 +1,16 @@
 <template>
     <div>
+        <div class="post-grid">
+            <div class="post-card" v-for="post in posts.slice(0, 10)" :key="post.id">
+                <a :href="post.permalink" target="_blank">
+                    <img :src="post.thumbnail_url || post.media_url" alt="instagram post" />
+                    <!--<video v-if="post.media_type === 'VIDEO'" controls>-->
+                    <!--    <source :src="post.media_url" type="video/mp4" />-->
+                    <!--</video>-->
+                    <!--<p class="caption">{{ post.caption }}</p>-->
+                </a>
+            </div>
+        </div>
         <a class="banner" href="https://www.daangn.com/kr/business-profiles/%EC%8A%A4%EC%9C%84%EB%B0%8D%EB%AA%B0-88f133168d8240cf95b5e44045289b9a/" target="_blank" style="display: block">
             <img src="@/assets/photo/bn00.jpg" alt="스위밍몰" class="ad-image" />
         </a>
@@ -38,7 +49,70 @@ export default {
     },
     data() {
         return {
+            posts: []
         };
     },
+    mounted() {
+        this.getInsta()
+        // SnapWidget 스크립트 동적으로 추가
+        const script = document.createElement("script");
+        script.src = "https://snapwidget.com/js/snapwidget.js";
+        script.async = true;
+        document.body.appendChild(script);
+    },
+    methods:{
+        getInsta(){
+            const user_id = '17841467473584821'
+            const token = 'IGAAOgPBtMxydBZAE5FYi0wT2R2U1pyU2NvekNQWWFMTWstTk0ybTFlNVNwTFBFY3JqaFppSFJodnhMblhDTEZANRXdWX0w1YkR5emtCY1lCY2pVdExxSWxDendyU3l4VDJsNy1fcVVXZAXhDQzIzTHlkb05ONkR3TzNPaDA4NlNQUQZDZD'
+            this.$axios.get('https://graph.instagram.com/v21.0/'+user_id+'/media', {
+                params: {
+                    fields: 'id,caption,media_type,media_url,permalink,timestamp, thumbnail_url',
+                    access_token: token
+                }
+            })
+             .then(res => {
+                this.posts = res.data.data;
+            })
+             .catch(err => {
+                console.error('게시물 불러오기 실패했심더:', err);
+            });
+        }
+    }
 };
 </script>
+<style>
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2칸 */
+    gap: 5px;
+    padding: 16px;
+}
+
+.post-card {
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.post-card img,
+.post-card video {
+    width: 100%;
+    aspect-ratio: 3 / 4.5; /* 정사각형으로 만듬 */
+    object-fit: cover;
+    display: block;
+}
+
+.caption {
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+</style>

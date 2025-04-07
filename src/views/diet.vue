@@ -33,7 +33,7 @@
         <!-- 준스기 입력란 -->
         <div class="d-flex gap-2 p-1">
             <div class="mb-3 d-flex align-items-center">
-                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">준스기</label>
+                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">준슥</label>
                 <input type="text" class="form-control me-2" v-model="toDayApiData['준스기']" ref="nameInput">
                 <button @click="saveWeight('준스기', toDayApiData['준스기'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
@@ -41,6 +41,14 @@
                 <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">승언</label>
                 <input type="text" class="form-control me-2" v-model="toDayApiData['승언']" ref="nameInput">
                 <button @click="saveWeight('승언', toDayApiData['승언'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
+            </div>
+        </div>
+        <!-- 준스기 입력란 -->
+        <div class="d-flex gap-2 p-1  w-50">
+            <div class="mb-3 d-flex align-items-center">
+                <label for="juns" class="form-label fw-bold me-2" style="white-space: nowrap;">나미</label>
+                <input type="text" class="form-control me-2" v-model="toDayApiData['나미']" ref="nameInput">
+                <button @click="saveWeight('나미', toDayApiData['나미'])" class="btn btn-primary" style="white-space: nowrap;">저장</button>
             </div>
         </div>
 
@@ -136,6 +144,7 @@ export default {
                     date: key, // Firebase에서의 고유 키
                     ...apiData[key] // 나머지 데이터
                 }));
+                console.log('this.chartData',this.chartData)
 
                 let todayData = apiData[this.today] || {}; // 오늘의 데이터 (없으면 빈 객체)
                 this.yesterDayApiData = apiData[this.yesterday] || {};
@@ -169,6 +178,7 @@ export default {
             const juns = [];
             const silver = [];
             const pool = [];
+            const nami = [];
 
             // Firebase에서 가져온 데이터를 기반으로 날짜별로 몸무게 데이터 추출
             this.chartData.forEach(entry => {
@@ -177,13 +187,13 @@ export default {
                 dates.push(formattedDate); // 날짜 배열에 추가
 
                 // 사람별 몸무게 데이터를 시리즈로 추가
-                bread.push(parseFloat(entry.돼빵 || 0));
-                silver.push(parseFloat(entry.영은 || 0));
-                rose.push(parseFloat(entry.장미 || 0));
-                siri.push(parseFloat(entry.시리 || 0));
-                juns.push(parseFloat(entry.준스기 || 0));
-                pool.push(parseFloat(entry.승언 || 0));
-
+                bread.push(parseFloat(entry.돼빵 || null));
+                silver.push(parseFloat(entry.영은 || null));
+                rose.push(parseFloat(entry.장미 || null));
+                siri.push(parseFloat(entry.시리 || null));
+                juns.push(parseFloat(entry.준스기 || null));
+                pool.push(parseFloat(entry.승언 || null));
+                nami.push(parseFloat(entry.나미 || null));
             });
 
 
@@ -303,6 +313,9 @@ export default {
                     }, {
                         name: '승언',
                         data: pool
+                    }, {
+                        name: '나미',
+                        data: nami
                     }],
                 credits: {
                     enabled: false  // Highcharts 로고 제거

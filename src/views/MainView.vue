@@ -7,14 +7,14 @@
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/park.gif" class="img-fluid" alt="썸네일" @click="$router.push('/start')"/>
-                    <p class="text-center mt-2 text-primary">📣📣박대한쌤 자유형특강 + 훈련📣📣<br>4월 6일 일요일 2시<br>인원제한없음</p>
+                    <p class="text-center mt-2 text-primary">📣📣박대한쌤 자유형특강 + 훈련[종료]📣📣<br>4월 6일 일요일 2시<br>인원제한없음</p>
                 </div>
             </div>
             <div class="mb-3" @click="$router.push('/group_buying2')" style="cursor: pointer;">
                 <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
             </div>
             <p style="text-align: center; padding: 10px;">
-                보노보노 요헤미티 공동구매 6일마감
+                보노보노 요헤미티 공동구매 6일마감[마감]
                 <!--📣📣요헤미티 할인코드📣📣<br>-->
                 <!--1. 개인구매 10프로 할인코드 - DM 문의바람<br>-->
                 <!--2. 단채구매 40프로 이상 할인 - 12월 5일 마감<br>-->
@@ -22,7 +22,7 @@
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/ulsan_00.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
-                    <p class="text-center mt-2 text-primary">📣📣보노보노 울산 남구 대회 신청📣📣<br>3월 18일 신청마감</p>
+                    <p class="text-center mt-2 text-primary">📣📣보노보노 울산 남구 대회 신청[마감]📣📣<br>3월 18일 신청마감</p>
                 </div>
             </div>
             <!--<div class="col-12 mb-3">-->

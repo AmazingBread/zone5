@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
+        <h2 class="page_title">보노보노 요헤미티 공동구매[마감]</h2>
         <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
         <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
-        <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
+        <h2 class="page_title">보노보노 요헤미티 공동구매[마감]</h2>
         <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
