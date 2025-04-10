@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import StartView from "../views/StartView.vue";
 import BreadView from "../views/StartBreadView.vue";
+import SuperBonoView from "../views/SuperBonoView.vue";
 import TrainingView from "../views/TrainingView.vue";
 import EventView from "../views/EventView.vue";
 import CheeringView from "../views/CheeringView.vue";
@@ -20,6 +21,7 @@ import GoodsView from "../views/GoodsView.vue";
 
 import AdminView from "../views/AdminView.vue";
 import BreadAdminView from "../views/AdminBreadView.vue";
+import SuperBonoAdminView from "../views/AdminSuperBonoView.vue";
 import TrainingAdminView from "../views/TrainingAdminView.vue";
 import EventAdminView from "../views/EventAdminView.vue";
 import BearAdminView from "../views/BearAdminView.vue";
@@ -67,6 +69,12 @@ const routes = [
     name: "breadView",
     component: BreadView,
     meta: { title: '보노보노 빵쌤 훈련' }, // 타이틀 설정
+  },
+  {
+    path: "/super_bono",
+    name: "superBonoView",
+    component: SuperBonoView,
+    meta: { title: '보노보노 슈퍼보노' }, // 타이틀 설정
   },
   {
     path: "/training",
@@ -163,6 +171,12 @@ const routes = [
     name: "BreadAdminView",
     component: BreadAdminView,
     meta: { title: '보노보노 빵쌤 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/super_bono0330",
+    name: "SuperBonoAdminView",
+    component: SuperBonoAdminView,
+    meta: { title: '보노보노 슈퍼보노 관리자' }, // 타이틀 설정
   },
   {
     path: "/training0330",

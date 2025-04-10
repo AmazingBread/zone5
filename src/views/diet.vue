@@ -220,10 +220,10 @@ export default {
 
                 xAxis: {
                     categories: dates, // 날짜
-                    tickInterval:1,
-                    // tickInterval: Math.ceil(dates.length / 3), // 전체 개수를 3등분하여 간격 설정
+                    // tickInterval:7,
+                    tickInterval: Math.ceil(dates.length / 7), // 전체 개수를 3등분하여 간격 설정
                     // tickInterval: 1 * 24 * 3600 * 1000, // one week
-                    // tickWidth: 0,
+                    // tickWidth: 7,
                     minRange: 1, // 너무 크면 줌 제한됨
                     gridLineWidth: 1,
                     labels: {
