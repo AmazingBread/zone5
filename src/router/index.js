@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import StartView from "../views/StartView.vue";
 import BreadView from "../views/StartBreadView.vue";
 import SuperBonoView from "../views/SuperBonoView.vue";
+import EarlyBonoView from "../views/EarlyBonoView.vue";
+
 import TrainingView from "../views/TrainingView.vue";
 import EventView from "../views/EventView.vue";
 import CheeringView from "../views/CheeringView.vue";
@@ -13,21 +15,30 @@ import groupBuying2 from "../views/groupBuying2.vue";
 import BearView from "../views/BearView.vue";
 import OpenWaterView from "../views/OpenWaterView.vue";
 import SwimmingCompetition from "../views/SwimmingCompetition.vue";
+import SwimmingCompetition2 from "../views/SwimmingCompetition2.vue";
+import SwimmingCompetition3 from "../views/SwimmingCompetition3.vue";
 import AdminSwimmingCompetition from "../views/AdminSwimmingCompetition.vue";
+import AdminSwimmingCompetition2 from "../views/AdminSwimmingCompetition2.vue";
+import AdminSwimmingCompetition3 from "../views/AdminSwimmingCompetition3.vue";
 import GoodsCapView from "../views/GoodsCapView.vue";
 import GoodsSwimWearView from "../views/GoodsSwimWearView.vue";
+import GoodsSwimWearView2 from "../views/GoodsSwimWearView2.vue";
+import GoodsTeeView from "../views/GoodsTeeView.vue";
 import GoodsSocksView from "../views/GoodsSocksView.vue";
 import GoodsView from "../views/GoodsView.vue";
 
 import AdminView from "../views/AdminView.vue";
 import BreadAdminView from "../views/AdminBreadView.vue";
 import SuperBonoAdminView from "../views/AdminSuperBonoView.vue";
+import EarlyBonoAdminView from "../views/AdminEarlyBonoView.vue";
 import TrainingAdminView from "../views/TrainingAdminView.vue";
 import EventAdminView from "../views/EventAdminView.vue";
 import BearAdminView from "../views/BearAdminView.vue";
 import OpenWaterAdminView from "../views/OpenWaterAdminView.vue";
 import GoodsCapAdminView from "../views/GoodsCapAdminView.vue";
 import GoodsSwimWearAdminView from "../views/GoodsSwimWearAdminView.vue";
+import GoodsSwimWearAdminView2 from "../views/GoodsSwimWearAdminView2.vue";
+import GoodsTeeAdminView from "../views/GoodsTeeAdminView.vue";
 import GoodsSocksAdminView from "../views/GoodsSocksAdminView.vue";
 import groupBuyingAdminView from "../views/groupBuyingAdminView.vue";
 import groupBuyingAdminView2 from "../views/groupBuyingAdminView2.vue";
@@ -77,6 +88,12 @@ const routes = [
     meta: { title: '보노보노 슈퍼보노' }, // 타이틀 설정
   },
   {
+    path: "/early_bono",
+    name: "EarlyBonoView",
+    component: EarlyBonoView,
+    meta: { title: '보노보노 새벽보노' }, // 타이틀 설정
+  },
+  {
     path: "/training",
     name: "TrainingView",
     component: TrainingView,
@@ -104,13 +121,37 @@ const routes = [
     path: "/swimming_competition",
     name: "SwimmingCompetition",
     component: SwimmingCompetition,
-    meta: { title: '보노보노 대회' }, // 타이틀 설정
+    meta: { title: '보노보노 진주 대회' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition2",
+    name: "SwimmingCompetition2",
+    component: SwimmingCompetition2,
+    meta: { title: '보노보노 경주 대회' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition3",
+    name: "SwimmingCompetition3",
+    component: SwimmingCompetition3,
+    meta: { title: '보노보노 대구 대회' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition0330",
     name: "AdminSwimmingCompetition",
     component: AdminSwimmingCompetition,
-    meta: { title: '보노보노 대회 관리자' }, // 타이틀 설정
+    meta: { title: '보노보노 진주 대회 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition20330",
+    name: "AdminSwimmingCompetition2",
+    component: AdminSwimmingCompetition2,
+    meta: { title: '보노보노 경주 대회 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_competition30330",
+    name: "AdminSwimmingCompetition3",
+    component: AdminSwimmingCompetition3,
+    meta: { title: '보노보노 대구 대회 관리자' }, // 타이틀 설정
   },
   {
     path: "/goods",
@@ -131,6 +172,18 @@ const routes = [
     meta: { title: '보노보노 굿즈-수영복' }, // 타이틀 설정
   },
   {
+    path: "/goods_swimwear2",
+    name: "GoodsSwimWearView2",
+    component: GoodsSwimWearView2,
+    meta: { title: '보노보노 굿즈-수영복2' }, // 타이틀 설정
+  },
+  {
+    path: "/goods_tee",
+    name: "GoodsTeeView",
+    component: GoodsTeeView,
+    meta: { title: '보노보노 굿즈-티셔츠' }, // 타이틀 설정
+  },
+  {
     path: "/goods_socks",
     name: "GoodsSocksView",
     component: GoodsSocksView,
@@ -140,7 +193,7 @@ const routes = [
     path: "/cheering",
     name: "CheeringView",
     component: CheeringView,
-    meta: { title: '보노보노 cheering 통영 트라이에슬론' }, // 타이틀 설정
+    meta: { title: '보노보노 cheering 대구장거리 대회' }, // 타이틀 설정
   },
   {
     path: "/cheering_changwon",
@@ -179,6 +232,12 @@ const routes = [
     meta: { title: '보노보노 슈퍼보노 관리자' }, // 타이틀 설정
   },
   {
+    path: "/early_bono0330",
+    name: "EarlyBonoAdminView",
+    component: EarlyBonoAdminView,
+    meta: { title: '보노보노 슈퍼보노 관리자' }, // 타이틀 설정
+  },
+  {
     path: "/training0330",
     name: "TrainingAdminView",
     component: TrainingAdminView,
@@ -213,6 +272,18 @@ const routes = [
     name: "GoodsSwimWearAdminView",
     component: GoodsSwimWearAdminView,
     meta: { title: '보노보노 굿즈-수영복 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/goods_swimwear20330",
+    name: "GoodsSwimWearAdminView2",
+    component: GoodsSwimWearAdminView2,
+    meta: { title: '보노보노 굿즈-수영복 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/goods_tee0330",
+    name: "GoodsTeeAdminView",
+    component: GoodsTeeAdminView,
+    meta: { title: '보노보노 굿즈-티셔츠 관리자' }, // 타이틀 설정
   },
   {
     path: "/goods_socks0330",

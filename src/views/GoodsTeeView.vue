@@ -1,8 +1,27 @@
 <template>
     <div>
-        <img src="@/assets/image/superbono.png" class="img-fluid" alt="썸네일">
-        <h2 class="page_title mb-4">📣📣보노보노 훈련팀 슈퍼보노 5월 모집📣📣<br>선착순 {{firstComeLimit}}명 </h2>
-        <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
+        <img src="@/assets/image/tee_main.jpg" class="img-fluid" alt="썸네일" />
+        <h2 class="page_title">❤️❤️❤️물보노 티셔츠 단돈 15,000원!!!😎😎😎</h2>
+        <br><br><br>
+        <br><br><br>
+        <img src="../assets/image/티셔츠_상세.jpg" class="img-fluid" alt="썸네일" />
+        <video
+            autoplay
+            muted
+            playsinline
+            src="../assets/image/티샤스라지.mp4"
+            style="width: 100%;"
+            loop
+        >
+        </video>
+        <h2 class="page_title mt-4">(라지 착용)</h2>
+        <br><br><br>
+        <img src="@/assets/image/티샤스엑라.jpg" class="img-fluid" alt="썸네일" />
+        <h2 class="page_title mt-4">(엑스라지 착용)</h2>
+        <br><br><br>
+        <h2 class="page_title highlighted-text mb-4">(5월 18일 신청마감)</h2>
+        <br><br><br>
+        <p class="highlighted-text">굿즈 계좌번호는 기존계좌랑 다릅니다 한번더 확인</p>
         <form @submit.prevent="submitForm">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">이름</label>
@@ -17,28 +36,16 @@
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
+                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="팀어깨이" v-model="formData.affiliation">
                         <label class="form-check-label" for="shoulder">팀어깨이</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                        <label class="form-check-label" for="swimmy">팀스위미</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">
                         <label class="form-check-label" for="gosu">팀고수정</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
-                        <label class="form-check-label" for="zoo">팀동물원</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">
-                        <label class="form-check-label" for="umpa">음파핫</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">
-                        <label class="form-check-label" for="kimboss">KIMBOSS</label>
+                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀ZOO" v-model="formData.affiliation">
+                        <label class="form-check-label" for="zoo">팀ZOO</label>
                     </div>
 
                     <!-- 기타 옵션 -->
@@ -58,21 +65,32 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="openClass" class="form-label fw-bold">월 회비</label>
-                <select class="form-select" id="openClass" v-model="formData.openClass" ref="openClassSelect">
-                    <option value="" disabled>월 회비 확인</option>
-                    <option value="월 회비 확인">5월 레대비+강사비 25,000 (입장료별도)</option>
+                <label for="color" class="form-label fw-bold">컬러 선택</label>
+                <select class="form-select" id="openClass" v-model="formData.color" ref="openClassSelect">
+                    <option value="" disabled>컬러 선택</option>
+                    <option value="WHITE">WHITE</option>
+                    <option value="BLACK">BLACK</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
+            <div class="mb-3">
+                <label for="size" class="form-label fw-bold">사이즈 선택</label>
+                <select class="form-select" id="openClass" v-model="formData.size" ref="openClassSelect">
+                    <option value="" disabled>사이즈 선택</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
+            </div>
+            <p class="highlighted-text">굿즈 계좌번호는 기존계좌랑 다릅니다 한번더 확인</p>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">슈퍼보노 안내</label>
+                <label class="form-label fw-bold">구매방법 안내</label>
                 <p style="font-size:12px;">
-                    📣📣 훈련장소는 부산 수영구 체육센터📣📣<br>
-                    1. 훈련 시작전 미리 입수해 주세요(30분전 수영장 오픈)<br>
-                    2. 코치진 (황영균, 안소현, 강민규) 3명중 1명 랜덤으로 진행<br>
-                    3. 월 2회 최대 10명 1레인 2시간 수업<br>
-                    4. 수영 중급이상 신청가능<br>
+                    1. 티셔츠 15,000원 입니다<br>
+                    2. 제품수령은 오프라인 모임으로 수령가능<br>
+                    3. 택배는 DM 주세요<br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -96,60 +114,60 @@
                     비록 자필서명이 없더라도 면책동의 후 행사신청 또는 참석 시 본 동호회에 면책동의를 한것으로 간주한다.<br>
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
             </div>
 
             <button
                 type="submit"
                 class="btn w-100"
-                :class="apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
-                :disabled="apiData.length === firstComeLimit"
+                :class="isDeadlinePassed || apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
+                :disabled="isDeadlinePassed || apiData.length === firstComeLimit"
             >
-                선착순 {{apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+                {{isDeadlinePassed || apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+                <span style="font-weight: bold; padding-left:10px;" v-if="!isDeadlinePassed && apiData.length < firstComeLimit">{{ remainingTime }}</span>
             </button>
 
-
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
+                <p class="highlighted-text">굿즈 계좌번호는 기존계좌랑 다릅니다 한번더 확인</p>
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 25,000원</p>
-                <!--<div class="refund-policy">-->
-                <!--    <p>※ 환불규정</p>-->
-                <!--    <ul>-->
-                <!--        &lt;!&ndash;<li>입장 최소 인원 10명 미달 시 훈련 취소 전액 환불 가능.</li>&ndash;&gt;-->
-                <!--        <li>훈련 취소 시 개별 환불 절차가 진행됩니다.</li>-->
-                <!--        <li>훈련이 시작되는 매월 3일 전부터 환불 불가</li>-->
-                <!--        &lt;!&ndash;<li>입장 최소 인원 결정 및 환불은 스탓벙 진행 후 확정하며 진행 당일 환불 예정입니다. 진행 후에 최종 환불됩니다.</li>&ndash;&gt;-->
-                <!--    </ul>-->
-                <!--</div>-->
+                <p class="highlighted-text" ref="accountText">3333320918579 카카오뱅크 황영균</p>
+                <div class="refund-policy">
+                    <p>※ 환불규정</p>
+                    <ul>
+                        <li>굿즈 제작이 들어가면 환불 불가</li>
+                        <li>제작전에는 100쁘로 환불</li>
+                    </ul>
+                </div>
 
             </div>
         </form>
-        <table class="table mt-3">
+        <table class="pay_table table mt-3" v-for="(item, index) in apiData.slice().reverse()" :key="item.key">
             <tbody>
-            <tr v-for="(item, index) in apiData.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
-                <td style="width:20px;">
-                    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
-                </td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:80px;">{{ item.name }}</td>
-                <td>
-                    <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
-                    <span v-else>{{ item.affiliation }}</span>
-                </td>
-                <!--<td style="width: 90px">{{ item.openClass }}</td>-->
-                <td style="width:60px;" class="text-center">
-                    <button
-                        class="btn"
-                        :class="{
-                            'btn-success': item.paid,
-                            'btn-warning': !item.paid,
-                        }"
-                        style="padding: 0.2rem 0.5rem; font-size:10px"
-                    >
-                        {{ item.paid ? '입금' : '미입금' }}
-                    </button>
-                </td>
-            </tr>
+                <tr :key="item.key + '-main'">
+                    <!--<td style="width:20px;">-->
+                    <!--    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">-->
+                    <!--</td> &lt;!&ndash; 번호를 1부터 시작하도록 설정 &ndash;&gt;-->
+                    <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
+                    <td>{{ item.name }}</td>
+                    <td style="width:100px;">
+                        <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
+                        <span v-else>{{ item.affiliation }}</span>
+                    </td>
+                    <td>{{ item.color }}</td>
+                    <td>{{ item.size }}</td>
+                    <td style="width:60px;" class="text-center">
+                        <button
+                            class="btn"
+                            :class="{
+                                'btn-success': item.paid,
+                                'btn-warning': !item.paid,
+                            }"
+                            style="padding: 0.2rem 0.5rem; font-size:10px"
+                        >
+                            {{ item.paid ? '입금' : '미입금' }}
+                        </button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -159,28 +177,25 @@
 import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
 export default {
-    metaInfo: {
-        title: '슈퍼보노',
-        meta: [
-            { property: 'og:title', content: '슈퍼보노' },
-            { property: 'og:description', content: '강력한 보노보노, "슈퍼보노"가 되다!' },
-            { property: 'og:image', content: 'https://moolbono.com/superbono.png' },
-            { property: 'og:url', content: 'https://moolbono.com/super_bono' }
-        ]
-    },
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/superBono.json",
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/goodsTee.json",
             formData  :{
                 checked      :'',
                 name      :'',
                 affiliation     :'',
                 otherAffiliation:'',
                 paid   :"",
-                openClass           :'',
-                liabilityAgreement: ''
+                color           :'',
+                size           :'',
+                liabilityAgreement: '',
+                // pay:'',
             },
-            firstComeLimit: 11,
+            firstComeLimit: 80,
+            deadline: new Date('2025-05-20T23:59:59'),
+            remainingTime: "계산 중...", // 남은 시간 초기값
+            isDeadlinePassed: false, // 마감 여부를 체크하는 변수
+            intervalId: null, // 인터벌 ID 저장
             apiData:[],
             result   :'',
             applicantCount: 0, // 전역 변수 초기화
@@ -189,23 +204,44 @@ export default {
         };
     },
     mounted(){
+        this.updateRemainingTime();
+        this.intervalId = setInterval(() => {
+            this.updateRemainingTime(); // 화살표 함수로 'this' 바인딩
+        }, 1000); // 1초마다 갱신
+
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'superBono'); // cheering 경로에 대한 참조
+        const dataRef = ref(this.db, 'goodsTee'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
-                .filter(key => key !== 'superBono_exemptCount') // exemptCount를 제외
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
                     ...getData[key] // 나머지 데이터
                 }));
         });
     },
-    beforeUnmount() {
+    beforeDestroy() {
+        clearInterval(this.intervalId); // 인터벌 중지
     },
     methods:{
+        updateRemainingTime() {
+            const now = new Date();
+            const timeDiff = this.deadline - now; // 마감 시간과 현재 시간의 차이
+            if (timeDiff <= 0) {
+                this.isDeadlinePassed = true;  // 마감 시간이 지나면 true로 설정
+                this.remainingTime = ""; // 마감되었을 때
+            } else {
+                const totalSeconds = Math.floor(timeDiff / 1000); // 전체 초
+                const hours = Math.floor(totalSeconds / 3600); // 총 시간
+                const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
+                const seconds = totalSeconds % 60; // 초
+
+                this.isDeadlinePassed = false;  // 마감 시간이 지나지 않으면 false
+                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;  // 총 시간, 분, 초로 표시
+            }
+        },
         updateChecked(item) {
             if (item) {
                 this.$axios.put(`${this.apiUrl.replace('.json', '')}/${item.key}.json`, {
@@ -233,7 +269,7 @@ export default {
         //     });
         // },
         validateForm() {
-            const { name, affiliation, openClass, liabilityAgreement } = this.formData;
+            const { name, affiliation, color, size, liabilityAgreement } = this.formData;
 
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
@@ -247,14 +283,20 @@ export default {
                 this.$refs.affiliationRadios.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
-            if (!openClass) {
-                this.showMessage("얼만지 압니꺼?", 3);
-                this.$refs.openClassSelect.focus(); // 수업 선택 드롭다운에 포커스
-                this.$refs.openClassSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
+            if (!color) {
+                this.showMessage("칼라 작성하이소", 3);
+                this.$refs.color.focus(); // 수업 선택 드롭다운에 포커스
+                this.$refs.color.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
+                return false;
+            }
+            if (!size) {
+                this.showMessage("사이즈 작성하이소", 4);
+                this.$refs.size.focus(); // 수업 선택 드롭다운에 포커스
+                this.$refs.size.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
-                this.showMessage("면책 동의좀 해주이소..", 4);
+                this.showMessage("면책 동의좀 해주이소..", 5);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
                 this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -273,7 +315,6 @@ export default {
             this.$axios.get(this.apiUrl).then(response => {
                 const apiData = response.data || {};
                 this.apiData = Object.keys(apiData)
-                    .filter(key => key !== 'exemptCount') // exemptCount를 제외
                     .map(key => ({
                         key: key, // Firebase에서의 고유 키
                         ...apiData[key] // 나머지 데이터
@@ -295,8 +336,9 @@ export default {
                 affiliation     :this.formData.affiliation,
                 otherAffiliation:this.formData.otherAffiliation,
                 paid            :false,
-                openClass         :this.formData.openClass,
-                liabilityAgreement: this.formData.liabilityAgreement // 면책 동의 추가
+                color         :this.formData.color,
+                size         :this.formData.size,
+                liabilityAgreement: this.formData.liabilityAgreement, // 면책 동의 추가
             };
 
             this.$axios.post(this.apiUrl, applicantData).then(() => {
@@ -309,7 +351,8 @@ export default {
                     affiliation     :'',
                     otherAffiliation:'',
                     paid   :'',
-                    openClass           :'',
+                    color           :'',
+                    size           :'',
                     liabilityAgreement: '' // 초기화
                 };
             }).catch(error => {
@@ -329,7 +372,7 @@ export default {
         copyAccountNumber(event) {
             event.preventDefault(); // 기본 동작 방지
             // 참조된 계좌번호 텍스트 가져오기
-            const accountText = '79420390777 카카오뱅크 25,000원'
+            const accountText = '3333320918579 카카오뱅크'
 
             // 클립보드에 텍스트 복사
             navigator.clipboard.writeText(accountText)
@@ -344,6 +387,11 @@ export default {
 };
 </script>
 
-<style>
-/* 스타일 추가 (예: form 스타일링) */
+<style lang="scss">
+.pay_table {
+    border-collapse: separate;
+    border:1px solid #dee2e6;
+    border-radius: 5px;
+    td {border:0;}
+}
 </style>

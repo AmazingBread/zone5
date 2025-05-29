@@ -22,16 +22,30 @@ export default {
             let url = 'https://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do';
 
             // 현재 날짜를 YYYYMMDD 형식으로 변환
-            let today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+            // let today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+            //
+            // let params = {
+            //     params: {
+            //         ServiceKey: 'f2IQxtgNdBXnC59gCgwFQ==',
+            //         ObsCode: 'TW_0062',
+            //         Date: today,
+            //         ResultType: 'json'
+            //     }
+            // };
+
+            let today = new Date();
+            today.setDate(today.getDate() - 1); // 하루 전으로 설정
+            let formatted = today.toISOString().slice(0, 10).replace(/-/g, '');
 
             let params = {
                 params: {
                     ServiceKey: 'f2IQxtgNdBXnC59gCgwFQ==',
                     ObsCode: 'TW_0062',
-                    Date: today,
+                    Date: formatted,
                     ResultType: 'json'
                 }
             };
+
 
             this.$axios.get(url, params)
             .then(response => {

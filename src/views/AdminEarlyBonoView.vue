@@ -38,28 +38,20 @@
                 <dt>입금자 / 신청자</dt>
                 <dd>{{ paidApplicantsCount }}명 / {{ apiData.length }}명</dd>
             </dl>
-
             <dl style="margin-right: 20px;">
-                <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 25000).toLocaleString() }}원 / 25,000원 x{{ paidApplicantsCount }}명</dd>
+                <dt>돈</dt>
+                <dd>{{ (paidApplicantsCount * 15000).toLocaleString() }}원 / {{ (apiData.length * 15000).toLocaleString() }}원</dd>
             </dl>
+
+            <!--<dl style="margin-right: 20px;">-->
+            <!--    <dt>입금 총계</dt>-->
+            <!--    <dd>{{ (paidApplicantsCount * 15000).toLocaleString() }}원 / 15,000원 x{{ paidApplicantsCount }}명</dd>-->
+            <!--</dl>-->
 
             <!--<dl style="margin-right: 20px;">-->
             <!--    <dt>레대비 낼돈</dt>-->
             <!--    <dd>{{ (((paidApplicantsCount - nonAttendeeCount) * 15000) + 100000).toLocaleString() }}원 ({{paidApplicantsCount - nonAttendeeCount}}명)</dd>-->
             <!--</dl>-->
-            <dl style="margin-right: 20px;">
-                <dt>레대비 낼돈</dt>
-                <dd>100,000원 (1레인 50,000원)</dd>
-            </dl>
-            <dl style="margin-right: 20px;">
-                <dt>강사비</dt>
-                <dd>60,000원 (2시간 30,000원)</dd>
-            </dl>
-            <dl style="margin-right: 20px;">
-                <dt>강사 입장료</dt>
-                <dd>7,000원 (1회 입장료 3,500원)</dd>
-            </dl>
 
             <!--<dl style="margin-right: 20px; display: flex; align-items: center;">-->
             <!--    <dt>입장 면제</dt>-->
@@ -109,9 +101,9 @@ import {getDatabase, onValue, ref} from "firebase/database";
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/superBono.json",
-            exemptCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/superBono_exemptCount.json",
-            nonAttendeeCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/superBono_nonAttendeeCount.json",
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/earlyBono.json",
+            exemptCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/earlyBono_exemptCount.json",
+            nonAttendeeCountApiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/earlyBono_nonAttendeeCount.json",
             apiData:[],
             result   :'',
             applicantCount: 0,
@@ -124,11 +116,11 @@ export default {
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'superBono'); // cheering 경로에 대한 참조
+        const dataRef = ref(this.db, 'earlyBono'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
-                .filter(key => key !== 'superBono_exemptCount') // exemptCount를 제외
+                .filter(key => key !== 'earlyBono_exemptCount') // exemptCount를 제외
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
                     ...getData[key] // 나머지 데이터

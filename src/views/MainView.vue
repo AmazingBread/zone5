@@ -3,13 +3,57 @@
         <!--<div class="mb-3">-->
         <!--    <img src="@/assets/image/review.jpg" class="img-fluid" alt="review" />-->
         <!--</div>-->
+        <div class="col-12 mb-3">
+            <div class="thumbnail-box">
+                <img src="@/assets/image/수영복_메인.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/goods_swimwear2')"/>
+                <p class="text-center mt-2 text-primary">❤️❤️❤️ 물보노 2025 NEW 수영복 😎😎😎</p>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <div class="thumbnail-box">
+                <img src="@/assets/image/tee_main.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/goods_tee')"  style="border:1px solid #333"/>
+                <p class="text-center mt-2 text-danger">❤️❤️❤️물보노 티셔츠 단돈 15,000원!!![마감]😎😎😎</p>
+            </div>
+        </div>
         <div class="row justify-content-center m-0">
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/대구장거리.jpg" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/cheering')"/>
+                    <p class="text-center mt-2">📣📣대구 장거리 대회📣📣<br>응원 한마디 코너</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/gyeongju.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition2')"/>
+                    <p class="text-center mt-2 text-primary">📣📣팀ZOO 경주 대회 6월 15일 일요일📣📣<br>신청마감 5월 17일 토요일 까지</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/daegu.jpg" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition3')"/>
+                    <p class="text-center mt-2 text-primary">📣📣팀물보노 대구 대회 6월 21-22일📣📣<br>신청마감 5월 18일 일요일 까지</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/early_bono.png" class="img-fluid" alt="썸네일" @click="$router.push('/early_bono')" style="border:1px solid #333"/>
+                    <p class="text-center mt-2 text-primary">일찍 일어나는 보노들을 위한 훈련<br>📣📣일요일 새벽 훈련팀 모집📣📣</p>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="thumbnail-box">
+                    <img src="@/assets/image/jinju.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
+                    <p class="text-center mt-2 text-primary">📣📣보노보노 진주시 시장배 수영대회 신청📣📣<br>신청마감 5월 3일 토요일 까지</p>
+                </div>
+            </div>
             <div class="col-12 mb-3">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/superbono.png" class="img-fluid" alt="썸네일" @click="$router.push('/super_bono')"/>
                     <p class="text-center mt-2 text-primary">📣📣보노보노 훈련팀 슈퍼보노 5월 모집📣📣<br>선착순 10명 </p>
                 </div>
             </div>
+
+
             <div class="mb-3" @click="$router.push('/group_buying2')" style="cursor: pointer;">
                 <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
             </div>
@@ -19,12 +63,7 @@
                 <!--1. 개인구매 10프로 할인코드 - DM 문의바람<br>-->
                 <!--2. 단채구매 40프로 이상 할인 - 12월 5일 마감<br>-->
             </p>
-            <div class="col-12 mb-3">
-                <div class="thumbnail-box">
-                    <img src="@/assets/image/ulsan_00.png" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/swimming_competition')"/>
-                    <p class="text-center mt-2 text-primary">📣📣보노보노 울산 남구 대회 신청[마감]📣📣<br>3월 18일 신청마감</p>
-                </div>
-            </div>
+
             <!--<div class="col-12 mb-3">-->
             <!--    <div class="thumbnail-box">-->
             <!--        <img src="@/assets/image/cls03.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/bread')"/>-->
@@ -81,6 +120,7 @@
             <!--        <p class="text-center mt-2 ">START CLASS (종료)<br>10. 27 SUN 08시 - 10시</p>-->
             <!--    </div>-->
             <!--</div>-->
+
             <div class="col-6 mb-3" @click="$router.push('/goods_swimwear')">
                 <div class="thumbnail-box">
                     <img src="@/assets/image/goods_swimwear.jpg" class="img-fluid" alt="썸네일" />

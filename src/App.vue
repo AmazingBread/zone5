@@ -14,8 +14,11 @@
         <!--        </button>-->
         <!--    </div>-->
                 <div class="col-12 p-1">
-                    <div style="text-align: center;" class="btn btn-info w-100 mb-1">
-                        해운대 실시간 바다수온 <strong>{{$store.state.waterTempData}}도</strong> [{{$store.state.waterRecordTime}}]
+                    <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-if="$store.state.waterTempData">
+                        해운대 실시간 바다수온 <strong>{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]
+                    </div>
+                    <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-else>
+                        해운대 실시간 바다수온 [점검중]
                     </div>
                 </div>
             <div class="d-flex gap-2 p-1">

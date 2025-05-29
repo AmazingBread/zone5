@@ -6,6 +6,7 @@ module.exports = defineConfig({
   devServer: {
     historyApiFallback: true,
   },
+  productionSourceMap: true,
   configureWebpack: {
     module: {
       rules: [

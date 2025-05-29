@@ -146,8 +146,13 @@ export default {
                 }));
                 console.log('this.chartData',this.chartData)
 
-                let todayData = apiData[this.today] || {}; // 오늘의 데이터 (없으면 빈 객체)
-                this.yesterDayApiData = apiData[this.yesterday] || {};
+                // let todayData = apiData[this.today] || {}; // 오늘의 데이터 (없으면 빈 객체)
+                // this.yesterDayApiData = apiData[this.yesterday] || {};
+
+                let keys = Object.keys(apiData).filter(k => k !== this.today).sort();
+                let latestKey = keys.length > 0 ? keys[keys.length - 1] : null;
+                this.yesterDayApiData = latestKey ? apiData[latestKey] : {};
+
 
                 console.log('this.today', this.today);
                 console.log('this.yesterday', this.yesterday);
@@ -338,6 +343,7 @@ export default {
             const day = String(today.getDate()).padStart(2, '0');
 
             this.yesterday = `${year}-${month}-${day}`;
+            // this.yesterday = `2025-04-19`;
         }
     }
 };
