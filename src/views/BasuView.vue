@@ -3,6 +3,7 @@
         <h5 style="padding:20px; text-align: center; font-weight: bold;">
             {{ locationName }} 날씨
         </h5>
+        <Suon :locationName="locationName" />
         <div ref="windyContainer">
             <div
                 v-if="widgetVisible"
@@ -19,8 +20,12 @@
 </template>
 
 <script>
+import Suon from "@/components/Suon.vue"
 export default {
     name: "BasuWeather",
+    components: {
+        Suon
+    },
     data() {
         return {
             spotid: this.$route.query.spotid || "42897",

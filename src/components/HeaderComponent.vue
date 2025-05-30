@@ -12,13 +12,21 @@ export default {
     name: "HeaderComponent", // 컴포넌트 이름 변경
     data(){
         return {
+            url: 'https://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do', // 실제 API 주소로 교체
+            ServiceKey: 'f2IQxtgNdBXnC59gCgwFQ==',
+            ObsCode: 'TW_0062', //해운대
         };
     },
     mounted(){
         this.getTidalBuTemp()
     },
     methods:{
-        getTidalBuTemp() {
+        formatDate(date) {
+            // 2025-05-28 -> 20250528 형식
+            return date.toISOString().slice(0, 10).replace(/-/g, '');
+        },
+        getTidalBuTemp(){
+
             let url = 'https://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do';
 
             // 현재 날짜를 YYYYMMDD 형식으로 변환
@@ -34,34 +42,62 @@ export default {
             // };
 
             let today = new Date();
-            today.setDate(today.getDate() - 1); // 하루 전으로 설정
-            let formatted = today.toISOString().slice(0, 10).replace(/-/g, '');
+            let yesterday = new Date();
+            let dayBefore = new Date(); // 또는 let twoDaysAgo = new Date();
 
-            let params = {
-                params: {
-                    ServiceKey: 'f2IQxtgNdBXnC59gCgwFQ==',
-                    ObsCode: 'TW_0062',
-                    Date: formatted,
-                    ResultType: 'json'
-                }
-            };
+            today.setDate(today.getDate());
+            yesterday.setDate(today.getDate() - 1);
+            dayBefore.setDate(today.getDate() - 2);
 
+            let todayStr = this.formatDate(today);
+            let yesterdayStr = this.formatDate(yesterday);
+            let dayBeforeStr = this.formatDate(dayBefore); // 또는 twoDaysAgoStr
 
-            this.$axios.get(url, params)
-            .then(response => {
-                if (response.data && response.data.result && response.data.result.data.length > 0) {
-                    let latestData = response.data.result.data[response.data.result.data.length - 1];
-                    this.$store.state.waterTempData = latestData.water_temp;
-                    this.$store.state.waterRecordTime = latestData.record_time.slice(0, 16);
-                } else {
-                    console.warn("수온 데이터가 없습니다.");
-                }
-            })
-                 .catch(error => {
-                console.error("API 요청 오류:", error);
+            let axiosCalls = [todayStr, yesterdayStr, dayBeforeStr].map(dateStr => {
+                return this.$axios.get(this.url, {
+                    params:{
+                        ServiceKey:this.ServiceKey,
+                        ObsCode   :this.ObsCode,
+                        Date      :dateStr,
+                        ResultType:'json'
+                    }
+                });
+            });
+            let targetHours = ['01', '03', '05', '07', '09', '11', '13', '15', '17', '19', '21', '23'];
+            this.$axios.all(axiosCalls).then(
+                this.$axios.spread((res1, res2, res3) => {
+                    const responses = [res3, res2, res1]; // 순서: 그저께, 어제, 오늘
+                    const suonDataSet = this.$store.state.suonDataSet;
+
+                    responses.forEach((res, idx) => {
+                        let values = [];
+                        if(res.data && res.data.result && res.data.result.data.length > 0){
+                            targetHours.forEach(hour => {
+                                /// 해당 시간대 데이터 필터링 (분은 00분만 체크)
+                                let entry = res.data.result.data.find(entry => {
+                                    let entryHour = entry.record_time.slice(11, 13);
+                                    return entryHour === hour;  // 분 체크 없이 시간만 비교
+                                });
+                                if(entry){
+                                    values.push(parseFloat(entry.water_temp));
+                                }
+                            });
+                            // 오늘 데이터 (idx === 2)인 경우 마지막 데이터 별도 저장
+                            if(idx === 2){
+                                const latestData = res.data.result.data[res.data.result.data.length - 1];
+                                this.$store.state.waterTempData = parseFloat(latestData.water_temp);
+                                this.$store.state.waterRecordTime = latestData.record_time.slice(0, 16);
+                            }
+                        }
+                        suonDataSet[idx].values = values;
+                    });
+                console.log(this.$store.state.suonDataSet)
+                })
+            )
+            .catch((error) => {
+                console.error("API 요청 실패:", error);
             });
         }
-
     }
 }
 </script>
