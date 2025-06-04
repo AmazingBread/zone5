@@ -13,8 +13,11 @@ export default {
     data(){
         return {
             url: 'https://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do', // 실제 API 주소로 교체
+            // url: 'https://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do', // 실제 API 주소로 교체
             ServiceKey: 'f2IQxtgNdBXnC59gCgwFQ==',
             ObsCode: 'TW_0062', //해운대
+            //ObsCode: 'HB_0002', //고리
+            // ObsCode: 'DT_0005', //부산
         };
     },
     mounted(){

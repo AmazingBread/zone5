@@ -187,7 +187,7 @@ export default {
                 pay:'',
             },
             firstComeLimit: 40,
-            deadline: new Date('2025-06-03T23:59:59'),
+            deadline: new Date('2025-06-05T23:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             intervalId: null, // 인터벌 ID 저장
