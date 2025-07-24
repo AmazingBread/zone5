@@ -41,7 +41,7 @@
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 5000).toLocaleString() }}원</dd>
+                <dd>{{ (paidApplicantsCount * 15000).toLocaleString() }}원</dd>
             </dl>
 
 

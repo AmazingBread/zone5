@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">김해대회 밥값 5츠넌 걷습니데이</h2>
-        <p class="text-center">김밥, 라면, 커피, 과자, 음료, 얼음, 등등등... <br>5츠넌으로 되긋지??</p>
+        <h2 class="page_title mb-4">사직대회 밥값 15,000원 걷습니데이</h2>
+        <p class="text-center">수육, 라면, 커피, 과자, 워러, 얼음, 등등등... <br>1.5츠넌으로 수육!!</p>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <!--<form @submit.prevent="submitForm">-->
         <!--    <div class="mb-3">-->
@@ -12,18 +12,34 @@
         <!--    <div class="mb-3">-->
         <!--        <label class="form-label fw-bold">소속</label>-->
         <!--        <div>-->
-        <!--            <div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+        <!--            <div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
         <!--                <input class="form-check-input" type="radio" name="affiliation" id="bonobono" value="보노보노" v-model="formData.affiliation" ref="affiliationRadios">-->
         <!--                <label class="form-check-label" for="bonobono">보노보노</label>-->
         <!--            </div>-->
-        <!--            <div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+        <!--            <div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+        <!--                <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">-->
+        <!--                <label class="form-check-label" for="zoo">팀동물원</label>-->
+        <!--            </div>-->
+        <!--            <div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
         <!--                <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">-->
-        <!--                <label class="form-check-label" for="shoulder">어깨탈골</label>-->
+        <!--                <label class="form-check-label" for="shoulder">팀어깨이</label>-->
         <!--            </div>-->
-        <!--            <div class="form-check d-inline-block"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
-        <!--                <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">-->
-        <!--                <label class="form-check-label" for="swimmy">스위미</label>-->
+        <!--            <div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+        <!--                <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀김다은" v-model="formData.affiliation">-->
+        <!--                <label class="form-check-label" for="gosu">팀김다은</label>-->
         <!--            </div>-->
+        <!--            <div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+        <!--                <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">-->
+        <!--                <label class="form-check-label" for="gosu">팀고수정</label>-->
+        <!--            </div>-->
+        <!--            &lt;!&ndash;<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;&ndash;&gt;-->
+        <!--            &lt;!&ndash;    <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">&ndash;&gt;-->
+        <!--            &lt;!&ndash;    <label class="form-check-label" for="umpa">음파핫</label>&ndash;&gt;-->
+        <!--            &lt;!&ndash;</div>&ndash;&gt;-->
+        <!--            &lt;!&ndash;<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;&ndash;&gt;-->
+        <!--            &lt;!&ndash;    <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">&ndash;&gt;-->
+        <!--            &lt;!&ndash;    <label class="form-check-label" for="kimboss">KIMBOSS</label>&ndash;&gt;-->
+        <!--            &lt;!&ndash;</div>&ndash;&gt;-->
 
         <!--            &lt;!&ndash; 기타 옵션 &ndash;&gt;-->
         <!--            <div class="form-check mt-3 d-flex align-items-center"> &lt;!&ndash; d-flex 클래스를 사용하여 flexbox로 정렬 &ndash;&gt;-->
@@ -33,7 +49,7 @@
         <!--                    type="text"-->
         <!--                    class="form-control"-->
         <!--                    v-model="formData.otherAffiliation"-->
-        <!--                    placeholder="ex) 고수정 친구"-->
+        <!--                    placeholder="ex) 배하정 지인"-->
         <!--                    :disabled="formData.affiliation !== '기타'"-->
         <!--                    style="width: auto; flex-grow: 1;"-->
         <!--                >-->
@@ -42,10 +58,10 @@
         <!--        <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>-->
         <!--    </div>-->
         <!--    <div class="mb-3">-->
-        <!--        <label for="openClass" class="form-label fw-bold">수업 선택</label>-->
+        <!--        <label for="openClass" class="form-label fw-bold">먹거리 확인</label>-->
         <!--        <select class="form-select" id="openClass" v-model="formData.openClass" ref="openClassSelect">-->
-        <!--            <option value="" disabled>수업을 선택하세요</option>-->
-        <!--            <option value="김해대회 밥값">김해대회 밥값</option>-->
+        <!--            <option value="" disabled>먹거리 확인</option>-->
+        <!--            <option value="밥값 15,000원">밥값 15,000원</option>-->
         <!--        </select>-->
         <!--        <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>-->
         <!--    </div>-->
@@ -94,7 +110,8 @@
 
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 5,000원</p>
+                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 15,000원</p>
+                <p>입금자명 : 배하정 사직밥값  ⬅️⬅️ 요래 해주이소</p>
                 <div class="refund-policy">
                     <p>※ 환불규정</p>
                     <ul>
@@ -105,19 +122,19 @@
 
             </div>
         <!--</form>-->
-        <table class="table mt-3">
+        <table class="table mt-3" style="font-size: 12px;">
             <tbody>
             <tr v-for="(item, index) in apiData.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
                 <td style="width:20px;">
                     <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 </td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
-                <td style="width:60px;">{{ item.name }}</td>
+                <td style="width:65px;">{{ item.name }}</td>
                 <td>
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="width: 110px">{{ item.openClass }}</td>
+                <td style="width: 100px">{{ item.openClass }}</td>
                 <td style="width:60px;" class="text-center">
                     <button
                         class="btn"
@@ -298,7 +315,7 @@ export default {
         copyAccountNumber(event) {
             event.preventDefault(); // 기본 동작 방지
             // 참조된 계좌번호 텍스트 가져오기
-            const accountText = '79420390777 카카오뱅크 5,000원'
+            const accountText = '79420390777 카카오뱅크 15,000원'
 
             // 클립보드에 텍스트 복사
             navigator.clipboard.writeText(accountText)

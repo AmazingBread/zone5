@@ -1,7 +1,32 @@
 <template>
     <div>
-        <!--<img src="@/assets/image/bear.png" class="img-fluid" alt="bear" />-->
-        <h2 class="page_title mb-4">11월 24일 일요일 라온호텔앞 6시 30분</h2>
+        <video
+            autoplay
+            muted
+            playsinline
+            src="../assets/image/바수.mp4"
+            style="width: 100%;"
+            loop
+        >
+        </video>
+        <!--<iframe-->
+        <!--    src="https://docs.google.com/spreadsheets/d/1wXaD8aB8RvSgmBrGm9SPeCE_VEivT-nS/edit#gid=2061385483"-->
+        <!--    width="100%"-->
+        <!--    height="800px"-->
+        <!--&gt;</iframe>-->
+        <!--<p><img src="@/assets/image/광안리_러닝.png" style="width: 100%" class="img-fluid" alt="썸네일"/></p>-->
+        <!--<h2 class="page_title mb-4">러닝코스</h2>-->
+        <!--<p><img src="@/assets/image/광안리_알탕.png" style="width: 100%" class="img-fluid" alt="썸네일"/></p>-->
+        <!--<h2 class="page_title mb-4">바수코스</h2>-->
+        <p><img src="@/assets/image/임랑_주차.png" style="width: 100%" class="img-fluid" alt="썸네일"/></p>
+        <h2 class="page_title mb-4">7월 26일 토요일 임랑 5시</h2>
+        <p><img src="@/assets/image/광안리_주차.png" style="width: 100%" class="img-fluid" alt="썸네일"/></p>
+        <!--<h2 class="page_title mb-4">모임장소</h2>-->
+        <!--<img src="@/assets/image/라온.png" style="width: 100%" class="img-fluid" alt="썸네일"/>-->
+        <!--<img src="@/assets/image/라온주차장.png" style="width: 100%" class="img-fluid" alt="썸네일"/>-->
+        <!--<h2 class="page_title mb-4">7월 20일 일요일 라온호텔앞 5시</h2>-->
+
+        <h2 class="page_title mb-4">7월 27일 일요일 강알리 5시</h2>
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
@@ -12,19 +37,23 @@
             <div class="mb-3">
                 <label class="form-label fw-bold">소속</label>
                 <div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="bonobono" value="보노보노" v-model="formData.affiliation" ref="affiliationRadios">
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
+                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="음파핫" v-model="formData.affiliation">
+                        <label class="form-check-label" for="shoulder">음파핫</label>
+                    </div>
                     <!-- 기타 옵션 -->
-                    <div class="form-check d-inline-block d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
+                    <div class="form-check mt-3 d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="other" value="기타" v-model="formData.affiliation">
-                        <label class="form-check-label me-2" for="other">&nbsp;기타</label> <!-- 오른쪽 마진 추가 -->
+                        <label class="form-check-label me-2" for="other">기타</label> <!-- 오른쪽 마진 추가 -->
                         <input
                             type="text"
                             class="form-control"
                             v-model="formData.otherAffiliation"
-                            placeholder="ex) 고수정 친구"
+                            placeholder="ex) 배하정 친구"
                             :disabled="formData.affiliation !== '기타'"
                             style="width: auto; flex-grow: 1;"
                         >
@@ -36,7 +65,9 @@
                 <label for="size" class="form-label fw-bold">장소 시간 확인하세요</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
                     <option value="" disabled>바수 장소 및 시간</option>
-                    <option value="장소, 시간 확인함">11월 24일 송정 라온호텔앞 6시 30분 집합</option>
+                    <!--<option value="장소, 시간 확인함">7월 20일 송정 라온호텔앞 5시 집합 30분 입수</option>-->
+                    <option value="임랑 참석">7월 26일 토요일 임랑 5시 참석</option>
+                    <option value="광안리 참석">7월 27일 일요일 강알리 5시 참석</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
@@ -73,13 +104,7 @@
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
-
-
-
-
-
             </div>
-
             <button type="submit" class="btn btn-primary w-100">신청</button>
         </form>
         <table class="table mt-3">

@@ -1,5 +1,7 @@
 html {
 	font-size: 14px;
+	cursor: default !important;
+	user-select: none !important;
 }
 body {
 	overflow-x: hidden;
@@ -147,3 +149,172 @@ select {
 			}
 		}
 	}
+
+
+.btn-hotpink {
+	background: linear-gradient(45deg, #ffb6c1, #ff69b4, #ff1493); /* 연핑크 → 핫핑크 → 찐핑크 */
+	color: #fff !important;
+	border: none;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* 글자 또렷하게! */
+	transition: 0.3s ease;
+}
+@keyframes fastGradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+.boxstyle {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+
+	background: linear-gradient(
+					270deg,
+					#000000,       /* 검정 */
+					#ff0000,       /* 강렬한 빨강 */
+					#000000        /* 다시 검정 */
+	);
+	background-size: 600% 600%;
+	animation: fastGradientShift 2s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #fff;
+	user-select: none;
+	transition: transform 3s ease;
+}
+.diary {
+	color: #fff !important;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* 좀 더 깊은 그림자 */
+}
+
+// 사용자 박스: 라운드 박스로 구분, padding 조금 더, margin도 줘서 구분 명확히
+.fit-user-box {
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 12px 16px;
+	margin-bottom: 16px;
+	position: relative;
+	background-color: #fff;
+}
+
+// 상단 이름/버튼 라인: 버튼 작게, 글자도 작게
+.fit-user-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
+	margin-bottom: 10px;
+
+	span {
+		font-size: 16px;
+	}
+}
+
+// 인증 버튼: 글자 작게, 버튼 작게
+.fit-certify-button {
+	padding: 2px 6px;
+	font-size: 11px;
+	background-color: #1976d2;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #1565c0;
+	}
+}
+
+// 공통 프로그레스 바
+.fit-progress-bar {
+	height: 24px;
+	border-radius: 6px;
+	overflow: hidden;
+	margin-bottom: 8px;
+	background-color: #e0e0e0;
+	position: relative;
+}
+
+// 채워지는 부분
+.fit-progress-fill {
+	height: 100%;
+	font-size: 10px;              // 💡 작게 줄임
+	white-space: nowrap;          // 줄바꿈 방지
+	overflow: visible;            // 잘리지 않게
+	text-overflow: unset;         // 말 줄임 없이
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;  // 왼쪽 정렬
+	padding-left: 8px;            // 글자랑 왼쪽 여백
+
+	// 글자 항상 검은색, 두껍게, 작게
+	color: black !important;
+	font-weight: 700;
+
+	&.fit-swim {
+		background: linear-gradient(to right, #4fc3f7, #0288d1); // 파랑
+	}
+
+	&.fit-run {
+		background: linear-gradient(to right, #81c784, #388e3c); // 초록
+	}
+
+	&.fit-gym {
+		background: linear-gradient(to right, #ffb74d, #f57c00); // 주황
+	}
+}
+
+.fit-table {
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+
+	th, td {
+		border: 1px solid #ccc;
+		padding: 6px 8px;
+	}
+
+	thead tr:nth-child(1) th {
+		background-color: #f0f0f0;
+	}
+
+	thead tr:nth-child(2) th {
+		background-color: #d0f0ff;
+	}
+
+	input[type='text'] {
+		width: 60px;
+		padding: 4px;
+		text-align: center;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+	}
+
+	tbody tr:nth-child(even) {
+		background-color: #fafafa;
+	}
+}
+.fit-header-row {
+	width: 100%;
+	margin-bottom: 8px;
+	.fit-save-button {
+		text-align: center;
+		padding: 6px 12px;
+		font-size: 13px;
+		background-color: #1976d2;
+		color: white;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+}

@@ -13,14 +13,30 @@
         <!--            요헤미티 공동구매 마감 오프라인 수령중-->
         <!--        </button>-->
         <!--    </div>-->
-                <div class="col-12 p-1">
-                    <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-if="$store.state.waterTempData">
-                        해운대 실시간 바다수온 <strong>{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]
-                    </div>
-                    <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-else>
-                        해운대 실시간 바다수온 [점검중]
-                    </div>
+            <div class="col-12 p-1">
+                <button
+                    type="button" class="btn btn-hotpink w-100 mb-1" style="font-size: 12px;"
+                    @click="$router.push('/swim_training_plan')"
+                >
+                    보노보노 수영강습 PLAN
+                </button>
+            </div>
+            <div class="col-12 p-1">
+                <div
+                    class="boxstyle diary"
+                    style="font-size: 12px;"
+                >
+                    FIT DIARY.... Coming soon
                 </div>
+            </div>
+            <div class="col-12 p-1">
+                <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-if="$store.state.waterTempData">
+                    해운대 실시간 바다수온 <strong>{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]
+                </div>
+                <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-else>
+                    해운대 실시간 바다수온 [점검중]
+                </div>
+            </div>
             <div class="d-flex gap-2 p-1">
                     <button
                         type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
@@ -104,25 +120,3 @@ export default {
 </script>
 
 <style src="./styles/default.scss" lang="scss" />
-<!-- <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style> -->

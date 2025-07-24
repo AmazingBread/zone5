@@ -41,7 +41,7 @@
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 25000).toLocaleString() }}원 / 25,000원 x{{ paidApplicantsCount }}명</dd>
+                <dd>{{ (paidApplicantsCount * 10000).toLocaleString() }}원 / 10,000원 x{{ paidApplicantsCount }}명</dd>
             </dl>
 
             <!--<dl style="margin-right: 20px;">-->
@@ -50,16 +50,16 @@
             <!--</dl>-->
             <dl style="margin-right: 20px;">
                 <dt>레대비 낼돈</dt>
-                <dd>100,000원 (1레인 50,000원)</dd>
+                <dd>140,000원</dd>
             </dl>
-            <dl style="margin-right: 20px;">
-                <dt>강사비</dt>
-                <dd>60,000원 (2시간 30,000원)</dd>
-            </dl>
-            <dl style="margin-right: 20px;">
-                <dt>강사 입장료</dt>
-                <dd>7,000원 (1회 입장료 3,500원)</dd>
-            </dl>
+            <!--<dl style="margin-right: 20px;">-->
+            <!--    <dt>강사비</dt>-->
+            <!--    <dd>60,000원 (2시간 30,000원)</dd>-->
+            <!--</dl>-->
+            <!--<dl style="margin-right: 20px;">-->
+            <!--    <dt>강사 입장료</dt>-->
+            <!--    <dd>7,000원 (1회 입장료 3,500원)</dd>-->
+            <!--</dl>-->
 
             <!--<dl style="margin-right: 20px; display: flex; align-items: center;">-->
             <!--    <dt>입장 면제</dt>-->

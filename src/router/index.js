@@ -4,10 +4,14 @@ import StartView from "../views/StartView.vue";
 import BreadView from "../views/StartBreadView.vue";
 import SuperBonoView from "../views/SuperBonoView.vue";
 import EarlyBonoView from "../views/EarlyBonoView.vue";
+import mt from "../views/mtView.vue";
+import mtAdmin from "../views/mtAdmin.vue";
 
+import SwimTrainingPlan from "../views/SwimTrainingPlan.vue";
 import TrainingView from "../views/TrainingView.vue";
 import EventView from "../views/EventView.vue";
 import CheeringView from "../views/CheeringView.vue";
+import CheeringViewDeagu from "../views/CheeringView_deagu.vue";
 import CheeringViewChangwon from "../views/CheeringView_changwon.vue";
 import groupBuying from "../views/groupBuying.vue";
 import groupBuying2 from "../views/groupBuying2.vue";
@@ -26,6 +30,8 @@ import GoodsSwimWearView2 from "../views/GoodsSwimWearView2.vue";
 import GoodsTeeView from "../views/GoodsTeeView.vue";
 import GoodsSocksView from "../views/GoodsSocksView.vue";
 import GoodsView from "../views/GoodsView.vue";
+import FitDiary from "../views/FitDiary.vue";
+import FitDiaryAdmin from "../views/FitDiaryAdmin.vue";
 
 import AdminView from "../views/AdminView.vue";
 import BreadAdminView from "../views/AdminBreadView.vue";
@@ -46,7 +52,7 @@ import MainView from "../views/MainView.vue";
 import DietView from "../views/diet.vue";
 import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
-import { analytics } from '../firebase'; // firebase.js 경로
+import { analytics } from '../firebase';
 
 Vue.use(VueRouter);
 
@@ -94,6 +100,18 @@ const routes = [
     meta: { title: '보노보노 새벽보노' }, // 타이틀 설정
   },
   {
+    path: "/mt",
+    name: "mt",
+    component: mt,
+    meta: { title: '보노보노 MT' }, // 타이틀 설정
+  },
+  {
+    path: "/mt0330",
+    name: "mtAdmin",
+    component: mtAdmin,
+    meta: { title: '보노보노 MT 관리자' }, // 타이틀 설정
+  },
+  {
     path: "/training",
     name: "TrainingView",
     component: TrainingView,
@@ -116,6 +134,12 @@ const routes = [
     name: "OpenWaterView",
     component: OpenWaterView,
     meta: { title: '보노보노 바다수영' }, // 타이틀 설정
+  },
+  {
+    path: "/swim_training_plan",
+    name: "SwimTrainingPlan",
+    component: SwimTrainingPlan,
+    meta: { title: '보노보노 수영훈련계획표' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition",
@@ -194,6 +218,12 @@ const routes = [
     name: "CheeringView",
     component: CheeringView,
     meta: { title: '보노보노 cheering 대구장거리 대회' }, // 타이틀 설정
+  },
+  {
+    path: "/cheering_deagu",
+    name: "CheeringViewDeagu",
+    component: CheeringViewDeagu,
+    meta: { title: '보노보노 cheering 대구대회' }, // 타이틀 설정
   },
   {
     path: "/cheering_changwon",
@@ -302,6 +332,18 @@ const routes = [
     name: "groupBuyingAdminView2",
     component: groupBuyingAdminView2,
     meta: { title: '보노보노 요해미티 공동구매 - 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/fit_diary",
+    name: "fit_diary",
+    component: FitDiary,
+    meta: { title: '보노보노 운동인증' }, // 타이틀 설정
+  },
+  {
+    path: "/fit_diary0330",
+    name: "fit_diary_Admin",
+    component: FitDiaryAdmin,
+    meta: { title: '보노보노 운동인증- 관리자' }, // 타이틀 설정
   },
   // {
   //   path: "/about",

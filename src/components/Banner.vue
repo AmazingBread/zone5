@@ -63,10 +63,10 @@ export default {
     methods:{
         getInsta(){
             const user_id = '17841467473584821'
-            const token = 'IGAAOgPBtMxydBZAFBEd3F6XzdGSkhJMTMyOHFyVWNkOVZAlb2gyeVgyYmt3dXpfcnhoVmZAQa3RCNXZAyMlByRmlfUmtwYzN3MHo3MzB6dXpsQnJZAd296ZAHRtQmcweEs1WkNUbFFtOG9GRFRXZAjJsVVMwQnZAsV2xVQ0lkV1QtOW5KOAZDZD'
+            const token = 'IGAAOgPBtMxydBZAE1wNjVfY3NqcHVVY0R5aEdyTV93UzVpMjFsSkJjTWFEaHdFZAEdFcl9mSC1PT0RzdFhOX2U0OHZAJbmlmZATAzb3I1bEhsWGh1ZA3RNck5UdDR4TDZAsX1JMYm8zcVBXc3hnU0ktWGk5WF8zak1fcHdjWDZADb3lwSQZDZD'
             this.$axios.get('https://graph.instagram.com/v21.0/'+user_id+'/media', {
                 params: {
-                    fields: 'id,caption,media_type,media_url,permalink,timestamp, thumbnail_url',
+                    fields: 'id,caption,media_type,media_url,permalink,timestamp,thumbnail_url',
                     access_token: token
                 }
             })

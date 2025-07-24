@@ -1,7 +1,8 @@
 <template>
     <div>
-        <img src="@/assets/image/superbono.png" class="img-fluid" alt="썸네일">
-        <h2 class="page_title mb-4">📣📣보노보노 훈련팀 슈퍼보노 5월 모집📣📣<br>선착순 {{firstComeLimit}}명 </h2>
+        <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일">
+        <h2 class="page_title mb-4">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크 📣📣</h2>
+        <!--<h2 class="page_title mb-4">📣📣슈퍼보노 7월 5일 2시-4시📣📣<br>선착순 {{firstComeLimit}}명 </h2>-->
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
@@ -17,29 +18,29 @@
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
+                        <label class="form-check-label" for="zoo">팀동물원</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
                         <label class="form-check-label" for="shoulder">팀어깨이</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                        <label class="form-check-label" for="swimmy">팀스위미</label>
+                        <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀김다은" v-model="formData.affiliation">
+                        <label class="form-check-label" for="gosu">팀김다은</label>
                     </div>
                     <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">
                         <label class="form-check-label" for="gosu">팀고수정</label>
                     </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
-                        <label class="form-check-label" for="zoo">팀동물원</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">
-                        <label class="form-check-label" for="umpa">음파핫</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">
-                        <label class="form-check-label" for="kimboss">KIMBOSS</label>
-                    </div>
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="umpa">음파핫</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="kimboss">KIMBOSS</label>-->
+                    <!--</div>-->
 
                     <!-- 기타 옵션 -->
                     <div class="form-check mt-3 d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
@@ -58,21 +59,21 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="openClass" class="form-label fw-bold">월 회비</label>
+                <label for="openClass" class="form-label fw-bold">레대비 + 입장료</label>
                 <select class="form-select" id="openClass" v-model="formData.openClass" ref="openClassSelect">
-                    <option value="" disabled>월 회비 확인</option>
-                    <option value="월 회비 확인">5월 레대비+강사비 25,000 (입장료별도)</option>
+                    <option value="" disabled>비용 확인</option>
+                    <option value="비용 확인">레대비 + 입장료 10,000</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">슈퍼보노 안내</label>
                 <p style="font-size:12px;">
-                    📣📣 훈련장소는 부산 수영구 체육센터📣📣<br>
-                    1. 훈련 시작전 미리 입수해 주세요(30분전 수영장 오픈)<br>
-                    2. 코치진 (황영균, 안소현, 강민규) 3명중 1명 랜덤으로 진행<br>
-                    3. 월 2회 최대 10명 1레인 2시간 수업<br>
-                    4. 수영 중급이상 신청가능<br>
+                    📣📣 훈련장소 정관 아쿠아드림파크 7시 1시간📣📣<br>
+                    1. 시작전 미리 도착해 주세요<br>
+                    2. 코치진 (황영균, 안소현, 강민규) <br>
+                    3. 50미터 레인 1시간 (울트라핀, 대쉬 연습)<br>
+                    4. 6시 입장하실분은 입장료 별도로 끊고 입장하시면 됩니다.<br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -102,16 +103,17 @@
             <button
                 type="submit"
                 class="btn w-100"
-                :class="apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
-                :disabled="apiData.length === firstComeLimit"
+                :class="isDeadlinePassed || apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
+                :disabled="isDeadlinePassed || apiData.length === firstComeLimit"
             >
-                선착순 {{apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+                {{isDeadlinePassed || apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+                <span style="font-weight: bold; padding-left:10px;" v-if="!isDeadlinePassed && apiData.length < firstComeLimit">{{ remainingTime }}</span>
             </button>
 
 
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 25,000원</p>
+                <p class="highlighted-text" ref="accountText">79420390777 카카오뱅크 배하정 (보노보노) 10,000원</p>
                 <!--<div class="refund-policy">-->
                 <!--    <p>※ 환불규정</p>-->
                 <!--    <ul>-->
@@ -156,7 +158,7 @@
 </template>
 
 <script>
-import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
+import { getDatabase, ref, onValue, update, push } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
 export default {
     metaInfo: {
@@ -170,7 +172,7 @@ export default {
     },
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/superBono.json",
+            dbPath: 'superBono', // ← 전역 경로 설정
             formData  :{
                 checked      :'',
                 name      :'',
@@ -180,7 +182,10 @@ export default {
                 openClass           :'',
                 liabilityAgreement: ''
             },
-            firstComeLimit: 11,
+            firstComeLimit: 30,
+            deadline: new Date('2025-07-11T23:59:59'),
+            remainingTime: "계산 중...", // 남은 시간 초기값
+            isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],
             result   :'',
             applicantCount: 0, // 전역 변수 초기화
@@ -189,30 +194,52 @@ export default {
         };
     },
     mounted(){
+        this.updateRemainingTime();
+        this.intervalId = setInterval(() => {
+            this.updateRemainingTime(); // 화살표 함수로 'this' 바인딩
+        }, 1000); // 1초마다 갱신
+
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
-        this.getData();
+        // this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'superBono'); // cheering 경로에 대한 참조
-        onValue(dataRef, (snapshot) => {
+        this.dataRef = ref(this.db, this.dbPath); // cheering 경로에 대한 참조
+        onValue(this.dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
-                .filter(key => key !== 'superBono_exemptCount') // exemptCount를 제외
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
                     ...getData[key] // 나머지 데이터
                 }));
         });
     },
-    beforeUnmount() {
+    beforeDestroy() {
+        clearInterval(this.intervalId); // 인터벌 중지
     },
     methods:{
+        updateRemainingTime() {
+            const now = new Date();
+            const timeDiff = this.deadline - now; // 마감 시간과 현재 시간의 차이
+            if (timeDiff <= 0) {
+                this.isDeadlinePassed = true;  // 마감 시간이 지나면 true로 설정
+                this.remainingTime = ""; // 마감되었을 때
+            } else {
+                const totalSeconds = Math.floor(timeDiff / 1000); // 전체 초
+                const hours = Math.floor(totalSeconds / 3600); // 총 시간
+                const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
+                const seconds = totalSeconds % 60; // 초
+
+                this.isDeadlinePassed = false;  // 마감 시간이 지나지 않으면 false
+                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;  // 총 시간, 분, 초로 표시
+            }
+        },
         updateChecked(item) {
             if (item) {
-                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${item.key}.json`, {
-                    ...item, // 기존 데이터와 checked 상태 포함
-                    checked: item.checked // checked 속성을 포함하여 업데이트
+                const itemRef = ref(this.db, `${this.dbPath}/${item.key}`);
+                update(itemRef, { checked: item.checked })
+                .then(() => {
+                    console.log("출석 상태 업데이트 완료, 행님!");
                 })
-                     .catch(error => {
+                 .catch(error => {
                     console.error('출석체크 업데이트 오류:', error);
                 });
             } else {
@@ -269,21 +296,21 @@ export default {
             // 추가적인 UI 로직을 구현하여 사용자에게 알림을 줄 수 있습니다.
         },
 
-        getData(){
-            this.$axios.get(this.apiUrl).then(response => {
-                const apiData = response.data || {};
-                this.apiData = Object.keys(apiData)
-                    .filter(key => key !== 'exemptCount') // exemptCount를 제외
-                    .map(key => ({
-                        key: key, // Firebase에서의 고유 키
-                        ...apiData[key] // 나머지 데이터
-                    })
-                );
-                console.log(' this.apiData',  this.apiData)
-            }).catch(error => {
-                console.error("신청자 목록 가져오기 오류:", error);
-            });
-        },
+        // getData(){
+        //     this.$axios.get(this.apiUrl).then(response => {
+        //         const apiData = response.data || {};
+        //         this.apiData = Object.keys(apiData)
+        //             .filter(key => key !== 'exemptCount') // exemptCount를 제외
+        //             .map(key => ({
+        //                 key: key, // Firebase에서의 고유 키
+        //                 ...apiData[key] // 나머지 데이터
+        //             })
+        //         );
+        //         console.log(' this.apiData',  this.apiData)
+        //     }).catch(error => {
+        //         console.error("신청자 목록 가져오기 오류:", error);
+        //     });
+        // },
         submitForm(){
             if(!this.validateForm()){
                 return;
@@ -299,10 +326,11 @@ export default {
                 liabilityAgreement: this.formData.liabilityAgreement // 면책 동의 추가
             };
 
-            this.$axios.post(this.apiUrl, applicantData).then(() => {
+            push(this.dataRef, applicantData)
+            .then(() => {
                 this.result = '너 너의 동료가 되라! 완료!';
                 alert(this.result)
-                this.getData(); // 신청자 목록 갱신
+                // this.getData(); // 신청자 목록 갱신
                 this.formData = {
                     checked: '',
                     name : '',
@@ -329,7 +357,7 @@ export default {
         copyAccountNumber(event) {
             event.preventDefault(); // 기본 동작 방지
             // 참조된 계좌번호 텍스트 가져오기
-            const accountText = '79420390777 카카오뱅크 25,000원'
+            const accountText = '79420390777 카카오뱅크 10,000원'
 
             // 클립보드에 텍스트 복사
             navigator.clipboard.writeText(accountText)
