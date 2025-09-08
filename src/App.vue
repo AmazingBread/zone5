@@ -1,62 +1,31 @@
 <template>
     <div id="app">
-        <Header /> <!-- 헤더 컴포넌트 추가 -->
-        <div class="container mobile-fixed">
-        <!--    <a-->
-        <!--        href="https://www.instagram.com/bonobono_moolbono/"-->
-        <!--        target="_blank"-->
-        <!--        class="btn btn-dark w-100 mb-1"-->
-        <!--        style="font-size: 12px; display: block; text-align: center;"-->
-        <!--    >10월 27일 촬영분은 인스타 댓글/DM으로 신청해주세요</a>-->
-        <!--    <div class="row p-1">-->
-        <!--        <button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/group_buying')" >-->
-        <!--            요헤미티 공동구매 마감 오프라인 수령중-->
-        <!--        </button>-->
-        <!--    </div>-->
-            <div class="col-12 p-1">
-                <button
-                    type="button" class="btn btn-hotpink w-100 mb-1" style="font-size: 12px;"
-                    @click="$router.push('/swim_training_plan')"
-                >
-                    보노보노 수영강습 PLAN
-                </button>
-            </div>
-            <div class="col-12 p-1">
-                <div
-                    class="boxstyle diary"
-                    style="font-size: 12px;"
-                >
-                    FIT DIARY.... Coming soon
-                </div>
-            </div>
-            <div class="col-12 p-1">
-                <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-if="$store.state.waterTempData">
-                    해운대 실시간 바다수온 <strong>{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]
-                </div>
-                <div style="text-align: center;" class="btn btn-info w-100 mb-1" v-else>
-                    해운대 실시간 바다수온 [점검중]
-                </div>
-            </div>
-            <div class="d-flex gap-2 p-1">
-                    <button
-                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
-                        @click="$router.push({ path: '/basu', query: { spotid: '42897' } })"
-                    >
-                        송정날씨
-                    </button>
-                    <button
-                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
-                        @click="$router.push({ path: '/basu', query: { spotid: '218644' } })"
-                    >
-                        광안리날씨
-                    </button>
-                    <button
-                        type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"
-                        @click="$router.push({ path: '/basu', query: { spotid: '5752427' } })"
-                    >
-                        해운대날씨
-                    </button>
-                </div>
+        <Header v-if="$route.path !== '/swimvirus'" /> <!-- 헤더 컴포넌트 추가 -->
+        <div class="container mobile-fixed" style="margin-top:10px;">
+            <!--<ins class="kakao_ad_area"-->
+            <!--     data-ad-unit = "DAN-96KlXSg1Q3cbC0R1"-->
+            <!--     data-ad-width = "320"-->
+            <!--     data-ad-height = "50"></ins>-->
+            <!--<div class="d-flex gap-2 p-1">-->
+            <!--        <button-->
+            <!--            type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"-->
+            <!--            @click="$router.push({ path: '/basu', query: { spotid: '42897' } })"-->
+            <!--        >-->
+            <!--            송정날씨-->
+            <!--        </button>-->
+            <!--        <button-->
+            <!--            type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"-->
+            <!--            @click="$router.push({ path: '/basu', query: { spotid: '218644' } })"-->
+            <!--        >-->
+            <!--            광안리날씨-->
+            <!--        </button>-->
+            <!--        <button-->
+            <!--            type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;"-->
+            <!--            @click="$router.push({ path: '/basu', query: { spotid: '5752427' } })"-->
+            <!--        >-->
+            <!--            해운대날씨-->
+            <!--        </button>-->
+            <!--    </div>-->
 
             <!--<button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/bear')" >-->
             <!--    북극곰 축제 성공적 완료 (영상은 DB으로 영상 주소전달드림)-->
@@ -68,20 +37,6 @@
             <!--<button type="submit" class="btn btn-dark w-100 mb-1" style="font-size: 12px;" @click="$router.push('/cheering_changwon')" >-->
             <!--    창원클럽대항전 응원게시판-->
             <!--</button>-->
-            <!--<a-->
-            <!--    href="/chang.xls"-->
-            <!--    target="_blank"-->
-            <!--    class="btn btn-danger w-100 mb-1"-->
-            <!--    style="font-size: 12px; display: block; text-align: center;"-->
-            <!--    download="창원대회_대진표.xls"-->
-            <!--&gt;창원대회 대진표 확인바람 [다운로드]</a>-->
-            <!--<a-->
-            <!--    href="/창원기록.xlsx"-->
-            <!--    target="_blank"-->
-            <!--    class="btn btn-dark w-100 mb-1"-->
-            <!--    style="font-size: 12px; display: block; text-align: center;"-->
-            <!--    download="창원기록.xlsx"-->
-            <!--&gt;창원대회 보노보노어깨이팀 기록지 [다운로드]</a>-->
             <!--<button type="submit" class="btn btn-primary w-100 mb-1" style="font-size: 12px;" @click="$router.push('/open_water')" >
                 11월 24일 송정 바수 갈사람
             </button>
@@ -98,7 +53,7 @@
             <!--</button>-->
             <router-view />
         </div>
-        <Footer /> <!-- 헤더 컴포넌트 추가 -->
+        <Footer v-if="$route.path !== '/swimvirus'" /> <!-- 헤더 컴포넌트 추가 -->
     </div>
 </template>
 
@@ -116,6 +71,13 @@ export default {
       nav: false,
     };
   },
+    mounted(){
+        this.$nextTick(() => {
+            if(window.KakaoAdFit){
+                window.KakaoAdFit.reload(); // 광고 다시 로딩
+            }
+        });
+    },
 };
 </script>
 

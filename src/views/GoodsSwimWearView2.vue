@@ -2,7 +2,7 @@
     <div>
         <img src="@/assets/image/수영복_메인.jpg" class="img-fluid" alt="썸네일" />
         <h2 class="page_title">시즌 한정판 리미티드</h2>
-        <p class="text-center mt-2 text-primary">❤️❤️❤️ 물보노 2025 NEW 수영복 😎😎😎</p>
+        <p class="text-center mt-2 text-primary">❤️❤️❤️ 물보노 2025 NEW 수영복 [마감] 😎😎😎</p>
         <br><br><br>
         <br><br><br>
         <h2 class="page_title highlighted-text mb-4">(5월 28일 신청마감)</h2>

@@ -20,7 +20,7 @@
                         class="form-control"
                         v-model="formData.message"
                         ref="messageInput"
-                        rows="5"
+                        rows="20"
                         placeholder="훈련프로그램 내용을 입력하세요, 행님!"
                     ></textarea>
                     <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>

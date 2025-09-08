@@ -1,11 +1,14 @@
 html {
 	font-size: 14px;
 	cursor: default !important;
-	user-select: none !important;
+	//user-select: none !important;
 }
 body {
 	overflow-x: hidden;
 	font-size: 1rem;
+}
+body, html {
+	font-family: 'Nanum Square', sans-serif !important;
 }
 select {
 	-webkit-appearance: menulist; /* Chrome, Safari, Edge */
@@ -161,14 +164,13 @@ select {
 }
 @keyframes fastGradientShift {
 	0% {
-		background-position: 0% 50%;
+		background-position: 0% 150%;
 	}
 	100% {
-		background-position: 100% 50%;
+		background-position: 300% 150%;
 	}
 }
-
-.boxstyle {
+.boxstyle0 {
 	height: 50px;
 	display: flex;
 	justify-content: center;
@@ -177,18 +179,127 @@ select {
 	font-size: 16px;
 	font-weight: bold;
 	text-align: center;
-
-	background: linear-gradient(
-					270deg,
-					#000000,       /* 검정 */
-					#ff0000,       /* 강렬한 빨강 */
-					#000000        /* 다시 검정 */
-	);
-	background-size: 600% 600%;
-	animation: fastGradientShift 2s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	background: #ff7cce;
 	color: #fff;
 	user-select: none;
-	transition: transform 3s ease;
+	border-radius: 10px;
+}
+.boxstyle1 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+
+	background: linear-gradient(
+					260deg,
+					#ff0000, /* 빨강 */
+					#ff7f00, /* 주황 */
+					#ffff00, /* 노랑 */
+					#00ff00, /* 초록 */
+					#0000ff, /* 파랑 */
+					#4b0082, /* 남색 */
+					#8b00ff, /* 보라 */
+					#ff0000  /* 다시 빨강으로 순환 */
+	);
+	background-size: 100% 100%;
+	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #fff;
+	user-select: none;
+}
+.boxstyle2 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+	background: linear-gradient(
+					260deg,
+					#e0e0e0, /* 밝은 은색 */
+					#a0a0a0, /* 중간 회색 */
+					#5a5a5a, /* 어두운 회색 */
+					#c0c0c0, /* 중간 밝기 은색 */
+					#7a7f8a, /* 스틸 블루 그레이 */
+					#aab8c2, /* 실버 블루 */
+					#6a6f7a, /* 좀 더 짙은 스틸 블루 */
+					#e0e0e0  /* 다시 밝은 은색 */
+	);
+	background-size: 100% 100%;
+	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #fff;
+	user-select: none;
+}
+.boxstyle3 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+	background: linear-gradient(
+					260deg,
+					#ff99c8, /* 핑크 */
+					#ff4d94, /* 진한 핑크 */
+					#ff80b3, /* 밝은 핑크 */
+					#ff4d94, /* 진한 핑크 */
+					#ff1a75
+	);
+	background-size: 100% 100%;
+	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #fff;
+	user-select: none;
+}
+.boxstyle4 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+	background: #fff;
+	color: #000;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	user-select: none;
+}
+.boxstyle5 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+	background: linear-gradient(
+					260deg,
+					#4da6ff, /* 밝은 블루 */
+					#0066cc /* 진한 블루 */
+					//#3399ff, /* 중간 블루 */
+					//#0066cc, /* 진한 블루 */
+					//#003366  /* 거의 네이비 */
+	);
+	background-size: 100% 100%;
+	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #fff;
+	user-select: none;
 }
 .diary {
 	color: #fff !important;
@@ -242,6 +353,17 @@ select {
 	background-color: #e0e0e0;
 	position: relative;
 }
+.progress-label {
+	position: absolute;
+	right: 8px;          /* 오른쪽 여백 */
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 10px;
+	font-weight: 700;
+	color: black;        /* 원하는 색상 */
+	user-select: none;
+	pointer-events: none; /* 클릭 방지 */
+}
 
 // 채워지는 부분
 .fit-progress-fill {
@@ -260,15 +382,21 @@ select {
 	font-weight: 700;
 
 	&.fit-swim {
-		background: linear-gradient(to right, #4fc3f7, #0288d1); // 파랑
+		background: #4facff;
+		color: #fff;
+		user-select: none;
 	}
 
 	&.fit-run {
-		background: linear-gradient(to right, #81c784, #388e3c); // 초록
+		background: #ffc463;
+		color: #fff;
+		user-select: none;
 	}
 
 	&.fit-gym {
-		background: linear-gradient(to right, #ffb74d, #f57c00); // 주황
+		background: #ff6ba4;
+		color: #fff;
+		user-select: none;
 	}
 }
 
@@ -280,7 +408,7 @@ select {
 
 	th, td {
 		border: 1px solid #ccc;
-		padding: 6px 8px;
+		padding: 6px 4px;
 	}
 
 	thead tr:nth-child(1) th {
@@ -291,8 +419,8 @@ select {
 		background-color: #d0f0ff;
 	}
 
-	input[type='text'] {
-		width: 60px;
+	input {
+		width: 70px;
 		padding: 4px;
 		text-align: center;
 		border: 1px solid #aaa;

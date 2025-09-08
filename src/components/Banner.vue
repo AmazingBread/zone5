@@ -1,44 +1,50 @@
 <template>
     <div>
-        <div class="post-grid">
-            <div class="post-card" v-for="post in posts.slice(0, 10)" :key="post.id">
-                <a :href="post.permalink" target="_blank">
-                    <img :src="post.thumbnail_url || post.media_url" alt="instagram post" />
-                    <!--<video v-if="post.media_type === 'VIDEO'" controls>-->
-                    <!--    <source :src="post.media_url" type="video/mp4" />-->
-                    <!--</video>-->
-                    <!--<p class="caption">{{ post.caption }}</p>-->
-                </a>
-            </div>
-        </div>
-        <a class="banner" href="https://www.daangn.com/kr/business-profiles/%EC%8A%A4%EC%9C%84%EB%B0%8D%EB%AA%B0-88f133168d8240cf95b5e44045289b9a/" target="_blank" style="display: block">
-            <img src="@/assets/photo/bn00.jpg" alt="스위밍몰" class="ad-image" />
-        </a>
-        <div class="banner">
-            <img src="@/assets/photo/banner1.jpg" alt="원이" class="ad-image" />
-        </div>
-        <div class="banner">
-            <img src="@/assets/photo/banner2.jpg" alt="결혼" class="ad-image" />
-        </div>
-        <div class="banner">
-            <img src="@/assets/photo/banner3.jpg" alt="덕산" class="ad-image" />
-        </div>
-        <div class="banner">
-            <img src="@/assets/photo/banner4.jpg" alt="부찌" class="ad-image" />
-        </div>
-        <!--<div class="banner">-->
-        <!--    <img src="@/assets/photo/banner5.jpg" alt="순대" class="ad-image" />-->
-        <!--</div>-->
-        <div class="banner">
-            <img src="@/assets/photo/banner6.jpg" alt="부동산" class="ad-image" />
-        </div>
-        <a class="banner" href="https://www.instagram.com/m.i.k.a.makeup/" target="_blank" style="display: block">
-            <img src="@/assets/photo/banner7.jpg" alt="메이크업" class="ad-image" />
-        </a>
-        <div class="banner">
-            <img src="@/assets/photo/banner8.jpg" alt="레아" class="ad-image" />
-        </div>
+        <ins class="kakao_ad_area"
+             data-ad-unit = "DAN-96KlXSg1Q3cbC0R1"
+             data-ad-width = "320"
+             data-ad-height = "50"></ins>
     </div>
+    <!--<div>-->
+    <!--    <div class="post-grid">-->
+    <!--        <div class="post-card" v-for="post in posts.slice(0, 10)" :key="post.id">-->
+    <!--            <a :href="post.permalink" target="_blank">-->
+    <!--                <img :src="post.thumbnail_url || post.media_url" alt="instagram post" />-->
+    <!--                &lt;!&ndash;<video v-if="post.media_type === 'VIDEO'" controls>&ndash;&gt;-->
+    <!--                &lt;!&ndash;    <source :src="post.media_url" type="video/mp4" />&ndash;&gt;-->
+    <!--                &lt;!&ndash;</video>&ndash;&gt;-->
+    <!--                &lt;!&ndash;<p class="caption">{{ post.caption }}</p>&ndash;&gt;-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <a class="banner" href="https://www.daangn.com/kr/business-profiles/%EC%8A%A4%EC%9C%84%EB%B0%8D%EB%AA%B0-88f133168d8240cf95b5e44045289b9a/" target="_blank" style="display: block">-->
+    <!--        <img src="@/assets/photo/bn00.jpg" alt="스위밍몰" class="ad-image" />-->
+    <!--    </a>-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner1.jpg" alt="원이" class="ad-image" />-->
+    <!--    </div>-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner2.jpg" alt="결혼" class="ad-image" />-->
+    <!--    </div>-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner3.jpg" alt="덕산" class="ad-image" />-->
+    <!--    </div>-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner4.jpg" alt="부찌" class="ad-image" />-->
+    <!--    </div>-->
+    <!--    &lt;!&ndash;<div class="banner">&ndash;&gt;-->
+    <!--    &lt;!&ndash;    <img src="@/assets/photo/banner5.jpg" alt="순대" class="ad-image" />&ndash;&gt;-->
+    <!--    &lt;!&ndash;</div>&ndash;&gt;-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner6.jpg" alt="부동산" class="ad-image" />-->
+    <!--    </div>-->
+    <!--    <a class="banner" href="https://www.instagram.com/m.i.k.a.makeup/" target="_blank" style="display: block">-->
+    <!--        <img src="@/assets/photo/banner7.jpg" alt="메이크업" class="ad-image" />-->
+    <!--    </a>-->
+    <!--    <div class="banner">-->
+    <!--        <img src="@/assets/photo/banner8.jpg" alt="레아" class="ad-image" />-->
+    <!--    </div>-->
+    <!--</div>-->
 </template>
 
 <script>
@@ -53,12 +59,18 @@ export default {
         };
     },
     mounted() {
-        this.getInsta()
-        // SnapWidget 스크립트 동적으로 추가
-        const script = document.createElement("script");
-        script.src = "https://snapwidget.com/js/snapwidget.js";
-        script.async = true;
-        document.body.appendChild(script);
+        this.$nextTick(() => {
+            if (window.KakaoAdFit) {
+                window.KakaoAdFit.reload(); // 광고 다시 로딩
+            }
+        });
+        //
+        // this.getInsta()
+        // // SnapWidget 스크립트 동적으로 추가
+        // const script = document.createElement("script");
+        // script.src = "https://snapwidget.com/js/snapwidget.js";
+        // script.async = true;
+        // document.body.appendChild(script);
     },
     methods:{
         getInsta(){

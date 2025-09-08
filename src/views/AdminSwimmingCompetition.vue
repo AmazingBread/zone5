@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">보노보노 울산 남구 대회 4월 13일 일요일</h2>
+        <h2 class="page_title mb-4">창원클럽대항전</h2>
         <!--<img src="@/assets/image/ulsan_01.jpg" class="img-fluid" alt="ulsan" />-->
         <!--<img src="@/assets/image/ulsan_02.jpg" class="img-fluid" alt="ulsan" />-->
         <!--<img src="@/assets/image/ulsan_03.jpg" class="img-fluid" alt="ulsan" />-->
@@ -50,7 +50,7 @@
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 45000).toLocaleString() }}원 / 45,000원 x{{ paidApplicantsCount }}명</dd>
+                <dd>{{ (paidApplicantsCount * 30000).toLocaleString() }}원 / 30,000원 x{{ paidApplicantsCount }}명</dd>
             </dl>
         </div>
     </div>

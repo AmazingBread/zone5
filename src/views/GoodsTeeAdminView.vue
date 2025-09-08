@@ -108,7 +108,7 @@ import {getDatabase, onValue, ref} from "firebase/database";
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/goodsTee.json",
+            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/goodsTee2.json",
             apiData:[],
             result   :'',
             db: null, // 데이터베이스 참조 추가
@@ -119,7 +119,7 @@ export default {
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'goodsTee'); // cheering 경로에 대한 참조
+        const dataRef = ref(this.db, 'goodsTee2'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)

@@ -1,14 +1,5 @@
 <template>
     <div>
-        <video
-            autoplay
-            muted
-            playsinline
-            src="../assets/image/바수.mp4"
-            style="width: 100%;"
-            loop
-        >
-        </video>
         <!--<iframe-->
         <!--    src="https://docs.google.com/spreadsheets/d/1wXaD8aB8RvSgmBrGm9SPeCE_VEivT-nS/edit#gid=2061385483"-->
         <!--    width="100%"-->

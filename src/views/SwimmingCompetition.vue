@@ -1,10 +1,26 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">보노보노 진주시 시장배 수영대회 신청</h2>
-        <img src="@/assets/image/jinju.png" class="img-fluid" alt="진주" style="width: 100%" />
+        <h2 class="page_title mb-4">창원클럽대항전</h2>
+        <img src="@/assets/image/chang.jpg" class="img-fluid" alt="진주" style="width: 100%" />
 
-        <p class="text-center text-bg-info p-2">📢📢📢  팀 보노보노 신청서 🏅🏅🏅🏅</p>
-        <h2 class="page_title mb-4 text-bg-warning p-2">신청마감 5월 3일 토요일 까지</h2>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle3"
+                style="font-size: 20px; "
+            >
+                신청마감 9월 7일 까지
+            </div>
+        </div>
+
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                팀명 존파이브
+            </div>
+        </div>
+
         <form @submit.prevent="submitForm">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">1. 이름적어주쏘</label>
@@ -31,15 +47,27 @@
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group1" value="1그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group1">1그룹 (2005년생~1990년생)</label>
+                        <label class="form-check-label" for="group1">1그룹 (2006년생~고등학생)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group2" value="2그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group2">2그룹 (1989년생~1980년생)</label>
+                        <label class="form-check-label" for="group2">2그룹 (1996년생~2005년생)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group3" value="3그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group3">3그룹 (1979년생~1972년생)</label>
+                        <label class="form-check-label" for="group3">3그룹 (1986년생~1995년생)</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="group" id="group4" value="4그룹" v-model="formData.group" ref="group">
+                        <label class="form-check-label" for="group4">4그룹 (1976년생~1985년생)</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="group" id="group5" value="5그룹" v-model="formData.group" ref="group">
+                        <label class="form-check-label" for="group5">5그룹 (1966년생~1975년생)</label>
+                    </div>
+                    <div class="form-check me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="group" id="group6" value="6그룹" v-model="formData.group" ref="group">
+                        <label class="form-check-label" for="group6">6그룹 (1965년 이전)</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
@@ -64,16 +92,12 @@
                         <label class="form-check-label" for="fl50_1">접영50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="im200_1" value="개인혼영200" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="im200_1">개인혼영200</label>
+                        <input class="form-check-input" type="radio" name="events1" id="pinFr50_1" value="오리발 자유형 50" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="pinFr50_1">핀자유형 50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="pinFr100_1" value="오리발 자유형 100" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="pinFr100_1">오리발 자유형 100</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="pinFl100_1" value="오리발 접영 100" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="pinFl100_1">오리발 접영 100</label>
+                        <input class="form-check-input" type="radio" name="events1" id="pinFl50_1" value="오리발 접영 50" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="pinFl50_1">핀접영 50</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 6">{{errorMessage[0]}}</p>
@@ -98,16 +122,12 @@
                         <label class="form-check-label" for="fl50_2">접영50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="im200_2" value="개인혼영200" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="im200_2">개인혼영200</label>
+                        <input class="form-check-input" type="radio" name="events2" id="pinFr50_2" value="오리발 자유형 50" v-model="formData.events2" ref="events1">
+                        <label class="form-check-label" for="pinFr50_2">핀자유형 50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="pinFr100_2" value="오리발 자유형 100" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="pinFr100_2">오리발 자유형 100</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="pinFl100_2" value="오리발 접영 100" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="pinFl100_2">오리발 접영 100</label>
+                        <input class="form-check-input" type="radio" name="events2" id="pinFl50_2" value="오리발 접영 50" v-model="formData.events2" ref="events1">
+                        <label class="form-check-label" for="pinFl50_2">핀접영 50</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
@@ -142,19 +162,15 @@
                 <label for="size" class="form-label fw-bold">9. 돈낼거</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
                     <option value="" disabled>돈낼거 확인</option>
-                    <option value="장소, 시간 확인함">대회비 3만 + 먹을거 1.5만 = 4.5만</option>
+                    <option value="장소, 시간 확인함">대회비 3만</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">보노보노 대회 안내</label>
                 <p style="font-size:12px;">
-                    1. 대회 신청서 제출후 대회비 환불안됨<br>
-                    2. 자차 가져가시는분들 카풀 합시다<br>
-                    3. 먹는거는 냉삼 구워먹습니다 나머지 주전부리 챙기께에<br>
-                    4. 아이스박스, 테이블, 의자, 버너, 불판 있으신분들 들고오세요<br>
-                    5. 수경수모 혹시모른다 2개씩 챙기소<br>
-                    6. 수정은 안되니 다시 작성하세요. 뒤에껀 내가 지우께요<br><br>
+                    1. 대회 신청서 제출후 대회비 환불 안됨<br>
+                    2. 수정은 안되니 다시 작성하세요. 뒤에껀 내가 지우께요<br><br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -252,7 +268,7 @@ export default {
             applicantCount: 0, // 전역 변수 초기화
             errorMessage:'',
             db: null, // 데이터베이스 참조 추가
-            accountText: '79420390777 카카오뱅크 45,0000원'
+            accountText: '79420390777 카카오뱅크 배하정 30,0000원'
         };
     },
     mounted(){

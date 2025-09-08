@@ -184,8 +184,8 @@ export default {
                 openClass           :'',
                 liabilityAgreement: ''
             },
-            firstComeLimit: 26,
-            deadline: new Date('2025-07-20T23:59:59'),
+            firstComeLimit: 30,
+            deadline: new Date('2025-08-31T23:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],

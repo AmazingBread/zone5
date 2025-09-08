@@ -1,9 +1,9 @@
 <template>
     <div>
-        <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일">
-        <h2 class="page_title mb-4">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크 📣📣</h2>
+        <!--<img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일">-->
+        <!--<h2 class="page_title mb-4">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크 📣📣</h2>-->
         <!--<h2 class="page_title mb-4">📣📣슈퍼보노 7월 5일 2시-4시📣📣<br>선착순 {{firstComeLimit}}명 </h2>-->
-        <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
+        <h2 class="mb-4 text-center">신청서 작성</h2>
         <form @submit.prevent="submitForm">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">이름</label>
@@ -17,22 +17,22 @@
                         <input class="form-check-input" type="radio" name="affiliation" id="bonobono" value="보노보노" v-model="formData.affiliation" ref="affiliationRadios">
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">
-                        <label class="form-check-label" for="zoo">팀동물원</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
-                        <label class="form-check-label" for="shoulder">팀어깨이</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀김다은" v-model="formData.affiliation">
-                        <label class="form-check-label" for="gosu">팀김다은</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">
-                        <label class="form-check-label" for="gosu">팀고수정</label>
-                    </div>
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="팀동물원" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="zoo">팀동물원</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="shoulder">팀어깨이</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀김다은" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="gosu">팀김다은</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="팀고수정" v-model="formData.affiliation">-->
+                    <!--    <label class="form-check-label" for="gosu">팀고수정</label>-->
+                    <!--</div>-->
                     <!--<div class="form-check d-inline-block me-3 mt-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
                     <!--    <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">-->
                     <!--    <label class="form-check-label" for="umpa">음파핫</label>-->
@@ -50,7 +50,7 @@
                             type="text"
                             class="form-control"
                             v-model="formData.otherAffiliation"
-                            placeholder="ex) 배하정 지인"
+                            placeholder="ex) 배하정 지인, 게스트"
                             :disabled="formData.affiliation !== '기타'"
                             style="width: auto; flex-grow: 1;"
                         >
@@ -67,13 +67,18 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">슈퍼보노 안내</label>
+                <label class="form-label fw-bold">보노보노 정모 안내</label>
                 <p style="font-size:12px;">
-                    📣📣 훈련장소 정관 아쿠아드림파크 7시 1시간📣📣<br>
-                    1. 시작전 미리 도착해 주세요<br>
-                    2. 코치진 (황영균, 안소현, 강민규) <br>
-                    3. 50미터 레인 1시간 (울트라핀, 대쉬 연습)<br>
-                    4. 6시 입장하실분은 입장료 별도로 끊고 입장하시면 됩니다.<br>
+                    📣📣 훈련 장소 정관 아쿠아드림파크 새벽 7시 (1시간)📣📣<br>
+                    1. 아드파 레인 대여는 7시 부터 시작 입니다<br>
+                    2. 7시 입장은 입장료 포함<br>
+                    3. 6시 입장은 개별 입장 하여 자유 수영 가능<br>
+                    4. 게스트 참여 가능<br>
+                    5. 9월 19일 까지 신청 가능<br>
+                    6. 30명 이상 참여 불가<br>
+                    <!--2. 코치진 (황영균, 안소현, 강민규) <br>-->
+                    <!--3. 50미터 레인 1시간 (울트라핀, 대쉬 연습)<br>-->
+                    <!--4. 6시 입장하실분은 입장료 별도로 끊고 입장하시면 됩니다.<br>-->
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -183,7 +188,7 @@ export default {
                 liabilityAgreement: ''
             },
             firstComeLimit: 30,
-            deadline: new Date('2025-07-11T23:59:59'),
+            deadline: new Date('2025-09-19T23:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],

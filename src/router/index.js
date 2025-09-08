@@ -31,7 +31,9 @@ import GoodsTeeView from "../views/GoodsTeeView.vue";
 import GoodsSocksView from "../views/GoodsSocksView.vue";
 import GoodsView from "../views/GoodsView.vue";
 import FitDiary from "../views/FitDiary.vue";
-import FitDiaryAdmin from "../views/FitDiaryAdmin.vue";
+import FitDiaryEdit from "../views/FitDiaryEdit.vue";
+import FitDiaryZoneFive from "../views/FitDiaryZoneFive.vue";
+import FitDiaryZoneFiveEdit from "../views/FitDiaryZoneFiveEdit.vue";
 
 import AdminView from "../views/AdminView.vue";
 import BreadAdminView from "../views/AdminBreadView.vue";
@@ -53,6 +55,8 @@ import DietView from "../views/diet.vue";
 import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../firebase';
+import SwimVirus from "../views/swimVirus.vue";
+
 
 Vue.use(VueRouter);
 
@@ -62,6 +66,12 @@ const routes = [
     name: "MainView",
     component: MainView,
     meta: { title: '보노보노 물보노' }, // 타이틀 설정
+  },
+  {
+    path: "/swimvirus",
+    name: "SwimVirus",
+    component: SwimVirus,
+    meta: { title: '스윔바이러스 swimvirus' }, // 타이틀 설정
   },
   {
     path: "/diet",
@@ -145,7 +155,7 @@ const routes = [
     path: "/swimming_competition",
     name: "SwimmingCompetition",
     component: SwimmingCompetition,
-    meta: { title: '보노보노 진주 대회' }, // 타이틀 설정
+    meta: { title: '보노보노 대회' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition2",
@@ -335,15 +345,27 @@ const routes = [
   },
   {
     path: "/fit_diary",
-    name: "fit_diary",
+    name: "FitDiary",
     component: FitDiary,
     meta: { title: '보노보노 운동인증' }, // 타이틀 설정
   },
   {
-    path: "/fit_diary0330",
-    name: "fit_diary_Admin",
-    component: FitDiaryAdmin,
-    meta: { title: '보노보노 운동인증- 관리자' }, // 타이틀 설정
+    path: "/fit_diary_edit/:userName",
+    name: "FitDiaryEdit",
+    component: FitDiaryEdit,
+    meta: { title: '보노보노 운동인증-인증추가' }, // 타이틀 설정
+  },
+  {
+    path: "/fit_diary_zone_five",
+    name: "FitDiaryZoneFive",
+    component: FitDiaryZoneFive,
+    meta: { title: '존파이브 운동인증' }, // 타이틀 설정
+  },
+  {
+    path: "/fit_diary_zone_five_edit/:userName",
+    name: "FitDiaryZoneFiveEdit",
+    component: FitDiaryZoneFiveEdit,
+    meta: { title: '존파이브 운동인증-인증추가' }, // 타이틀 설정
   },
   // {
   //   path: "/about",
@@ -355,8 +377,12 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 항상 페이지 맨 위로 스크롤 이동
+    return { x: 0, y: 0 };
+  }
 });
 
 // 전역 가드 설정

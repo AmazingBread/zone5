@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app'; // Firebase 앱 초기화
 import { getDatabase } from 'firebase/database'; // Realtime Database 사용
 import { getAnalytics, logEvent  } from 'firebase/analytics'; // Firebase Analytics 모듈 추가
 
+
 // Firebase 구성 객체
 const firebaseConfig = {
 	apiKey: "AIzaSyC9d5ec445ZXygk4qAYKoZVpIKD2c1ZrMQ",
