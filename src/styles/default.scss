@@ -121,7 +121,7 @@ select {
 			padding-left: 20px; /* 번호 뒤로 들여쓰기 */
 			margin-bottom: 5px; /* 각 항목 간 간격 */
 			&:before {
-				content: '가)'; /* 기본 값은 가) */
+				content: '1)'; /* 기본 값은 가) */
 				position: absolute;
 				left: 0;
 				top: 0;
@@ -129,11 +129,11 @@ select {
 			}
 
 			&:nth-child(2)::before {
-				content: '나)'; /* 두 번째 항목 */
+				content: '2)'; /* 두 번째 항목 */
 			}
 
 			&:nth-child(3)::before {
-				content: '다)'; /* 세 번째 항목 */
+				content: '3)'; /* 세 번째 항목 */
 			}
 		}
 	}
@@ -216,6 +216,7 @@ select {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: bold;
@@ -299,6 +300,31 @@ select {
 	background-size: 100% 100%;
 	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
 	color: #fff;
+	user-select: none;
+}
+.boxstyle6 {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 10px;
+	//border: 1px solid #000;
+	background: linear-gradient(
+					260deg,
+					#d6ff5b, /* 밝은 블루 */
+					#c6f518 /* 진한 블루 */
+		//#3399ff, /* 중간 블루 */
+		//#0066cc, /* 진한 블루 */
+		//#003366  /* 거의 네이비 */
+	);
+	background-size: 100% 100%;
+	//animation: fastGradientShift 10s linear infinite; /* 2초에 한 바퀴, 완전 빠름! */
+	color: #000;
 	user-select: none;
 }
 .diary {

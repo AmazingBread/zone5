@@ -17,7 +17,7 @@
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                팀명 존파이브
+                팀명 zone5
             </div>
         </div>
 
@@ -196,7 +196,15 @@
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 10">{{errorMessage[0]}}</p>
             </div>
-            <button type="submit" class="btn btn-primary w-100">대회신청</button>
+            <button
+                type="submit"
+                class="btn w-100"
+                :class="isDeadlinePassed || apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
+                :disabled="isDeadlinePassed || apiData.length === firstComeLimit"
+            >
+                {{isDeadlinePassed || apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+                <span style="font-weight: bold; padding-left:10px;" v-if="!isDeadlinePassed && apiData.length < firstComeLimit">{{ remainingTime }}</span>
+            </button>
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
                 <p class="highlighted-text" ref="accountText">{{accountText}}</p>
@@ -263,6 +271,10 @@ export default {
                 ok:'',
                 liabilityAgreement: ''
             },
+            firstComeLimit: 60,
+            deadline: new Date('2025-09-20T23:59:59'),
+            remainingTime: "계산 중...", // 남은 시간 초기값
+            isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],
             result   :'',
             applicantCount: 0, // 전역 변수 초기화
@@ -272,6 +284,11 @@ export default {
         };
     },
     mounted(){
+        this.updateRemainingTime();
+        this.intervalId = setInterval(() => {
+            this.updateRemainingTime(); // 화살표 함수로 'this' 바인딩
+        }, 1000); // 1초마다 갱신
+
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
@@ -286,9 +303,26 @@ export default {
                 }));
         });
     },
-    beforeUnmount() {
+    beforeDestroy() {
+        clearInterval(this.intervalId); // 인터벌 중지
     },
     methods:{
+        updateRemainingTime() {
+            const now = new Date();
+            const timeDiff = this.deadline - now; // 마감 시간과 현재 시간의 차이
+            if (timeDiff <= 0) {
+                this.isDeadlinePassed = true;  // 마감 시간이 지나면 true로 설정
+                this.remainingTime = ""; // 마감되었을 때
+            } else {
+                const totalSeconds = Math.floor(timeDiff / 1000); // 전체 초
+                const hours = Math.floor(totalSeconds / 3600); // 총 시간
+                const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
+                const seconds = totalSeconds % 60; // 초
+
+                this.isDeadlinePassed = false;  // 마감 시간이 지나지 않으면 false
+                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;  // 총 시간, 분, 초로 표시
+            }
+        },
         updateChecked(item) {
             if (item) {
                 this.$axios.put(`${this.apiUrl.replace('.json', '')}/${item.key}.json`, {

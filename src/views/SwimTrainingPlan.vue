@@ -30,7 +30,11 @@
         </form>
         <div class="mt-3">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">프로그램 {{apiData.length}}개</p>
-            <div v-for="(item) in apiData.slice().reverse()" :key="item.key" class="mb-2" style="padding:10px; border:1px solid #dee2e6; border-radius: 5px; font-size: 12px">
+            <div
+                v-for="(item) in visibleItems"
+                :key="item.key"
+                class="mb-2"
+                style="padding:10px; border:1px solid #dee2e6; border-radius: 5px; font-size: 12px">
                 <div class="font-weight-bold">
                     {{ item.name }} ({{ item.date }})
                 </div>
@@ -48,6 +52,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- 더보기 버튼 -->
+        <div v-if="visibleCount < apiData.length" class="text-center mt-3">
+            <button class="btn btn-primary w-100" @click="showMore">더보기 ({{ visibleCount }}/{{ apiData.length - visibleCount }})</button>
         </div>
     </div>
 </template>
@@ -74,7 +82,29 @@ export default {
             editingKey: null,
             editMessage: '',
             password: '',
+            visibleCount: 10,   // 한 번에 보이는 개수
         };
+    },
+    created() {
+        const correctPassword = '3333'; // 원하는 비밀번호
+        let password = null;
+
+        while (true) {
+            password = prompt('비밀번호 DM으로 문의', '');
+
+            if (password === null) {
+                // 취소 누른 경우 홈으로 이동
+                this.$router.push('/');
+                break;
+            }
+
+            if (password === correctPassword) {
+                // 정답이면 반복 종료
+                break;
+            } else {
+                alert('비밀번호가 틀렸습니다! 다시 입력해주세요.');
+            }
+        }
     },
     mounted(){
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
@@ -89,10 +119,18 @@ export default {
                 }));
         });
     },
+    computed: {
+        visibleItems () {
+            return this.apiData.slice().reverse().slice(0, this.visibleCount)
+        }
+    },
     beforeUnmount() {
         // clearInterval(this.interval); // 컴포넌트가 파괴될 때 인터벌 해제
     },
     methods:{
+        showMore () {
+            this.visibleCount += 10
+        },
         startEdit(item) {
             this.editingKey = item.key;
             this.editMessage = item.message;

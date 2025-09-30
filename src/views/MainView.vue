@@ -22,28 +22,65 @@
                 해운대 실시간 바다수온 [점검중]
             </div>
         </div>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle6"
+                style="font-size: 20px; "
+                @click="$router.push('/signup')"
+            >
+                보노보노 회원신청
+            </div>
+        </div>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle2"
+                style="font-size: 20px; "
+                @click="$router.push('/zone5')"
+            >
+                ZONE5 훈련신청
+            </div>
+        </div>
         <iframe
-            src="https://ads-partners.coupang.com/widgets.html?id=914234&template=carousel&trackingCode=AF5244456&subId=&width=680&height=140&tsource="
-            style="width: 100%; max-width: 680px; height: auto; aspect-ratio: 680 / 140; border: 0; display: block;"
-            scrolling="no"
-            referrerpolicy="unsafe-url"
-            browsingtopics>
-        </iframe>
-
+            src="https://www.youtube.com/embed/z6t3Qjw58eQ"
+            title="당신의 자유형 발차기 유형은? what's your freestyle kick type?"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            style="width:100%;"
+        ></iframe>
         <!--<div class="col-12 p-1">-->
         <!--    <img src="@/assets/image/bono_main.jpg" class="img-fluid" alt="메인"/>-->
         <!--</div>-->
         <div class="col-12">
             <div class="col-12 p-1" >
                 <div
+                    class="boxstyle2 diary"
+                    style="font-size: 30px; height: 250px;"
+                    @click="$router.push('/swimming_competition2')"
+                >
+                    <p>📢 양산대회 📢</p>
+                    <p>
+                        2025.11.02<br>
+                        양산중앙국민체육센터
+                    </p>
+                </div>
+            </div>
+            <!--<div class="thumbnail-box">-->
+            <!--    <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/super_bono')"/>-->
+            <!--    <p class="text-center mt-2 text-primary">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크📣📣 </p>-->
+            <!--</div>-->
+        </div>
+        <div class="col-12">
+            <div class="col-12 p-1" >
+                <div
                     class="boxstyle3 diary"
                     style="font-size: 30px; height: 250px;"
-                    @click="$router.push('/swimming_competition')"
+                    @click="$router.push('/super_bono')"
                 >
-                    <p>📢 창원클럽대항전 📢</p>
+                    <p>📢 1:1 영법 피드백 📢</p>
                     <p>
-                        2025.10.12<br>
-                        창원실내수영장
+                    10월 11일 토요일 새빅7시<br>
+                    정관 아쿠아 50레인
                     </p>
                 </div>
             </div>
@@ -57,12 +94,12 @@
                 <div
                     class="boxstyle5 diary"
                     style="font-size: 30px; height: 250px;"
-                    @click="$router.push('/super_bono')"
+                    @click="$router.push('/super_bono2')"
                 >
-                    <p>📢 보노보노정모 📢</p>
+                    <p>📢 개인 영법 영상촬영 📢</p>
                     <p>
-                    9월 20일 토요일 새빅7시<br>
-                    정관 아쿠아드림파크
+                        10월 26일 일요일 오후2시<br>
+                        수영구 체육센터
                     </p>
                 </div>
             </div>
@@ -83,15 +120,15 @@
             </div>
         </div>
 
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle2 diary"
-                style="font-size: 20px;"
-                @click="$router.push('/fit_diary_zone_five')"
-            >
-                ZONE5
-            </div>
-        </div>
+        <!--<div class="col-12 p-1">-->
+        <!--    <div-->
+        <!--        class="boxstyle2 diary"-->
+        <!--        style="font-size: 20px;"-->
+        <!--        @click="$router.push('/fit_diary_zone_five')"-->
+        <!--    >-->
+        <!--        ZONE5-->
+        <!--    </div>-->
+        <!--</div>-->
         <div class="col-12 p-1">
             <div
                 class="boxstyle3"
@@ -101,20 +138,20 @@
                 SWIM LESSON
             </div>
         </div>
-        <div class="col-12 p-1">
-            <div class="thumbnail-box">
-                <a href="https://naver.me/GxRd39cv" target="_blank">
-                    <img src="@/assets/image/유영하다.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
-                </a>
-            </div>
-        </div>
+        <!--<div class="col-12 p-1">-->
+        <!--    <div class="thumbnail-box">-->
+        <!--        <a href="https://naver.me/GxRd39cv" target="_blank">-->
+        <!--            <img src="@/assets/image/유영하다.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />-->
+        <!--        </a>-->
+        <!--    </div>-->
+        <!--</div>-->
         <!--헤더 영역-->
-        <div class="col-12 p-1 mb-3">
-            <div class="thumbnail-box">
-                <img src="@/assets/image/엠티메인.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/mt')"/>
-                <!--<p class="text-center mt-2 text-primary">📣📣9월 13-14 ZOO,어깨탈골,보노보노 연합MT📣📣</p>-->
-            </div>
-        </div>
+        <!--<div class="col-12 p-1 mb-3">-->
+        <!--    <div class="thumbnail-box">-->
+        <!--        <img src="@/assets/image/엠티메인.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/mt')"/>-->
+        <!--        &lt;!&ndash;<p class="text-center mt-2 text-primary">📣📣9월 13-14 ZOO,어깨탈골,보노보노 연합MT📣📣</p>&ndash;&gt;-->
+        <!--    </div>-->
+        <!--</div>-->
         <!--<div class="col-12 mb-3">-->
         <!--    <div class="thumbnail-box">-->
         <!--        <img src="@/assets/image/바다보노.jpg" style="width: 100%" class="img-fluid" alt="썸네일" @click="$router.push('/open_water')"/>-->

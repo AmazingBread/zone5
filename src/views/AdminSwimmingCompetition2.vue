@@ -1,12 +1,18 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">팀주 경주 대회 6월 15일 일요일</h2>
-        <!--<img src="@/assets/image/ulsan_01.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_02.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_03.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_04.jpg" class="img-fluid" alt="ulsan" />-->
-
-        <p class="text-center text-bg-light" style="padding:10px;">📢📢📢 팀주 신청서 🏅🏅🏅🏅</p>
+        <div class="col-12 p-1 mb-5">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                양산대회 zone5 관리자
+            </div>
+        </div>
+        <div class="mt-3 text-right">
+            <button class="btn btn-primary btn-sm" @click="downloadExcel">
+                📥 신청자 엑셀 다운로드
+            </button>
+        </div>
         <div class="mt-3">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">대회 신청자 {{apiData.length}}명</p>
             <div
@@ -50,14 +56,15 @@
 
             <dl style="margin-right: 20px;">
                 <dt>입금 총계</dt>
-                <dd>{{ (paidApplicantsCount * 0).toLocaleString() }}원 / 45,000원 x{{ paidApplicantsCount }}명</dd>
+                <dd>{{ (paidApplicantsCount * 30000).toLocaleString() }}원 / 30,000원 x{{ paidApplicantsCount }}명</dd>
             </dl>
         </div>
     </div>
 </template>
 
 <script>
-import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
+import { getDatabase, ref, onValue } from "firebase/database";
+import * as XLSX from "xlsx"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
 export default {
     data(){
@@ -278,6 +285,33 @@ export default {
                 console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
             }
         },
+        downloadExcel() {
+            if (!this.apiData.length) {
+                alert("다운로드할 신청자가 없습니다.");
+                return;
+            }
+
+            // 엑셀용 데이터 변환
+            const excelData = this.apiData.map((item, index) => ({
+                번호: index + 1,
+                이름: item.name,
+                나이: item.age,
+                성별: item.sex,
+                그룹: item.group,
+                종목1: item.events1,
+                종목2: item.events2,
+                전화번호: item.phone,
+                대회비: item.paid ? "입금완료" : "미입금"
+            }));
+
+            // 워크시트 생성
+            const worksheet = XLSX.utils.json_to_sheet(excelData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "신청자명단");
+
+            // 파일 다운로드
+            XLSX.writeFile(workbook, "대회_신청자명단.xlsx");
+        }
     }
 };
 </script>

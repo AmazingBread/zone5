@@ -6,20 +6,35 @@
         </div>
 
         <!-- 제목/부제목 -->
-        <h1 class="title">
-            수영의 즐거움이 <span class="highlight">바이러스</span>처럼 퍼진다, 스윔바이러스
-        </h1>
-        <p class="subtitle">
-            한 번 접하면 멈출 수 없는 수영 열정과 정보!
-        </p>
+        <!--<h1 class="title">-->
+        <!--    수영의 즐거움이 <span class="highlight">바이러스</span>처럼 퍼진다, 스윔바이러스-->
+        <!--</h1>-->
+        <!--<p class="subtitle">-->
+        <!--    한 번 접하면 멈출 수 없는 수영 열정과 정보!-->
+        <!--</p>-->
+        <a href="https://link.coupang.com/a/cSPWrq" target="_blank" class="mb-3" style="border:1px solid #fff;">
+            <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
+        </a>
+        <!--<iframe-->
+        <!--    src="https://ads-partners.coupang.com/widgets.html?id=914234&template=carousel&trackingCode=AF5244456&subId=&width=680&height=140&tsource="-->
+        <!--    style="margin-bottom: 15px; width: 100%; max-width: 680px; height: auto; aspect-ratio: 680 / 140; border: 0; display: block;"-->
+        <!--    scrolling="no"-->
+        <!--    referrerpolicy="unsafe-url"-->
+        <!--    browsingtopics>-->
+        <!--</iframe>-->
 
         <!-- 링크 카드 리스트 -->
         <div class="link-list">
-            <a href="https://link.coupang.com/a/cOWlLx" class="link-card"  target="_blank" >
-                <div class="link-info">
-                    <span class="link-title">컴피백 쿠팡 바로가기</span>
-                </div>
-            </a>
+            <!--<a href="https://link.coupang.com/a/cOWlLx" class="link-card"  target="_blank" >-->
+            <!--    <div class="link-info">-->
+            <!--        <span class="link-title">컴피백 쿠팡 바로가기</span>-->
+            <!--    </div>-->
+            <!--</a>-->
+            <!--<a href="https://link.coupang.com/a/cPXRLF" class="link-card"  target="_blank" >-->
+            <!--    <div class="link-info">-->
+            <!--        <span class="link-title">스피도 습식타올 바로가기</span>-->
+            <!--    </div>-->
+            <!--</a>-->
             <a href="https://youtube.com/@swimvirus?si=OxZIATmfMWDDUd3L" class="link-card"  target="_blank" >
                 <div class="link-info">
                     <span class="link-title">스윔바이러스 유튜브 바로가기</span>

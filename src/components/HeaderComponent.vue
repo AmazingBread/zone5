@@ -1,10 +1,25 @@
 <template>
+    <div>
     <div class="header">
         <router-link to="/">
             <h1>
                 <img src="@/assets/image/n_logo.jpg" style="height: 50px;" alt="로고">
             </h1>
         </router-link>
+    </div>
+    <div class="container mobile-fixed" style="margin: 10px auto 0 auto;">
+
+        <a href="https://link.coupang.com/a/cSPWrq" target="_blank">
+            <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
+        </a>
+        <!--<iframe-->
+        <!--    src="https://ads-partners.coupang.com/widgets.html?id=899451&template=carousel&trackingCode=AF5244456&subId=&width=680&height=140&tsource="-->
+        <!--    style="width: 100%; max-width: 680px; height: auto; aspect-ratio: 680 / 140; border: 0; display: block;"-->
+        <!--    scrolling="no"-->
+        <!--    referrerpolicy="unsafe-url"-->
+        <!--    browsingtopics>-->
+        <!--</iframe>-->
+    </div>
     </div>
 </template>
 <script>

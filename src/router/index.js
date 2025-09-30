@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import StartView from "../views/StartView.vue";
 import BreadView from "../views/StartBreadView.vue";
 import SuperBonoView from "../views/SuperBonoView.vue";
+import SuperBono2View from "../views/SuperBono2View.vue";
 import EarlyBonoView from "../views/EarlyBonoView.vue";
 import mt from "../views/mtView.vue";
 import mtAdmin from "../views/mtAdmin.vue";
@@ -16,6 +17,8 @@ import CheeringViewChangwon from "../views/CheeringView_changwon.vue";
 import groupBuying from "../views/groupBuying.vue";
 import groupBuying2 from "../views/groupBuying2.vue";
 
+import SignUp from "../views/SignUp.vue";
+import SignUpAdmin from "../views/SignUpAdmin.vue";
 import BearView from "../views/BearView.vue";
 import OpenWaterView from "../views/OpenWaterView.vue";
 import SwimmingCompetition from "../views/SwimmingCompetition.vue";
@@ -34,10 +37,14 @@ import FitDiary from "../views/FitDiary.vue";
 import FitDiaryEdit from "../views/FitDiaryEdit.vue";
 import FitDiaryZoneFive from "../views/FitDiaryZoneFive.vue";
 import FitDiaryZoneFiveEdit from "../views/FitDiaryZoneFiveEdit.vue";
+import Zone5Page from "../views/Zone5Page.vue";
+import Zone5Admin from "../views/Zone5Admin.vue";
+
 
 import AdminView from "../views/AdminView.vue";
 import BreadAdminView from "../views/AdminBreadView.vue";
 import SuperBonoAdminView from "../views/AdminSuperBonoView.vue";
+import SuperBono2AdminView from "../views/AdminSuperBono2View.vue";
 import EarlyBonoAdminView from "../views/AdminEarlyBonoView.vue";
 import TrainingAdminView from "../views/TrainingAdminView.vue";
 import EventAdminView from "../views/EventAdminView.vue";
@@ -74,6 +81,18 @@ const routes = [
     meta: { title: '스윔바이러스 swimvirus' }, // 타이틀 설정
   },
   {
+    path: "/signup",
+    name: "SignUp",
+    component: SignUp,
+    meta: { title: '회원신청' }, // 타이틀 설정
+  },
+  {
+    path: "/signup0330",
+    name: "SignUpAdmin",
+    component: SignUpAdmin,
+    meta: { title: '회원신청 관리자' }, // 타이틀 설정
+  },
+  {
     path: "/diet",
     name: "DietTracker",
     component: DietView,
@@ -101,6 +120,12 @@ const routes = [
     path: "/super_bono",
     name: "superBonoView",
     component: SuperBonoView,
+    meta: { title: '보노보노 슈퍼보노' }, // 타이틀 설정
+  },
+  {
+    path: "/super_bono2",
+    name: "superBono2View",
+    component: SuperBono2View,
     meta: { title: '보노보노 슈퍼보노' }, // 타이틀 설정
   },
   {
@@ -161,7 +186,7 @@ const routes = [
     path: "/swimming_competition2",
     name: "SwimmingCompetition2",
     component: SwimmingCompetition2,
-    meta: { title: '보노보노 경주 대회' }, // 타이틀 설정
+    meta: { title: '양산 대회' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition3",
@@ -176,10 +201,10 @@ const routes = [
     meta: { title: '보노보노 진주 대회 관리자' }, // 타이틀 설정
   },
   {
-    path: "/swimming_competition20330",
+    path: "/swimming_competition2zone567",
     name: "AdminSwimmingCompetition2",
     component: AdminSwimmingCompetition2,
-    meta: { title: '보노보노 경주 대회 관리자' }, // 타이틀 설정
+    meta: { title: '양산대회 관리자' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition30330",
@@ -269,6 +294,12 @@ const routes = [
     path: "/super_bono0330",
     name: "SuperBonoAdminView",
     component: SuperBonoAdminView,
+    meta: { title: '보노보노 슈퍼보노 관리자' }, // 타이틀 설정
+  },
+  {
+    path: "/super_bono20330",
+    name: "SuperBono2AdminView",
+    component: SuperBono2AdminView,
     meta: { title: '보노보노 슈퍼보노 관리자' }, // 타이틀 설정
   },
   {
@@ -367,6 +398,18 @@ const routes = [
     component: FitDiaryZoneFiveEdit,
     meta: { title: '존파이브 운동인증-인증추가' }, // 타이틀 설정
   },
+  {
+    path: "/zone5",
+    name: "Zone5Page",
+    component: Zone5Page,
+    meta: { title: 'ZONE5 훈련신청' }, // 타이틀 설정
+  },
+  {
+    path: "/zone567",
+    name: "Zone5Admin",
+    component: Zone5Admin,
+    meta: { title: 'ZONE5 훈련신청 관리자' }, // 타이틀 설정
+  },
   // {
   //   path: "/about",
   //   name: "about",
@@ -377,7 +420,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   routes,
   scrollBehavior(to, from, savedPosition) {
     // 항상 페이지 맨 위로 스크롤 이동

@@ -69,10 +69,9 @@
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">보노보노 정모 안내</label>
                 <p style="font-size:12px;">
-                    📣📣 훈련 장소 정관 아쿠아드림파크 새벽 7시 (1시간)📣📣<br>
-                    1. 아드파 레인 대여는 7시 부터 시작 입니다<br>
-                    2. 7시 입장은 입장료 포함<br>
-                    3. 6시 입장은 개별 입장 하여 자유 수영 가능<br>
+                    📣📣 훈련 장소 수영구 체육센터 오후 2시 (2시간)📣📣<br>
+                    1. 레인 대여는 입장료 포함<br>
+                    3. 15분전 집합, 입장권 받아서 들어가세요<br>
                     4. 게스트 참여 가능<br>
                     <!--2. 코치진 (황영균, 안소현, 강민규) <br>-->
                     <!--3. 50미터 레인 1시간 (울트라핀, 대쉬 연습)<br>-->
@@ -175,7 +174,7 @@ export default {
     },
     data(){
         return {
-            dbPath: 'superBono', // ← 전역 경로 설정
+            dbPath: 'superBono2', // ← 전역 경로 설정
             formData  :{
                 checked      :'',
                 name      :'',
@@ -186,7 +185,7 @@ export default {
                 liabilityAgreement: ''
             },
             firstComeLimit: 20,
-            deadline: new Date('2025-10-10T23:59:59'),
+            deadline: new Date('2025-10-25T23:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],
@@ -331,7 +330,7 @@ export default {
 
             push(this.dataRef, applicantData)
             .then(() => {
-                this.result = '신청 완료!';
+                this.result = '너 너의 동료가 되라! 완료!';
                 alert(this.result)
                 // this.getData(); // 신청자 목록 갱신
                 this.formData = {
