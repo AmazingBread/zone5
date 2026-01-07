@@ -206,14 +206,14 @@
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 10">{{errorMessage[0]}}</p>
             </div>
-            <div
-                class="boxstyle3"
-                style="font-size: 20px; "
+            <button
+                type="submit"
+                class="btn w-100"
                 :class="apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
                 :disabled="apiData.length === firstComeLimit"
             >
-                {{apiData.length === firstComeLimit ? '마감' : '신청하기 클릭'}} ({{apiData.length}} / {{ firstComeLimit }})
-            </div>
+                {{apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
+            </button>
 
             <div style="font-size:15px; background:#f9fbfd; border:1px solid #e5e8eb; border-radius:6px; padding:14px 16px; margin:24px 0; max-width:420px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -271,21 +271,29 @@
             >
                 <!-- 상단 버튼 영역 -->
                 <div class="d-flex justify-content-between">
+                    <!--<button-->
+                    <!--    class="btn"-->
+                    <!--    :class="{ 'paid': item.paid, 'unpaid': !item.paid }"-->
+                    <!--    style="padding:0.2rem 0.5rem; font-size:10px; margin-right:8px; border-radius:12px; font-weight:bold; border:1px solid;"-->
+                    <!--    @click="togglePayment(item.key)"-->
+                    <!--&gt;-->
+                    <!--    {{ item.paid ? '대회비 입완' : '대회비 미입금' }}-->
+                    <!--</button>-->
                     <button
                         class="btn"
-                        :class="{ 'paid': item.paid, 'unpaid': !item.paid }"
+                        :class="{ 'paid': item.paid2, 'unpaid': !item.paid2 }"
                         style="padding:0.2rem 0.5rem; font-size:10px; margin-right:8px; border-radius:12px; font-weight:bold; border:1px solid;"
-                        @click="togglePayment(item.key)"
+                        @click="togglePayment2(item.key)"
                     >
-                        {{ item.paid ? '대회비 입완' : '대회비 미입금' }}
+                        {{ item.paid2 ? '밥값 입완' : '밥값 10,000원 미입금' }}
                     </button>
-                    <button
-                        @click="deleteApplicant(item.key)"
-                        class="btn"
-                        style="padding:0.2rem 0.5rem; font-size:10px; margin-left:8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f; background:#ff4d4f; color:#ffffff;"
-                    >
-                        삭제
-                    </button>
+                    <!--<button-->
+                    <!--    @click="deleteApplicant(item.key)"-->
+                    <!--    class="btn"-->
+                    <!--    style="padding:0.2rem 0.5rem; font-size:10px; margin-left:8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f; background:#ff4d4f; color:#ffffff;"-->
+                    <!--&gt;-->
+                    <!--    삭제-->
+                    <!--</button>-->
                 </div>
 
                 <!-- 하단 사용자 정보 -->
@@ -352,6 +360,7 @@ export default {
                     ...getData[key] // 나머지 데이터
                 }));
         });
+        // this.addPaid2FieldToExistingData()
     },
     beforeDestroy() {
         clearInterval(this.intervalId); // 인터벌 중지
@@ -550,6 +559,22 @@ export default {
                 console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
             }
         },
+        togglePayment2(key) {
+            const applicant = this.apiData.find(item => item.key === key);
+            if (applicant) {
+                applicant.paid2 = !applicant.paid2; // 토글
+                // Firebase에 변경 사항 저장
+                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
+                .then(() => {
+                    this.getData(); // 신청자 목록 갱신
+                })
+                     .catch(error => {
+                    console.error('입금 상태 업데이트 오류:', error);
+                });
+            } else {
+                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
+            }
+        },
         // 전화번호 포맷 (맨 뒤 4자리 가리기)
         formatPhone(phone) {
             if (!phone || phone.length < 4) return phone; // 예외 처리
@@ -578,6 +603,20 @@ export default {
                 console.error('삭제 오류:', error);
             });
         },
+        addPaid2FieldToExistingData() {
+            this.apiData.forEach((item) => {
+                if (item.paid2 === undefined) { // 이미 있는 항목은 건너뛰기
+                    item.paid2 = false;
+                    this.$axios.put(`${this.apiUrl.replace('.json', '')}/${item.key}.json`, item)
+                    .then(() => {
+                        console.log(`${item.name} - paid2 필드 추가 완료`);
+                    })
+                         .catch(error => {
+                        console.error('paid2 추가 오류:', error);
+                    });
+                }
+            });
+        }
     }
 };
 </script>

@@ -410,13 +410,41 @@ const routes = [
     component: Zone5Admin,
     meta: { title: 'ZONE5 훈련신청 관리자' }, // 타이틀 설정
   },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   component: () =>
-  //       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  //   meta: { title: '소개 - 보노보노' }, // 타이틀 설정
-  // },
+  {
+    path: "/about",
+    name: "about",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    meta: { title: '소개' }, // 타이틀 설정
+  },
+  {
+    path: "/offline",
+    name: "offline",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/OfflineList.vue"),
+    meta: { title: '정기모임' }, // 타이틀 설정
+  },
+  {
+    path: "/lightning",
+    name: "lightning",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/LightningList.vue"),
+    meta: { title: '번개모임' }, // 타이틀 설정
+  },
+  {
+    path: "/competition",
+    name: "competition",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/CompetitionList.vue"),
+    meta: { title: '대회' }, // 타이틀 설정
+  },
+  {
+    path: "/buy",
+    name: "buy",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "../views/BuyList.vue"),
+    meta: { title: '공동구매' }, // 타이틀 설정
+  },
 ];
 
 const router = new VueRouter({

@@ -1,12 +1,31 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">창원클럽대항전</h2>
-        <!--<img src="@/assets/image/ulsan_01.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_02.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_03.jpg" class="img-fluid" alt="ulsan" />-->
-        <!--<img src="@/assets/image/ulsan_04.jpg" class="img-fluid" alt="ulsan" />-->
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                사직 11월 대회
+            </div>
+        </div>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                신청마감 10월 2일 까지
+            </div>
+        </div>
 
-        <p class="text-center text-bg-light" style="padding:10px;">📢📢📢  팀 보노보노 신청서 🏅🏅🏅🏅</p>
+        <div class="col-12 p-1 mb-5">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                팀명 보노보노
+            </div>
+        </div>
+
         <div class="mt-3 text-right">
             <button class="btn btn-primary btn-sm" @click="downloadExcel">
                 📥 신청자 엑셀 다운로드

@@ -7,6 +7,16 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import axios from "axios";
 
 
+router.afterEach(() => {
+	setTimeout(() => {
+		try {
+			(window.adsbygoogle = window.adsbygoogle || []).push({});
+		} catch (e) {
+			console.warn('AdSense rerender error:', e);
+		}
+	}, 1000);
+});
+
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false

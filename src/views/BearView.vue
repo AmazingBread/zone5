@@ -1,8 +1,8 @@
 <template>
     <div>
-        <img src="@/assets/image/bear_main.jpg" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/bear.png" class="img-fluid" alt="썸네일" />
         <!--<img src="@/assets/image/bear.png" class="img-fluid" alt="bear" />-->
-        <h2 class="page_title mb-4">북극곰축제 10월 30일 신청</h2>
+        <!--<h2 class="page_title mb-4">북극곰축제 10월 30일 신청</h2>-->
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3">
@@ -18,12 +18,12 @@
                         <label class="form-check-label" for="bonobono">보노보노</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="shoulder" value="어깨탈골" v-model="formData.affiliation">
-                        <label class="form-check-label" for="shoulder">어깨탈골</label>
+                        <input class="form-check-input" type="radio" name="affiliation" id="hot" value="음파핫" v-model="formData.affiliation">
+                        <label class="form-check-label" for="hot">음파핫</label>
                     </div>
                     <div class="form-check d-inline-block"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                        <label class="form-check-label" for="swimmy">스위미</label>
+                        <input class="form-check-input" type="radio" name="affiliation" id="ZONE5" value="ZONE5" v-model="formData.affiliation">
+                        <label class="form-check-label" for="ZONE5">ZONE5</label>
                     </div>
 
                     <!-- 기타 옵션 -->
@@ -46,10 +46,11 @@
                 <label for="size" class="form-label fw-bold">티셔츠 사이즈 선택</label>
                 <select class="form-select" id="size" v-model="formData.size" ref="sizeSelect">
                     <option value="" disabled>티셔츠 사이즈</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="2XL">2XL</option>
+                    <option value="90">90</option>
+                    <option value="95">95</option>
+                    <option value="100">100</option>
+                    <option value="105">105</option>
+                    <option value="110">110</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
@@ -105,16 +106,16 @@
         <table class="table mt-3">
             <tbody>
             <tr v-for="(item, index) in apiData.slice().reverse()" :key="item.key"> <!-- key를 index로 사용 -->
-                <td style="width:20px;">
-                    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
-                </td> <!-- 번호를 1부터 시작하도록 설정 -->
+                <!--<td style="width:20px;">-->
+                <!--    <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">-->
+                <!--</td> &lt;!&ndash; 번호를 1부터 시작하도록 설정 &ndash;&gt;-->
                 <td style="width:20px;">{{ apiData.length - index  }}</td> <!-- 번호를 1부터 시작하도록 설정 -->
                 <td>{{ item.name }}</td>
                 <td>
                     <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
                     <span v-else>{{ item.affiliation }}</span>
                 </td>
-                <td style="width: 90px">{{ item.size }}</td>
+                <td style="width: 40px">{{ item.size }}</td>
                 <td style="width:60px;" class="text-center">
                     <button
                         class="btn"
@@ -122,10 +123,14 @@
                             'btn-success': item.paid,
                             'btn-warning': !item.paid,
                         }"
-                        style="padding: 0.2rem 0.5rem; font-size:10px"
+                        style="padding: 0.2rem 0.5rem; font-size:10px;"
+                        @click="togglePayment(item.key)"
                     >
                         {{ item.paid ? '입금' : '미입금' }}
                     </button>
+                </td>
+                <td style="width:50px;">
+                    <button @click="deleteApplicant(item.key)" class="btn btn-danger btn-sm" style="font-size:10px">삭제</button>
                 </td>
             </tr>
             </tbody>
@@ -236,7 +241,34 @@ export default {
             this.errorMessage = [message, no]; // errorMessage는 화면에 표시할 메시지
             // 추가적인 UI 로직을 구현하여 사용자에게 알림을 줄 수 있습니다.
         },
-
+        togglePayment(key) {
+            const applicant = this.apiData.find(item => item.key === key);
+            if (applicant) {
+                applicant.paid = !applicant.paid; // 토글
+                // Firebase에 변경 사항 저장
+                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
+                .then(() => {
+                    this.getData(); // 신청자 목록 갱신
+                })
+                     .catch(error => {
+                    console.error('입금 상태 업데이트 오류:', error);
+                });
+            } else {
+                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
+            }
+        },
+        deleteApplicant(key) {
+            // 삭제 확인 창 띄우기
+            const confirmDelete = confirm("진짜로 삭제하냐?");
+            if (confirmDelete) {
+                // Firebase에서 데이터 삭제
+                this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
+                    this.getData(); // 신청자 목록 갱신
+                }).catch(error => {
+                    console.error('삭제 오류:', error);
+                });
+            }
+        },
         getData(){
             this.$axios.get(this.apiUrl).then(response => {
                 const apiData = response.data || {};

@@ -29,6 +29,7 @@
                 </div>
                 <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 워터</span> <strong>{{ item.waterCount}} 개</strong> <strong class="order-price">{{item.totalWater}} 원</strong></div>
                 <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 젤</span> <strong>{{ item.gelCount }} 개</strong> <strong class="order-price">{{item.totalGel}} 원</strong></div>
+                <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 단백질</span> <strong>{{ item.danCount }} 개</strong> <strong class="order-price">{{item.totalDan}} 원</strong></div>
                 <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 합계</span> <strong>{{  Number(item.waterCount) +  Number(item.gelCount) }} 개</strong> <strong class="order-price">{{item.totalSum}} 원</strong></div>
             </div>
         </div>
@@ -63,6 +64,10 @@
                 <dt>젤 수량</dt>
                 <dd>{{ (goodsGelCount).toLocaleString() }}개 /&nbsp; <strong>{{ (paidGoodsGelCount).toLocaleString() }}개</strong></dd>
             </dl>
+            <dl style="margin-right: 20px;">
+                <dt>단백질 수량</dt>
+                <dd>{{ (goodsDanCount).toLocaleString() }}개 /&nbsp; <strong>{{ (paidGoodsDanCount).toLocaleString() }}개</strong></dd>
+            </dl>
             <hr/>
             <dl style="margin-right: 20px;">
                 <dt>워터 금액</dt>
@@ -71,6 +76,10 @@
             <dl style="margin-right: 20px;">
                 <dt>젤 금액</dt>
                 <dd>{{ (goodsGelSum).toLocaleString() }}원 /&nbsp; <strong>{{ (paidGoodsGelSum).toLocaleString() }}원</strong></dd>
+            </dl>
+            <dl style="margin-right: 20px;">
+                <dt>단백질 금액</dt>
+                <dd>{{ (goodsDanSum).toLocaleString() }}원 /&nbsp; <strong>{{ (paidGoodsDanSum).toLocaleString() }}원</strong></dd>
             </dl>
             <hr/>
             <hr/>
@@ -86,10 +95,6 @@
             <dl style="margin-right: 20px;">
                 <dt>워터200</dt>
                 <dd>{{ goodsCount }}개 /&nbsp; <strong>{{ (goodsCount * 6200).toLocaleString() }}원</strong>&nbsp; / &nbsp; <strong>{{ ((goodsCount * 6900)-(goodsCount * 6200)).toLocaleString() }}원</strong></dd>
-            </dl>
-            <dl style="margin-right: 20px; background: orangered; color:#fff;">
-                <dt>보틀 7500원</dt>
-                <dd>문찌리 1개 입완</dd>
             </dl>
             <!--<dl style="margin-right: 20px;">-->
             <!--    <dt>실제차액</dt>-->
@@ -112,12 +117,16 @@ export default {
             db: null, // 데이터베이스 참조 추가
             goodsCount:0,
             goodsGelCount:0,
+            goodsDanCount:0,
             paidGoodsSum:0,
             paidGoodsGelSum:0,
+            paidGoodsDanSum:0,
             goodsSum:0,
             goodsGelSum:0,
+            goodsDanSum:0,
             paidGoodsCount:0,
             paidGoodsGelCount:0,
+            paidGoodsDanCount:0,
 
             // 물 종류별 상품 관련 변수
             waterGrapesSum: 0, // 포도맛 물 총 개수
@@ -229,6 +238,10 @@ export default {
                     return sum + (item.paid === true ? parseInt(item.totalGel, 10) : 0); // 입금한 금액만 합산
                 }, 0);
 
+                this.paidGoodsDanSum = this.apiData.reduce((sum, item) => {
+                    return sum + (item.paid === true ? parseInt(item.totalDan, 10) : 0); // 입금한 금액만 합산
+                }, 0);
+
                 //각 구매수량
                 this.waterGrapesSum = this.apiData.reduce((sum, item) => {
                     return sum + (parseInt(item.waterGrapesCount, 10) || 0);
@@ -269,6 +282,10 @@ export default {
                 this.goodsGelSum = this.apiData.reduce((sum, item) => {
                     return sum + (parseInt(item.totalGel, 10) || 0); // waterCount 값을 숫자로 변환하여 합산
                 }, 0);
+                this.goodsDanSum = this.apiData.reduce((sum, item) => {
+                    return sum + (parseInt(item.totalDan, 10) || 0); // waterCount 값을 숫자로 변환하여 합산
+                }, 0);
+
 
                 this.goodsCount = this.apiData.reduce((sum, item) => {
                     return sum + (parseInt(item.waterCount, 10) || 0); // waterCount 값을 숫자로 변환하여 합산
@@ -280,9 +297,15 @@ export default {
                 this.goodsGelCount = this.apiData.reduce((sum, item) => {
                     return sum + (parseInt(item.gelCount, 10) || 0); // waterCount 값을 숫자로 변환하여 합산
                 }, 0);
+                this.goodsDanCount = this.apiData.reduce((sum, item) => {
+                    return sum + (parseInt(item.danCount, 10) || 0); // waterCount 값을 숫자로 변환하여 합산
+                }, 0);
 
                 this.paidGoodsGelCount = this.apiData.reduce((sum, item) => {
                     return sum + (item.paid === true ? parseInt(item.gelCount, 10) : 0); // waterCount 값을 숫자로 변환하여 합산
+                }, 0);
+                this.paidGoodsDanCount = this.apiData.reduce((sum, item) => {
+                    return sum + (item.paid === true ? parseInt(item.danCount, 10) : 0); // waterCount 값을 숫자로 변환하여 합산
                 }, 0);
                 // console.log('paidGoodsSum', this.paidGoodsSum);
                 // console.log('apiData', apiData);

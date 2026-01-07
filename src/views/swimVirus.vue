@@ -2,8 +2,15 @@
     <div class="comfy-page">
         <!-- 로고 -->
         <div class="logo">
-            <img src="@/assets/sv/sv_transparent3.png" alt="Comfy Logo" />
+            <img src="@/assets/sv/sv_transparent3.png" alt="Logo" />
         </div>
+        <banner />
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3070394175069308"
+             data-ad-slot="3143108709"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
 
         <!-- 제목/부제목 -->
         <!--<h1 class="title">-->
@@ -15,6 +22,10 @@
         <a href="https://link.coupang.com/a/cSPWrq" target="_blank" class="mb-3" style="border:1px solid #fff;">
             <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
         </a>
+        <a href="https://smartstore.naver.com/pobas/products/8079602587" target="_blank" class="mb-3" style="border:1px solid #fff;">
+            <img src="@/assets/image/링부이.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
+        </a>
+
         <!--<iframe-->
         <!--    src="https://ads-partners.coupang.com/widgets.html?id=914234&template=carousel&trackingCode=AF5244456&subId=&width=680&height=140&tsource="-->
         <!--    style="margin-bottom: 15px; width: 100%; max-width: 680px; height: auto; aspect-ratio: 680 / 140; border: 0; display: block;"-->
@@ -52,6 +63,7 @@
     </div>
 </template>
 <script>
+import banner from "@/components/Banner.vue"
 export default {
     name: "SwimVirus",
     data(){
@@ -59,8 +71,18 @@ export default {
 
         };
     },
+    components: {
+        banner
+    },
     mounted() {
         document.body.style.backgroundColor = "#000000"; // 특정 페이지 body black
+        this.$nextTick(() => {
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.warn('AdSense error:', e);
+            }
+        });
     },
     beforeDestroy() {
         document.body.style.backgroundColor = ""; // 복원

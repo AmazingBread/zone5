@@ -1,9 +1,13 @@
 <template>
     <div>
-        <ins class="kakao_ad_area"
-             data-ad-unit = "DAN-96KlXSg1Q3cbC0R1"
-             data-ad-width = "320"
-             data-ad-height = "50"></ins>
+        <!-- 광고A -->
+        <!--<ins class="adsbygoogle"-->
+        <!--     style="display:block"-->
+        <!--     data-ad-client="ca-pub-3070394175069308"-->
+        <!--     data-ad-slot="4465721242"-->
+        <!--     data-ad-format="auto"-->
+        <!--     data-full-width-responsive="true">-->
+        <!--</ins>-->
     </div>
     <!--<div>-->
     <!--    <div class="post-grid">-->
@@ -60,10 +64,13 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (window.KakaoAdFit) {
-                window.KakaoAdFit.reload(); // 광고 다시 로딩
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.warn('AdSense error:', e);
             }
         });
+
         //
         // this.getInsta()
         // // SnapWidget 스크립트 동적으로 추가

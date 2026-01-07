@@ -1,10 +1,13 @@
 <template>
     <div>
+        <img src="@/assets/image/단백질.jpg" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/단백질2.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/워터.jpg" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/워터2.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/젤.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/젤2.png" class="img-fluid" alt="썸네일" />
         <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
-        <h2 class="page_title">4월 10일 마감 11일 주문</h2>
-        <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
-        <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
-        <h2 class="page_title">4월 10일 마감 11일 주문</h2>
+        <!--<h2 class="page_title">4월 10일 마감 11일 주문</h2>-->
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3" style="padding:10px; border-radius: 5px; border:1px solid #dee2e6;">
@@ -25,24 +28,8 @@
                             <label class="form-check-label" for="shoulder">어깨이</label>
                         </div>
                         <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                            <label class="form-check-label" for="swimmy">스위미</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="고수정" v-model="formData.affiliation">
-                            <label class="form-check-label" for="gosu">고수정</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="ZOO" v-model="formData.affiliation">
-                            <label class="form-check-label" for="zoo">ZOO</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">
-                            <label class="form-check-label" for="umpa">음파핫</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">
-                            <label class="form-check-label" for="kimboss">KIMBOSS</label>
+                            <input class="form-check-input" type="radio" name="affiliation" id="ZONE5" value="ZONE5" v-model="formData.affiliation">
+                            <label class="form-check-label" for="ZONE5">ZONE5</label>
                         </div>
 
                         <!-- 기타 옵션 -->
@@ -83,7 +70,7 @@
                     </div>
                     <div class="item-container">
                         <div class="counter-section">
-                            <label for="gelCount" class="form-label fw-bold">요해미티-에너지젤</label>
+                            <label for="gelCount" class="form-label fw-bold">에너지젤(1팩 10개)</label>
                             <div class="counter-container">
                                 <button type="button" @click="decrement('gelCount')">-</button>
                                 <input
@@ -100,6 +87,25 @@
                             <p>{{ (formData.gelCount * 15500).toLocaleString() }} 원</p>
                         </div>
                     </div>
+                    <div class="item-container">
+                        <div class="counter-section">
+                            <label for="danCount" class="form-label fw-bold">단백질(1팩 7개)</label>
+                            <div class="counter-container">
+                                <button type="button" @click="decrement('danCount')">-</button>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="danCount"
+                                    v-model="formData.danCount"
+                                    min="0"
+                                >
+                                <button type="button" @click="increment('danCount')">+</button>
+                            </div>
+                        </div>
+                        <div class="price-section">
+                            <p>{{ (formData.danCount * 21900).toLocaleString() }} 원</p>
+                        </div>
+                    </div>
                     <div class="sum-section">
                         <strong>총합계</strong>
                         <span class="price">{{ (totalPrice).toLocaleString() }} 원</span>
@@ -110,9 +116,10 @@
             <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
                 <label class="form-label fw-bold">구매방법 안내</label>
                 <p style="font-size:12px;">
-                    1. 워터 (1통 10알) 6,900원 입니다. 50통 부터인데 넘을듯.<br>
-                    2. 젤 (1팩 10개) 15,500원 30개 이상 함 해보입시다.<br>
-                    3. 제품수령은 보노보노 오프라인 모임으로 수령가능 (택배x)<br>
+                    1. 워터 (1통 10알) 6,900원 입니다.<br>
+                    2. 젤 (1팩 10개) 15,500원<br>
+                    3. 단백질 (1팩 7개) 21,900원<br>
+                    4. 제품수령은 보노보노/zone5 오프라인 모임으로 수령가능 (택배x)<br>
                     ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
                 </p>
             </div>
@@ -155,7 +162,7 @@
         </form>
         <div class="mt-3">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">주문서 {{apiData.length}}명</p>
-            <div v-for="(item, index) in apiData.slice().reverse()" :key="item.key" class="mb-2" style="padding:10px; border:1px solid #dee2e6; border-radius: 5px; font-size: 12px">
+            <div v-for="(item, index) in apiData.slice().reverse()" :key="item.key" class="mb-2" style="padding:10px; border:1px solid #dee2e6; border-radius: 5px; font-size: 14px">
                 <input class="form-check-input" type="checkbox" v-model="item.checked" @change="updateChecked(item)" style="font-size:16px">
                 {{ apiData.length - index  }}. {{ item.name }}
                 <span v-if="item.affiliation === '기타'">{{ item.otherAffiliation }}</span>
@@ -167,9 +174,12 @@
                             'btn-warning': !item.paid,
                         }"
                     style="padding: 0.2rem 0.5rem; font-size:10px; margin-left:1rem;"
+                    @click="togglePayment(item.key)"
                 >
                     {{ item.paid ? '입금' : '미입금' }}
                 </button>
+                <button
+                    @click="deleteApplicant(item.key)" class="btn btn-danger btn-sm" style="font-size:10px; margin-left:1rem; text-align: right;">삭제</button>
                 <div class="order_list">
                     <div class="order-item" v-if="item.waterGrapesCount > 0"><span>워터 - 청포도</span> <strong>{{ item.waterGrapesCount }} 개</strong> <strong class="order-price">{{(item.waterGrapesCount * 6900).toLocaleString()}} 원</strong></div>
                     <div class="order-item" v-if="item.waterLemonCount > 0"><span>워터 - 레몬</span> <strong>{{ item.waterLemonCount }} 개</strong> <strong class="order-price">{{(item.waterLemonCount * 6900).toLocaleString()}} 원</strong></div>
@@ -178,7 +188,8 @@
                 </div>
                 <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 워터</span> <strong>{{ item.waterCount}} 개</strong> <strong class="order-price">{{(item.totalWater).toLocaleString()}} 원</strong></div>
                 <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 젤</span> <strong>{{ item.gelCount }} 개</strong> <strong class="order-price">{{(item.totalGel).toLocaleString()}} 원</strong></div>
-                <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 합계</span> <strong>{{  Number(item.waterCount) +  Number(item.gelCount) }} 개</strong> <strong class="order-price">{{(item.totalSum).toLocaleString()}} 원</strong></div>
+                <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 단백질</span> <strong>{{ item.danCount }} 개</strong> <strong class="order-price">{{(item.totalDan).toLocaleString()}} 원</strong></div>
+                <div style="border-top:1px solid #ddd; padding-top:5px; margin-top:5px;" class="order-item"><span>총 합계</span> <strong>{{  Number(item.waterCount) +  Number(item.gelCount) +  Number(item.danCount) }} 개</strong> <strong class="order-price">{{(item.totalSum).toLocaleString()}} 원</strong></div>
             </div>
         </div>
     </div>
@@ -203,8 +214,10 @@ export default {
                 waterOriginalCount: 0,
                 waterCount:0,
                 gelCount:0,
+                danCount:0,
                 totalWater:0,
                 totalGel:0,
+                totalDan:0,
                 totalSum:0,
                 liabilityAgreement: '',
                 pay:'',
@@ -223,7 +236,7 @@ export default {
     },
     mounted(){
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
-        this.getData();
+        // this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
         const dataRef = ref(this.db, 'group_buying'); // cheering 경로에 대한 참조
         onValue(dataRef, (snapshot) => {
@@ -231,7 +244,17 @@ export default {
             this.apiData = Object.keys(getData)
                 .map(key => ({
                     key: key, // Firebase에서의 고유 키
-                    ...getData[key] // 나머지 데이터
+                    waterGrapesCount: 0,
+                    waterLemonCount: 0,
+                    waterPitchCount: 0,
+                    waterOriginalCount: 0,
+                    gelCount: 0,
+                    danCount: 0,
+                    totalWater: 0,
+                    totalGel: 0,
+                    totalDan: 0,
+                    totalSum: 0,
+                    ...getData[key]
                 }));
         });
     },
@@ -241,13 +264,14 @@ export default {
     computed: {
         totalPrice() {
             let gelPrice = this.formData.gelCount * 15500;
+            let danPrice = this.formData.danCount * 21900;
             let waterPrice = 0;
 
             this.waterTypes.forEach(type => {
                 waterPrice += this.formData[type.model] * 6900;
             });
 
-            return gelPrice + waterPrice;
+            return gelPrice + danPrice + waterPrice;
         },
     },
     methods:{
@@ -271,7 +295,7 @@ export default {
             }
         },
         validateForm() {
-            const { name, affiliation, waterGrapesCount, waterLemonCount, waterPitchCount, waterOriginalCount, gelCount, liabilityAgreement } = this.formData;
+            const { name, affiliation, waterGrapesCount, waterLemonCount, waterPitchCount, waterOriginalCount, gelCount, danCount, liabilityAgreement } = this.formData;
 
             if (!name) {
                 this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
@@ -285,7 +309,7 @@ export default {
                 this.$refs.affiliationRadios.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
-            if (waterGrapesCount === 0 && waterLemonCount === 0 && waterPitchCount === 0 && waterOriginalCount === 0 && gelCount === 0) {
+            if (waterGrapesCount === 0 && waterLemonCount === 0 && waterPitchCount === 0 && waterOriginalCount === 0 && gelCount === 0 && danCount === 0) {
                 this.showMessage("안삽니꺼??", 3);
                 this.$refs.waterGrapesCount.focus();
                 this.$refs.waterGrapesCount.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
@@ -342,9 +366,11 @@ export default {
                 waterOriginalCount         :this.formData.waterOriginalCount,
                 waterCount : waterCount,
                 gelCount                     :this.formData.gelCount,
+                danCount                     :this.formData.danCount,
                 totalWater: (waterCount) * 6900,
                 totalGel: this.formData.gelCount * 15500,
-                totalSum: ((waterCount) * 6900) + this.formData.gelCount * 15500,
+                totalDan: this.formData.danCount * 21900,
+                totalSum: ((waterCount) * 6900) + (this.formData.gelCount * 15500) + (this.formData.danCount * 21900),
                 liabilityAgreement: this.formData.liabilityAgreement, // 면책 동의 추가
 
             };
@@ -352,7 +378,7 @@ export default {
             this.$axios.post(this.apiUrl, yohemite).then(() => {
                 this.result = '지갑 잘 털고 갑니데이!';
                 alert(this.result)
-                this.getData(); // 신청자 목록 갱신
+                // this.getData(); // 신청자 목록 갱신
                 this.formData = {
                     checked: '',
                     name : '',
@@ -365,8 +391,10 @@ export default {
                     waterOriginalCount: 0,
                     waterCount:0,
                     gelCount:0,
+                    danCount:0,
                     totalWater:0,
                     totalGel:0,
+                    totalDan:0,
                     totalSum:0,
                     liabilityAgreement: '' // 초기화
                 };
@@ -408,7 +436,7 @@ export default {
                 // Firebase에 변경 사항 저장
                 this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
                 .then(() => {
-                    this.getData(); // 신청자 목록 갱신
+                    // this.getData(); // 신청자 목록 갱신
                 })
                      .catch(error => {
                     console.error('입금 상태 업데이트 오류:', error);
@@ -423,7 +451,7 @@ export default {
             if (confirmDelete) {
                 // Firebase에서 데이터 삭제
                 this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-                    this.getData(); // 신청자 목록 갱신
+                    // this.getData(); // 신청자 목록 갱신
                 }).catch(error => {
                     console.error('삭제 오류:', error);
                 });

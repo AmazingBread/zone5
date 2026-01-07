@@ -86,26 +86,29 @@ export default {
         };
     },
     created() {
-        const correctPassword = '3333'; // 원하는 비밀번호
-        let password = null;
+        setTimeout(() => {
+            const correctPassword = '3333'; // 원하는 비밀번호
+            let password = null;
 
-        while (true) {
-            password = prompt('비밀번호 DM으로 문의', '');
+            while (true) {
+                password = prompt('비밀번호 DM으로 문의', '');
 
-            if (password === null) {
-                // 취소 누른 경우 홈으로 이동
-                this.$router.push('/');
-                break;
+                if (password === null) {
+                    // 취소 누른 경우 홈으로 이동
+                    this.$router.push('/');
+                    break;
+                }
+
+                if (password === correctPassword) {
+                    // 정답이면 반복 종료
+                    break;
+                } else {
+                    alert('비밀번호가 틀렸습니다! 다시 입력해주세요.');
+                }
             }
-
-            if (password === correctPassword) {
-                // 정답이면 반복 종료
-                break;
-            } else {
-                alert('비밀번호가 틀렸습니다! 다시 입력해주세요.');
-            }
-        }
+        }, 300); // 렌더링 후 0.3초 뒤에 실행 (안전)
     },
+
     mounted(){
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
         // 데이터 변경 감지를 위해 리스너 추가

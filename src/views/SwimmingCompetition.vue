@@ -1,23 +1,28 @@
 <template>
     <div>
-        <h2 class="page_title mb-4">창원클럽대항전</h2>
-        <img src="@/assets/image/chang.jpg" class="img-fluid" alt="진주" style="width: 100%" />
-
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle3"
-                style="font-size: 20px; "
-            >
-                신청마감 9월 7일 까지
-            </div>
-        </div>
-
         <div class="col-12 p-1">
             <div
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                팀명 zone5
+                사직 11월 대회
+            </div>
+        </div>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                신청마감 11월 5일 까지
+            </div>
+        </div>
+
+        <div class="col-12 p-1 mb-5">
+            <div
+                class="boxstyle5"
+                style="font-size: 20px; "
+            >
+                팀명 보노보노
             </div>
         </div>
 
@@ -33,7 +38,7 @@
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="age" class="form-label fw-bold">3. 생년월일(910102) 이런형식</label>
+                <label for="age" class="form-label fw-bold">3. 생년월일(1991.01.02) 이런형식</label>
                 <input type="text" class="form-control" id="age" v-model="formData.age" ref="age">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
@@ -47,27 +52,23 @@
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group1" value="1그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group1">1그룹 (2006년생~고등학생)</label>
+                        <label class="form-check-label" for="group1">1그룹 (∼96.12.31)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group2" value="2그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group2">2그룹 (1996년생~2005년생)</label>
+                        <label class="form-check-label" for="group2">2그룹 (95.1.1∼86.12.31)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group3" value="3그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group3">3그룹 (1986년생~1995년생)</label>
+                        <label class="form-check-label" for="group3">3그룹 (85.1.1∼76.12.31)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group4" value="4그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group4">4그룹 (1976년생~1985년생)</label>
+                        <label class="form-check-label" for="group4">4그룹 (75.1.1∼66.12.31)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group5" value="5그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group5">5그룹 (1966년생~1975년생)</label>
-                    </div>
-                    <div class="form-check me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group6" value="6그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group6">6그룹 (1965년 이전)</label>
+                        <label class="form-check-label" for="group5">5그룹 (65.1.1~)</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
@@ -80,25 +81,25 @@
                         <label class="form-check-label" for="fr50_1">자유형50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="bk50_1" value="배영50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="bk50_1">배영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events1" id="br50_1" value="평영50" v-model="formData.events1" ref="events1">
                         <label class="form-check-label" for="br50_1">평영50</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="events1" id="bk50_1" value="배영50" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" for="bk50_1">배영50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events1" id="fl50_1" value="접영50" v-model="formData.events1" ref="events1">
                         <label class="form-check-label" for="fl50_1">접영50</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="pinFr50_1" value="오리발 자유형 50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="pinFr50_1">핀자유형 50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="pinFl50_1" value="오리발 접영 50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="pinFl50_1">핀접영 50</label>
-                    </div>
+                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="events1" id="pinFr50_1" value="오리발 자유형 50" v-model="formData.events1" ref="events1">-->
+                    <!--    <label class="form-check-label" for="pinFr50_1">핀자유형 50</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="events1" id="pinFl50_1" value="오리발 접영 50" v-model="formData.events1" ref="events1">-->
+                    <!--    <label class="form-check-label" for="pinFl50_1">핀접영 50</label>-->
+                    <!--</div>-->
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 6">{{errorMessage[0]}}</p>
             </div>
@@ -110,25 +111,25 @@
                         <label class="form-check-label" for="fr50_2">자유형50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="bk50_2" value="배영50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="bk50_2">배영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events2" id="br50_2" value="평영50" v-model="formData.events2" ref="events1">
                         <label class="form-check-label" for="br50_2">평영50</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="events2" id="bk50_2" value="배영50" v-model="formData.events2" ref="events1">
+                        <label class="form-check-label" for="bk50_2">배영50</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="events2" id="fl50_2" value="접영50" v-model="formData.events2" ref="events1">
                         <label class="form-check-label" for="fl50_2">접영50</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="pinFr50_2" value="오리발 자유형 50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="pinFr50_2">핀자유형 50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="pinFl50_2" value="오리발 접영 50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="pinFl50_2">핀접영 50</label>
-                    </div>
+                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="events2" id="pinFr50_2" value="오리발 자유형 50" v-model="formData.events2" ref="events1">-->
+                    <!--    <label class="form-check-label" for="pinFr50_2">핀자유형 50</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="events2" id="pinFl50_2" value="오리발 접영 50" v-model="formData.events2" ref="events1">-->
+                    <!--    <label class="form-check-label" for="pinFl50_2">핀접영 50</label>-->
+                    <!--</div>-->
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
             </div>
@@ -166,14 +167,6 @@
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
-            <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">보노보노 대회 안내</label>
-                <p style="font-size:12px;">
-                    1. 대회 신청서 제출후 대회비 환불 안됨<br>
-                    2. 수정은 안되니 다시 작성하세요. 뒤에껀 내가 지우께요<br><br>
-                    ! 문의사항은 인스타그램 댓글/DM 으로 남겨주세요.<br>
-                </p>
-            </div>
             <div class="mb-3">
                 <label class="form-label fw-bold">면책 동의</label>
                 <div class="d-flex justify-content-end">
@@ -205,19 +198,62 @@
                 {{isDeadlinePassed || apiData.length === firstComeLimit ? '마감' : '신청'}} ({{apiData.length}} / {{ firstComeLimit }})
                 <span style="font-weight: bold; padding-left:10px;" v-if="!isDeadlinePassed && apiData.length < firstComeLimit">{{ remainingTime }}</span>
             </button>
-            <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">{{accountText}}</p>
-                <div class="refund-policy">
-                    <p>※ 환불규정</p>
-                    <ul>
-                        <li>대회 신청마감후 환불 불가</li>
-                        <li>입금 후 미참석자는 환불 불가</li>
-                    </ul>
+            <div style="font-size:15px; background:#f9fbfd; border:1px solid #e5e8eb; border-radius:6px; padding:14px 16px; margin:24px 0; max-width:420px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <label class="form-label fw-bold" style="margin:0;">💳 입금 계좌번호 안내</label>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        @click="copyAccountNumber"
+                        style="font-size:11px; padding:2px 6px;">
+                        입금 계좌번호 복사
+                    </button>
                 </div>
 
+                <p ref="accountText" style="font-size:15px; font-weight:bold; color:#1a1a1a; margin:0 0 10px;">
+                    {{accountText}}
+                </p>
+
+                <div style="background:#f1f5f9; border-radius:4px; padding:8px 10px;">
+                    <p style="font-size:13px; font-weight:bold; margin:0 0 4px; color:#333;">※ 환불 규정</p>
+                    <ul style="font-size:13px; margin:0; padding-left:18px; line-height:2.2;">
+                        <li>대회 신청마감후 환불 불가</li>
+                        <li>입금 후 미참석자는 환불 불가</li>
+                        <li style="font-size:13px;">
+                            입금 후
+                            <span style="font-size:12px; background:#ffec99; color:#7a5900; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ffd324;">
+                                미입금
+                            </span>
+                            &nbsp;→
+                            <span style="font-size:12px; background:#81c784; color:#1b5e20; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #4caf50;">
+                                입완
+                            </span>
+                            &nbsp;버튼 클릭
+                        </li>
+                        <li style="font-size:13px;">
+                            종목 변경은
+                            <span style="font-size:12px; background:#ff4d4f; color:#ffffff; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f;">
+                                삭제
+                            </span>
+                            &nbsp;후 다시
+                            <span style="font-size:12px; background:#ff69b4; color:#ffffff; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ff1493;">
+                                신청
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </form>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle6"
+                style="font-size: 20px; "
+            >
+                <a href="https://open.kakao.com/o/p8go0RUh" target="_blank" style="text-decoration: none; color: inherit;">
+                    보노보노 사직 대회 채팅방 (실명)
+                </a>
+            </div>
+        </div>
         <div class="mt-3">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">대회 신청자 {{apiData.length}}명</p>
             <div
@@ -231,10 +267,18 @@
                     <!-- 오른쪽: 대회비 버튼 -->
                     <button
                         class="btn"
-                        :class="{ 'btn-success': item.paid, 'btn-warning': !item.paid }"
-                        style="padding: 0.2rem 0.5rem; font-size:10px"
+                        :class="{ 'paid': item.paid, 'unpaid': !item.paid }"
+                        style="padding:0.2rem 0.5rem; font-size:10px; margin-right:8px; border-radius:12px; font-weight:bold; border:1px solid;"
+                        @click="togglePayment(item.key)"
                     >
                         {{ item.paid ? '대회비 입완' : '대회비 미입금' }}
+                    </button>
+                    <button
+                        @click="deleteApplicant(item.key)"
+                        class="btn"
+                        style="padding:0.2rem 0.5rem; font-size:10px; margin-left:8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f; background:#ff4d4f; color:#ffffff;"
+                    >
+                        삭제
                     </button>
                 </div>
 
@@ -271,8 +315,8 @@ export default {
                 ok:'',
                 liabilityAgreement: ''
             },
-            firstComeLimit: 60,
-            deadline: new Date('2025-09-20T23:59:59'),
+            firstComeLimit: 100,
+            deadline: new Date('2025-11-5T23:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             apiData:[],
@@ -458,7 +502,7 @@ export default {
             };
 
             this.$axios.post(this.apiUrl, bearData).then(() => {
-                this.result = '너 나의 동료가 되라! 완료!';
+                this.result = '신청완료!';
                 alert(this.result)
                 this.getData(); // 신청자 목록 갱신
                 this.formData = {
@@ -489,6 +533,22 @@ export default {
             if (!phone || phone.length < 4) return phone; // 예외 처리
             return phone.slice(0, -4) + '****';
         },
+        togglePayment(key) {
+            const applicant = this.apiData.find(item => item.key === key);
+            if (applicant) {
+                applicant.paid = !applicant.paid; // 토글
+                // Firebase에 변경 사항 저장
+                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
+                .then(() => {
+                    this.getData(); // 신청자 목록 갱신
+                })
+                     .catch(error => {
+                    console.error('입금 상태 업데이트 오류:', error);
+                });
+            } else {
+                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
+            }
+        },
         copyAccountNumber(event) {
             event.preventDefault(); // 기본 동작 방지
             // 참조된 계좌번호 텍스트 가져오기
@@ -502,15 +562,16 @@ export default {
                       .catch(error => {
                 console.error("계좌번호 복사 실패:", error);
             });
-        }
-        // deleteApplicant(key) {
-        //     // Firebase에서 데이터 삭제
-        //     this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-        //         this.getData(); // 신청자 목록 갱신
-        //     }).catch(error => {
-        //         console.error('삭제 오류:', error);
-        //     });
-        // },
+        },
+        deleteApplicant(key) {
+            if (!confirm("신청자를 삭제하시겠습니까?")) return;
+            // Firebase에서 데이터 삭제
+            this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
+                this.getData(); // 신청자 목록 갱신
+            }).catch(error => {
+                console.error('삭제 오류:', error);
+            });
+        },
     }
 };
 </script>

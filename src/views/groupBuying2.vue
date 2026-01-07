@@ -1,10 +1,13 @@
 <template>
     <div>
-        <h2 class="page_title">보노보노 요헤미티 공동구매[마감]</h2>
-        <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
-        <img src="@/assets/image/yohea.jpg" class="img-fluid" alt="썸네일" />
-        <h2 class="page_title">보노보노 요헤미티 공동구매[마감]</h2>
-        <h2 class="page_title">4월 6일 마감 7일 주문드감</h2>
+        <img src="@/assets/image/단백질.jpg" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/단백질2.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/워터.jpg" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/워터2.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/젤.png" class="img-fluid" alt="썸네일" />
+        <img src="@/assets/image/젤2.png" class="img-fluid" alt="썸네일" />
+        <h2 class="page_title">보노보노 요헤미티 공동구매</h2>
+        <!--<h2 class="page_title">4월 6일 마감 7일 주문드감</h2>-->
         <!--<p class="text-center">13시 ~ 14시 데크에 다른팀 같이 사용</p>-->
         <form @submit.prevent="submitForm">
             <div class="mb-3" style="padding:10px; border-radius: 5px; border:1px solid #dee2e6;">
@@ -25,26 +28,9 @@
                             <label class="form-check-label" for="shoulder">어깨이</label>
                         </div>
                         <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="swimmy" value="스위미" v-model="formData.affiliation">
-                            <label class="form-check-label" for="swimmy">스위미</label>
+                            <input class="form-check-input" type="radio" name="affiliation" id="ZONE5" value="ZONE5" v-model="formData.affiliation">
+                            <label class="form-check-label" for="ZONE5">ZONE5</label>
                         </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="gosu" value="고수정" v-model="formData.affiliation">
-                            <label class="form-check-label" for="gosu">고수정</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="zoo" value="ZOO" v-model="formData.affiliation">
-                            <label class="form-check-label" for="zoo">ZOO</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="umpa" value="음파핫" v-model="formData.affiliation">
-                            <label class="form-check-label" for="umpa">음파핫</label>
-                        </div>
-                        <div class="form-check d-inline-block me-3 mt-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                            <input class="form-check-input" type="radio" name="affiliation" id="kimboss" value="KIMBOSS" v-model="formData.affiliation">
-                            <label class="form-check-label" for="kimboss">KIMBOSS</label>
-                        </div>
-
                         <!-- 기타 옵션 -->
                         <div class="form-check mt-3 d-flex align-items-center"> <!-- d-flex 클래스를 사용하여 flexbox로 정렬 -->
                             <input class="form-check-input" type="radio" name="affiliation" id="other" value="기타" v-model="formData.affiliation">

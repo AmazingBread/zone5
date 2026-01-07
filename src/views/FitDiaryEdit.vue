@@ -21,22 +21,23 @@
                 </th>
             </tr>
             <tr>
-                <th><input type="number"  v-model="goals.swim" placeholder="100" /> k</th>
-                <th><input type="number" v-model="goals.run" placeholder="50" /> k</th>
-                <th><input type="number" v-model="goals.gym" placeholder="50" /> 회</th>
+                <th><input type="number"  v-model="goals.swim" placeholder="30" /> 회</th>
+                <th><input type="number" v-model="goals.run" placeholder="30" /> 회</th>
+                <th><input type="number" v-model="goals.gym" placeholder="30" /> 회</th>
             </tr>
             <tr>
                 <th>일자</th>
                 <th>수영</th>
                 <th>러닝</th>
-                <th>헬스/클핏</th>
+                <th>헬스/요가</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="day in daysInMonth" :key="day" :class="{ 'today-row': isToday(day) }">
+            <!--<tr v-for="day in daysInMonth" :key="day" :class="{ 'today-row': isToday(day) }">-->
+            <tr v-for="day in Object.keys(records)" :key="day" :class="{ 'today-row': isToday(day) }">
                 <td>{{ day }}일</td>
-                <td><input type="number" v-if="records[day]" v-model="records[day].swim" /> k</td>
-                <td><input type="number" v-if="records[day]" v-model="records[day].run" /> k</td>
+                <td><input type="number" v-if="records[day]" v-model="records[day].swim" /> 회</td>
+                <td><input type="number" v-if="records[day]" v-model="records[day].run" /> 회</td>
                 <td><input type="number" v-if="records[day]" v-model="records[day].gym" /> 회</td>
             </tr>
             </tbody>
@@ -102,24 +103,52 @@ export default {
 
             this.showGoalWarning = false;
         },
+        // initMonth() {
+        //     const today = new Date();
+        //     const year = today.getFullYear();
+        //     const month = today.getMonth() + 1; // 0부터 시작하므로 +1
+        //     const days = new Date(year, month, 0).getDate();
+        //
+        //     this.currentMonth = month;
+        //     this.daysInMonth = Array.from({ length: days }, (_, i) => i + 1);
+        //
+        //     this.records = {};  // 초기화 필수
+        //     for (let i = 1; i <= days; i++) {
+        //         this.records[i] = {
+        //             swim: '',
+        //             run: '',
+        //             gym: ''
+        //         };
+        //     }
+        // },
         initMonth() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = today.getMonth() + 1; // 0부터 시작하므로 +1
-            const days = new Date(year, month, 0).getDate();
-
-            this.currentMonth = month;
-            this.daysInMonth = Array.from({ length: days }, (_, i) => i + 1);
+            const startDate = new Date(2025, 10, 11); // 11월 11일 (월은 0부터 시작)
+            const endDate = new Date(2025, 11, 12);   // 12월 12일
 
             this.records = {};  // 초기화 필수
-            for (let i = 1; i <= days; i++) {
-                this.records[i] = {
+            this.daysInMonth = []; // 표시용 배열 초기화
+
+            let current = new Date(startDate);
+            while (current <= endDate) {
+                const month = current.getMonth() + 1;
+                const day = current.getDate();
+
+                // UI용 배열에 day 넣기
+                this.daysInMonth.push(day);
+
+                // records 키는 "월-일"로 만들거나 그냥 day로 할 수도 있음
+                this.records[day] = {
                     swim: '',
                     run: '',
                     gym: ''
                 };
+
+                current.setDate(current.getDate() + 1); // 다음 날
             }
+
+            this.currentMonth = startDate.getMonth() + 1; // 현재 월 표시
         },
+
         loadUserData() {
             const db = getDatabase();
             const userRef = ref(db, this.dbPath + '/' + this.userName);

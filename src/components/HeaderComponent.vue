@@ -1,30 +1,37 @@
 <template>
     <div>
-    <div class="header">
-        <router-link to="/">
-            <h1>
-                <img src="@/assets/image/n_logo.jpg" style="height: 50px;" alt="로고">
-            </h1>
-        </router-link>
-    </div>
-    <div class="container mobile-fixed" style="margin: 10px auto 0 auto;">
-
-        <a href="https://link.coupang.com/a/cSPWrq" target="_blank">
-            <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />
-        </a>
-        <!--<iframe-->
-        <!--    src="https://ads-partners.coupang.com/widgets.html?id=899451&template=carousel&trackingCode=AF5244456&subId=&width=680&height=140&tsource="-->
-        <!--    style="width: 100%; max-width: 680px; height: auto; aspect-ratio: 680 / 140; border: 0; display: block;"-->
-        <!--    scrolling="no"-->
-        <!--    referrerpolicy="unsafe-url"-->
-        <!--    browsingtopics>-->
-        <!--</iframe>-->
-    </div>
+        <div class="header">
+            <router-link to="/">
+                <h1>
+                    <img src="@/assets/image/n_logo.jpg" style="height: 50px;" alt="로고">
+                </h1>
+            </router-link>
+        </div>
+        <div class="menu">
+            <ul>
+                <li @click="$router.push('/about')">뭐하는덴고?</li>
+                <li @click="$router.push('/offline')">정기모임</li>
+                <li @click="$router.push('/lightning')">번개모임</li>
+                <li @click="$router.push('/competition')">대회</li>
+                <li @click="$router.push('/buy')">공동구매</li>
+            </ul>
+        </div>
+        <!--<div class="container mobile-fixed" style="margin: 10px auto 0 auto;">-->
+        <!--    <a href="https://link.coupang.com/a/cSPWrq" target="_blank">-->
+        <!--        <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />-->
+        <!--    </a>-->
+        <!--    <banner />-->
+        <!--</div>-->
     </div>
 </template>
 <script>
+// import banner from "@/components/Banner.vue"
+import Footer from "@/components/FooterComponent.vue";
 export default {
     name: "HeaderComponent", // 컴포넌트 이름 변경
+    components: {
+        // banner
+    },
     data(){
         return {
             url: 'https://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do', // 실제 API 주소로 교체
@@ -119,3 +126,31 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+.menu {
+    text-align: center; // ul 자체를 중앙 정렬
+    border-bottom: 1px solid #ccc;
+    ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 5px; // 항목 간 간격
+
+        li {
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            padding:10px 0;
+            &:hover {
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+</style>
