@@ -63,6 +63,7 @@ import BasuView from "../views/BasuView.vue";
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../firebase';
 import SwimVirus from "../views/swimVirus.vue";
+import BusArrival from "../views/bus.vue";
 
 
 Vue.use(VueRouter);
@@ -79,6 +80,12 @@ const routes = [
     name: "SwimVirus",
     component: SwimVirus,
     meta: { title: '스윔바이러스 swimvirus' }, // 타이틀 설정
+  },
+  {
+    path: "/bus",
+    name: "BusArrival",
+    component: BusArrival,
+    meta: { title: '마을버스8 알림' }, // 타이틀 설정
   },
   {
     path: "/signup",
