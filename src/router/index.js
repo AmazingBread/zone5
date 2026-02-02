@@ -73,7 +73,7 @@ const routes = [
     path: "/",
     name: "MainView",
     component: MainView,
-    meta: { title: '보노보노 물보노' }, // 타이틀 설정
+    meta: { title: 'ZONE5' }, // 타이틀 설정
   },
   {
     path: "/swimvirus",
@@ -94,7 +94,7 @@ const routes = [
     meta: { title: '회원신청' }, // 타이틀 설정
   },
   {
-    path: "/signup0330",
+    path: "/signup567",
     name: "SignUpAdmin",
     component: SignUpAdmin,
     meta: { title: '회원신청 관리자' }, // 타이틀 설정

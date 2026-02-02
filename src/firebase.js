@@ -6,14 +6,14 @@ import { getAnalytics, logEvent  } from 'firebase/analytics'; // Firebase Analyt
 
 // Firebase 구성 객체
 const firebaseConfig = {
-	apiKey: "AIzaSyC9d5ec445ZXygk4qAYKoZVpIKD2c1ZrMQ",
-	authDomain: "bonobono-e6ed4.firebaseapp.com",
-	databaseURL: "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app",
-	projectId: "bonobono-e6ed4",
-	storageBucket: "bonobono-e6ed4.appspot.com",
-	messagingSenderId: "429492989063",
-	appId: "1:429492989063:web:80e63aa9a9fef0deee5c22",
-	measurementId: "G-ZS11JB5KRY"
+	apiKey: "AIzaSyAjFuSBPwWBj-w4SaRqzlKvPhMbEaOpKZ4",
+	authDomain: "zone5-c1f49.firebaseapp.com",
+	databaseURL: "https://zone5-c1f49-default-rtdb.firebaseio.com",
+	projectId: "zone5-c1f49",
+	storageBucket: "zone5-c1f49.firebasestorage.app",
+	messagingSenderId: "790591085026",
+	appId: "1:790591085026:web:744bda9240ce475e1001bb",
+	measurementId: "G-P03TDQNZN8"
 };
 
 // Firebase 앱 초기화

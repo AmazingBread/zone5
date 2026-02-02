@@ -3,19 +3,19 @@
         <div class="header">
             <router-link to="/">
                 <h1>
-                    <img src="@/assets/image/n_logo.jpg" style="height: 50px;" alt="로고">
+                    <img src="@/assets/image/logo.png" style="height: 30px;" alt="로고">
                 </h1>
             </router-link>
         </div>
-        <div class="menu">
-            <ul>
-                <li @click="$router.push('/about')">뭐하는덴고?</li>
-                <li @click="$router.push('/offline')">정기모임</li>
-                <li @click="$router.push('/lightning')">번개모임</li>
-                <li @click="$router.push('/competition')">대회</li>
-                <li @click="$router.push('/buy')">공동구매</li>
-            </ul>
-        </div>
+        <!--<div class="menu">-->
+        <!--    <ul>-->
+        <!--        <li @click="$router.push('/about')">뭐하는덴고?</li>-->
+        <!--        <li @click="$router.push('/offline')">정기모임</li>-->
+        <!--        <li @click="$router.push('/lightning')">번개모임</li>-->
+        <!--        <li @click="$router.push('/competition')">대회</li>-->
+        <!--        <li @click="$router.push('/buy')">공동구매</li>-->
+        <!--    </ul>-->
+        <!--</div>-->
         <!--<div class="container mobile-fixed" style="margin: 10px auto 0 auto;">-->
         <!--    <a href="https://link.coupang.com/a/cSPWrq" target="_blank">-->
         <!--        <img src="@/assets/image/안티포그.jpg" style="width: 100%" class="img-fluid" alt="썸네일" />-->

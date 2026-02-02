@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="text-center text-bg-light" style="padding:10px;">📢📢📢  보노보노 회원 관리 🏅🏅🏅🏅</p>
+        <p class="text-center text-bg-light" style="padding:10px;">📢📢📢  ZONE5 회원 관리 🏅🏅🏅🏅</p>
         <div class="mt-3 text-right">
             <button class="btn btn-primary btn-sm" @click="downloadExcel">
                 📥 회원 엑셀 다운로드
@@ -38,7 +38,7 @@
                     가입일  : {{ item.regDt }} / {{ item.membershipType }}
                 </div>
                 <div class="font-weight-bold mt-1">
-                    {{ item.userName }}({{ item.nickName }}) / {{ item.age }} / {{ item.sex }} / {{ item.phone }}
+                    {{ item.userName }} / {{ item.age }} / {{ item.sex }} / {{ item.phone }}
                 </div>
             </div>
             <!-- 월회원 -->
@@ -66,7 +66,7 @@
                     가입일  : {{ item.regDt }} / {{ item.membershipType }}
                 </div>
                 <div class="font-weight-bold mt-1">
-                    {{ item.userName }}({{ item.nickName }}) / {{ item.age }} / {{ item.sex }} / {{ item.phone }}
+                    {{ item.userName }} / {{ item.age }} / {{ item.sex }} / {{ item.phone }}
                 </div>
             </div>
         </div>
@@ -95,12 +95,12 @@
 <script>
 import * as XLSX from "xlsx"; // 추가
 
-import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
+import { getDatabase, ref, onValue, remove, update } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/signUp.json",
+            dbPath : 'signUp',
             apiData:[],
             result   :'',
             applicantCount: 0, // 전역 변수 초기화
@@ -125,16 +125,15 @@ export default {
             return this.apiData.filter(a => a.membershipType === '월회원' && a.paid).length;
         },
         totalPaidAmount() {
-            // 연회원 40,000원 + 월회원 5,000원
-            return (this.paidYearCount * 40000) + (this.paidMonthCount * 5000);
+            // 연회원 50,000원 + 월회원 5,000원
+            return (this.paidYearCount * 50000) + (this.paidMonthCount * 5000);
         }
     },
     mounted(){
         this.db = getDatabase(); // Firebase 데이터베이스 초기화
-        this.getData();
         // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'signUp'); // cheering 경로에 대한 참조
-        onValue(dataRef, (snapshot) => {
+        this.dataRef = ref(this.db, this.dbPath);
+        onValue(this.dataRef, (snapshot) => {
             const getData = snapshot.val() || {};
             this.apiData = Object.keys(getData)
                 .filter(key => key !== 'signUp_exemptCount') // exemptCount를 제외
@@ -194,27 +193,33 @@ export default {
                 return; // 취소 누르면 종료
             }
 
-            this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-                this.getData(); // 신청자 목록 갱신
-            }).catch(error => {
-                console.error('삭제 오류:', error);
+            // Firebase SDK를 이용한 직접 삭제
+            const db = getDatabase();
+            const itemRef = ref(db, `${this.dbPath}/${key}`);
+
+            remove(itemRef)
+            .then(() => {
+                // 성공 시 별도의 조치 불필요 (onValue가 감지해서 화면 갱신)
+                console.log("삭제 성공");
+            })
+             .catch((error) => {
+                alert("삭제 중 오류가 발생했습니다.");
+                console.error("삭제 오류:", error);
             });
         },
         togglePayment(key) {
             const applicant = this.apiData.find(item => item.key === key);
-            if (applicant) {
-                applicant.paid = !applicant.paid; // 토글
-                // Firebase에 변경 사항 저장
-                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
-                .then(() => {
-                    this.getData(); // 신청자 목록 갱신
-                })
-                     .catch(error => {
-                    console.error('입금 상태 업데이트 오류:', error);
-                });
-            } else {
-                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
-            }
+            if (!applicant) return;
+
+            const db = getDatabase();
+            // set 대신 update를 사용하면 해당 필드만 쏙 바꿀 수 있습니다.
+            const itemRef = ref(db, `${this.dbPath}/${key}`);
+
+            update(itemRef, {
+                paid: !applicant.paid
+            }).catch(error => {
+                console.error('업데이트 실패:', error);
+            });
         },
         downloadExcel() {
             if (!this.apiData.length) {
@@ -228,7 +233,6 @@ export default {
                 가입일 : item.regDt,
                 아이디 : item.userId,
                 이름: item.userName,
-                닉네임: item.nickName,
                 성별: item.sex,
                 나이: item.age,
                 전화번호: item.phone,

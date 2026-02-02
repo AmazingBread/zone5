@@ -1,27 +1,27 @@
 <template>
     <div>
-        <div class="col-12" style="margin-bottom:10px;">
-            <div
-                style="
-                font-size: 14px;
-                height:30px;
-                display: flex;
-                font-weight: bold;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                border-top:1px solid #ddd;
-                border-bottom:1px solid #ddd;
-                "
-                v-if="$store.state.waterTempData"
-                @click="$router.push({ path: '/basu', query: { spotid: '5752427' } })"
-            >
-                해운대 수온 <strong style="padding:0 10px; font-size: 20px;">{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]
-            </div>
-            <div class="boxstyle4" style="font-size: 14px; height:40px;" v-else>
-                해운대 실시간 바다수온 [점검중]
-            </div>
-        </div>
+        <!--<div class="col-12" style="margin-bottom:10px;">-->
+        <!--    <div-->
+        <!--        style="-->
+        <!--        font-size: 14px;-->
+        <!--        height:30px;-->
+        <!--        display: flex;-->
+        <!--        font-weight: bold;-->
+        <!--        justify-content: center;-->
+        <!--        align-items: center;-->
+        <!--        cursor: pointer;-->
+        <!--        border-top:1px solid #ddd;-->
+        <!--        border-bottom:1px solid #ddd;-->
+        <!--        "-->
+        <!--        v-if="$store.state.waterTempData"-->
+        <!--        @click="$router.push({ path: '/basu', query: { spotid: '5752427' } })"-->
+        <!--    >-->
+        <!--        해운대 수온 <strong style="padding:0 10px; font-size: 20px;">{{ $store.state.waterTempData }}도</strong> [{{$store.state.waterRecordTime}}]-->
+        <!--    </div>-->
+        <!--    <div class="boxstyle4" style="font-size: 14px; height:40px;" v-else>-->
+        <!--        해운대 실시간 바다수온 [점검중]-->
+        <!--    </div>-->
+        <!--</div>-->
         <MyCalendar />
         <!--<div class="col-12 p-1">-->
         <!--    <div class="thumbnail-box" @click="$router.push('/super_bono2')">-->
@@ -30,7 +30,7 @@
         <!--</div>-->
         <div class="col-12 p-1">
             <div class="thumbnail-box" @click="$router.push('/bear')">
-                <img src="@/assets/image/bear.png" style="width: 100%" class="img-fluid" alt="썸네일" />
+                <!--<img src="@/assets/image/bear.png" style="width: 100%" class="img-fluid" alt="썸네일" />-->
             </div>
         </div>
         <!--<div class="col-12 p-1">-->
@@ -49,7 +49,7 @@
                 style="font-size: 20px; "
                 @click="$router.push('/signup')"
             >
-                보노보노 회원신청
+                ZONE5 회원신청
             </div>
         </div>
         <div class="col-12 p-1">
@@ -100,15 +100,15 @@
         </div>
 
         <!--헤더 영역-->
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle1 diary"
-                style="font-size: 20px;"
-                @click="$router.push('/fit_diary')"
-            >
-                FIT DIARY
-            </div>
-        </div>
+        <!--<div class="col-12 p-1">-->
+        <!--    <div-->
+        <!--        class="boxstyle1 diary"-->
+        <!--        style="font-size: 20px;"-->
+        <!--        @click="$router.push('/fit_diary')"-->
+        <!--    >-->
+        <!--        FIT DIARY-->
+        <!--    </div>-->
+        <!--</div>-->
 
         <!--<div class="col-12 p-1">-->
         <!--    <div-->
@@ -119,15 +119,15 @@
         <!--        ZONE5-->
         <!--    </div>-->
         <!--</div>-->
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle3"
-                style="font-size: 20px; "
-                @click="$router.push('/swim_training_plan')"
-            >
-                SWIM LESSON
-            </div>
-        </div>
+        <!--<div class="col-12 p-1">-->
+        <!--    <div-->
+        <!--        class="boxstyle3"-->
+        <!--        style="font-size: 20px; "-->
+        <!--        @click="$router.push('/swim_training_plan')"-->
+        <!--    >-->
+        <!--        SWIM LESSON-->
+        <!--    </div>-->
+        <!--</div>-->
         <!--<div class="col-12 p-1">-->
         <!--    <div class="thumbnail-box">-->
         <!--        <a href="https://naver.me/GxRd39cv" target="_blank">-->

@@ -34,19 +34,19 @@
         </div>
         <!-- 클래스 선택 -->
         <div class="mb-3">
-            <h4 class="d-block font-weight-bold mb-3 text-center">훈련반/강습반 선택</h4>
+            <h4 class="d-block font-weight-bold mb-3 text-center">선수반/성장반 선택</h4>
             <div class="d-flex justify-content-center align-items-center mt-3" style="gap: 30px;">
                 <div class="form-check">
                     <input
                         class="form-check-input"
                         type="radio"
                         id="training"
-                        value="훈련반"
+                        value="선수반"
                         v-model="selectedClass"
                         style="width: 20px; height: 20px;"
                     >
                     <label class="form-check-label" for="training" style="font-size:16px; font-weight:bold; cursor:pointer;">
-                        &nbsp;훈련반
+                        &nbsp;선수반
                     </label>
                 </div>
                 <div class="form-check">
@@ -54,12 +54,12 @@
                         class="form-check-input"
                         type="radio"
                         id="lesson"
-                        value="강습반"
+                        value="성장반"
                         v-model="selectedClass"
                         style="width: 20px; height: 20px;"
                     >
                     <label class="form-check-label" for="lesson" style="font-size:16px; font-weight:bold; cursor:pointer;">
-                        &nbsp;강습반
+                        &nbsp;성장반
                     </label>
                 </div>
             </div>
@@ -107,30 +107,41 @@
                     📅 <strong>일요일 오전 6시 ~ 8시 (2시간)</strong><br>
                     📍 부산 해운대구 선수촌로 122 지하1층 (편의점쪽)
                 </p>
+                <p style="margin:8px 0;">
+                    <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
+                    - 월 회원: 5,000원<br>
+                    - 연 회원: 50,000원<br>
+                </p>
 
                 <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>정기회원</strong><br>
-                    - 매월 2회: 30,000원 (이월 불가)<br>
-                    - 3회차부터: 회당 15,000원 추가<br>
+                    <span style="font-weight:bold; color:#2a5bd7;">2.</span> <strong>프로그램별 운영비</strong><br>
+                    - 훈련: 15,000원 (1회)<br>
+                    - 강습: 20,000원 (1회)<br>
                     - 참가 전일까지 입금
                 </p>
 
                 <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">2.</span> <strong>게스트 (월 1회 참석)</strong><br>
-                    - 회당 20,000원<br>
+                    <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>단체/게스트</strong><br>
+                    - 게스트: 20,000원<br>
+                    - 단체: 15,000원 (별도 문의)<br>
                     - 참가 전일까지 입금
                 </p>
 
                 <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>레인 안내</strong><br>
-                    - 1~2레인: 초·중급 무료 강습 (접영 가능자 대상)<br>
-                    - 3~6레인: 훈련반 운영
+                    <span style="font-weight:bold; color:#2a5bd7;">4.</span> <strong>레인 안내</strong><br>
+                    - 선수반 1~4레인: 선수반 운영<br>
+                    - 5~6레인:  성장반 운영 (접영 가능자 대상)
                 </p>
 
                 <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">4.</span> <strong>훈련반</strong><br>
+                    <span style="font-weight:bold; color:#2a5bd7;">5.</span> <strong>선수반</strong><br>
                     - 드릴 + 인터벌 2,500~3,000m 후 스타트 연습<br>
                     - 핀 사용 가능
+                </p>
+                <p style="margin:8px 0;">
+                    <span style="font-weight:bold; color:#2a5bd7;">6.</span> <strong>성장반</strong><br>
+                    - 드릴 + 교정 1,000 ~ 1,500m 후 스타트 연습<br>
+                    - 매회 강사님 교대로 강습 (훈련스케쥴 참조)
                 </p>
 
                 <p style="margin:8px 0;">
@@ -167,7 +178,7 @@
                         <span style="font-size:12px; background:#81c784; color:#1b5e20; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #4caf50;">
                             입완
                         </span>
-                        &nbsp;버튼 클릭
+                        &nbsp;버튼 셀프 클릭
                     </li>
                     <li style="font-size:13px;">
                         날짜 변경은
@@ -192,14 +203,14 @@
 
         <div v-if="dateObj.user && dateObj.user.length" style="padding:10px; border:1px solid #dee2e6; border-radius:10px; margin-bottom:10px;">
             <!-- 훈련반 표시 (한 번만) -->
-            <div v-if="dateObj.user.some(u => u.class === '훈련반')" style="width:100%; font-weight:bold; margin-bottom:4px;">
-                훈련반 ({{ dateObj.user.filter(u => u.class === '훈련반').length }}명)
+            <div v-if="dateObj.user.some(u => u.class === '선수반')" style="width:100%; font-weight:bold; margin-bottom:4px;">
+                선수반 ({{ dateObj.user.filter(u => u.class === '선수반').length }}명)
             </div>
             <div class="d-flex flex-wrap">
                 <div
                     v-for="(user, userIdx) in dateObj.user"
                     :key="userIdx"
-                    v-if="user.class === '훈련반'"
+                    v-if="user.class === '선수반'"
                     class="mb-2"
                     style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
                 >
@@ -228,14 +239,14 @@
             </div>
 
             <!-- 강습반 표시 -->
-            <div v-if="dateObj.user.some(u => u.class === '강습반')" style="width:100%; font-weight:bold; margin:10px 0 4px 0;">
-                강습반 ({{ dateObj.user.filter(u => u.class === '강습반').length }}명)
+            <div v-if="dateObj.user.some(u => u.class === '성장반')" style="width:100%; font-weight:bold; margin:10px 0 4px 0;">
+                성장반 ({{ dateObj.user.filter(u => u.class === '성장반').length }}명)
             </div>
             <div class="d-flex flex-wrap">
                 <div
                     v-for="(user, userIdx) in dateObj.user"
                     :key="userIdx + '-lesson'"
-                    v-if="user.class === '강습반'"
+                    v-if="user.class === '성장반'"
                     class="mb-2"
                     style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
                 >

@@ -17,4 +17,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BONOBONO_E6ED4 }}'
           channelId: live
-          projectId: bonobono-e6ed4
+          projectId: zone5-c1f49

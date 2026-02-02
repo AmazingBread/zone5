@@ -34,14 +34,14 @@
 
             <div v-if="dateObj.user && dateObj.user.length" style="padding:10px; border:1px solid #dee2e6; border-radius:10px; margin-bottom:10px;">
                 <!-- 훈련반 표시 (한 번만) -->
-                <div v-if="dateObj.user.some(u => u.class === '훈련반')" style="width:100%; font-weight:bold; margin-bottom:4px;">
-                    훈련반 ({{ dateObj.user.filter(u => u.class === '훈련반').length }}명)
+                <div v-if="dateObj.user.some(u => u.class === '선수반')" style="width:100%; font-weight:bold; margin-bottom:4px;">
+                    선수반 ({{ dateObj.user.filter(u => u.class === '선수반').length }}명)
                 </div>
                 <div class="d-flex flex-wrap">
                     <div
                         v-for="(user, userIdx) in dateObj.user"
                         :key="userIdx"
-                        v-if="user.class === '훈련반'"
+                        v-if="user.class === '선수반'"
                         class="mb-2"
                         style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
                     >
@@ -70,14 +70,14 @@
                 </div>
 
                 <!-- 강습반 표시 -->
-                <div v-if="dateObj.user.some(u => u.class === '강습반')" style="width:100%; font-weight:bold; margin:10px 0 4px 0;">
-                    강습반 ({{ dateObj.user.filter(u => u.class === '강습반').length }}명)
+                <div v-if="dateObj.user.some(u => u.class === '성장반')" style="width:100%; font-weight:bold; margin:10px 0 4px 0;">
+                    성장반 ({{ dateObj.user.filter(u => u.class === '성장반').length }}명)
                 </div>
                 <div class="d-flex flex-wrap">
                     <div
                         v-for="(user, userIdx) in dateObj.user"
                         :key="userIdx + '-lesson'"
-                        v-if="user.class === '강습반'"
+                        v-if="user.class === '성장반'"
                         class="mb-2"
                         style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
                     >
