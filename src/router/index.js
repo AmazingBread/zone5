@@ -187,13 +187,13 @@ const routes = [
     path: "/swimming_competition",
     name: "SwimmingCompetition",
     component: SwimmingCompetition,
-    meta: { title: '보노보노 대회' }, // 타이틀 설정
+    meta: { title: '대회신청' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition2",
     name: "SwimmingCompetition2",
     component: SwimmingCompetition2,
-    meta: { title: '양산 대회' }, // 타이틀 설정
+    meta: { title: '대회신청' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition3",
@@ -202,16 +202,16 @@ const routes = [
     meta: { title: '보노보노 대구 대회' }, // 타이틀 설정
   },
   {
-    path: "/swimming_competition0330",
+    path: "/swimming_competition567",
     name: "AdminSwimmingCompetition",
     component: AdminSwimmingCompetition,
-    meta: { title: '보노보노 진주 대회 관리자' }, // 타이틀 설정
+    meta: { title: '대회 관리자' }, // 타이틀 설정
   },
   {
-    path: "/swimming_competition2zone567",
+    path: "/swimming_competition2567",
     name: "AdminSwimmingCompetition2",
     component: AdminSwimmingCompetition2,
-    meta: { title: '양산대회 관리자' }, // 타이틀 설정
+    meta: { title: '대회 관리자' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition30330",

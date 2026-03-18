@@ -1,5 +1,6 @@
 <template>
 <div>
+    <img src="@/assets/image/전체.png" class="img-fluid" alt="썸네일" >
     <div class="col-12 p-1">
         <div
             class="boxstyle2"
@@ -58,8 +59,13 @@
                         v-model="selectedClass"
                         style="width: 20px; height: 20px;"
                     >
-                    <label class="form-check-label" for="lesson" style="font-size:16px; font-weight:bold; cursor:pointer;">
+                    <label class="form-check-label" for="lesson"
+                           style="font-size:16px; font-weight:bold; cursor:pointer;"
+                    >
                         &nbsp;성장반
+                        <span v-if="isGrowthClassFull" style="color: red; font-size: 12px; font-weight: normal;">
+            (선택 날짜 중 마감 있음)
+        </span>
                     </label>
                 </div>
             </div>
@@ -109,7 +115,7 @@
                 </p>
                 <p style="margin:8px 0;">
                     <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
-                    - 월 회원: 5,000원<br>
+                    <!-- - 월 회원: 5,000원<br>-->
                     - 연 회원: 50,000원<br>
                 </p>
 
@@ -122,8 +128,8 @@
 
                 <p style="margin:8px 0;">
                     <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>단체/게스트</strong><br>
-                    - 게스트: 20,000원<br>
-                    - 단체: 15,000원 (별도 문의)<br>
+                    - 게스트: 25,000원<br>
+                    - 단체: 별도 문의<br>
                     - 참가 전일까지 입금
                 </p>
 
@@ -286,6 +292,7 @@ export default {
     data() {
         return {
             dbPath: "zone5",
+            settingsPath: "zone5_settings", // 설정 경로 추가
             apiData: [], // DB 데이터를 바로 사용
             userName: "",
             selectedDates: [],
@@ -294,8 +301,61 @@ export default {
     },
     mounted() {
         this.loadUserData();
+        this.loadSettings(); // 1. 설정값 로드 실행
+    },
+    watch: {
+        // 1. 날짜를 변경할 때 체크
+        selectedDates() {
+            this.checkGrowthLimit();
+        },
+        // 2. 반(선수반/성장반)을 선택할 때 체크
+        selectedClass(newVal) {
+            if (newVal === '성장반') {
+                this.checkGrowthLimit();
+            }
+        }
+    },
+    computed: {
+        // 성장반이 마감되었는지 확인하는 로직
+        isGrowthClassFull() {
+            const limit = this.$store.state.growthLimit;
+            if (this.selectedDates.length === 0) return false;
+
+            // 선택된 모든 날짜에 대해 체크
+            return this.selectedDates.some(selectedDate => {
+                const targetDay = this.apiData.find(d => d.date === selectedDate);
+                if (targetDay && targetDay.user) {
+                    // 해당 날짜의 성장반 인원 계산
+                    const count = targetDay.user.filter(u => u.class === '성장반').length;
+                    return count >= limit; // 12명 이상이면 true
+                }
+                return false;
+            });
+        }
     },
     methods: {
+        loadSettings() {
+            const db = getDatabase();
+            const limitRef = ref(db, `${this.settingsPath}/growthLimit`);
+
+            onValue(limitRef, (snapshot) => {
+                const val = snapshot.val();
+                if (val !== null) {
+                    // 관리자가 바꾼 값(13)을 실시간으로 Vuex에 반영
+                    this.$store.commit('SET_GROWTH_LIMIT', val);
+                }
+            });
+        },
+        // 마감 체크 공통 로직
+        checkGrowthLimit() {
+            const limit = this.$store.state.growthLimit;
+            if (this.selectedClass === '성장반' && this.isGrowthClassFull) {
+                alert(`선택하신 날짜 중 이미 성장반이 마감(${limit}명)된 날이 포함되어 있어 선택이 취소됩니다. 해당 날짜를 제외하거나 선수반을 선택해 주세요.`);
+                this.$nextTick(() => {
+                    this.selectedClass = ''; // 선택 해제
+                });
+            }
+        },
         loadUserData() {
             const db = getDatabase();
             const dbRef = ref(db, this.dbPath);

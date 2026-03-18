@@ -1,11 +1,18 @@
 <template>
     <div>
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle5"
-                style="font-size: 20px; "
-            >
-                사직 11월 대회
+        <div class="col-12">
+            <div class="col-12 p-1" >
+                <div
+                    class="boxstyle3 diary"
+                    style="font-size: 30px; height: 250px;"
+                    @click="$router.push('/swimming_competition')"
+                >
+                    <p>📢 창원 클럽 대항전 📢</p>
+                    <p>
+                        26년 3월 29일<br>
+                        팀 ZONE5 신청
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-12 p-1">
@@ -13,7 +20,7 @@
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                신청마감 11월 5일 까지
+                신청마감 2월 11일 오후 4시 까지
             </div>
         </div>
 
@@ -22,29 +29,29 @@
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                팀명 보노보노
+                팀명 ZONE5 (50명제한)
             </div>
         </div>
 
         <form @submit.prevent="submitForm">
             <div class="mb-3">
-                <label for="name" class="form-label fw-bold">1. 이름적어주쏘</label>
-                <input type="text" class="form-control" id="name" v-model="formData.name" ref="name">
+                <label for="name" class="form-label fw-bold">1. 성함</label>
+                <input type="text" class="form-control" id="name" v-model="formData.name" ref="name" placeholder="홍길동">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 1">{{errorMessage[0]}}</p>
             </div>
+            <!--<div class="mb-3">-->
+            <!--    <label for="sex" class="form-label fw-bold">2. 성별(남,여)로 입력</label>-->
+            <!--    <input type="text" class="form-control" id="sex" v-model="formData.sex" ref="sex">-->
+            <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>-->
+            <!--</div>-->
             <div class="mb-3">
-                <label for="sex" class="form-label fw-bold">2. 성별(남,여)로 입력</label>
-                <input type="text" class="form-control" id="sex" v-model="formData.sex" ref="sex">
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label fw-bold">3. 생년월일(1991.01.02) 이런형식</label>
-                <input type="text" class="form-control" id="age" v-model="formData.age" ref="age">
+                <label for="age" class="form-label fw-bold">3. 생년월일(800523-1)</label>
+                <input type="text" class="form-control" id="age" v-model="formData.age" ref="age" placeholder="800523-1">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label fw-bold">4. 저나보노(010-3637-1234)이런형식</label>
-                <input type="text" class="form-control" id="phone" v-model="formData.phone" ref="phone">
+                <label for="phone" class="form-label fw-bold">4. 저나보노(010-3637-1234)</label>
+                <input type="text" class="form-control" id="phone" v-model="formData.phone" ref="phone" placeholder="010-3637-1234">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
@@ -52,23 +59,27 @@
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group1" value="1그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group1">1그룹 (∼96.12.31)</label>
+                        <label class="form-check-label" for="group1">1그룹 (고등학생∼2007년)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group2" value="2그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group2">2그룹 (95.1.1∼86.12.31)</label>
+                        <label class="form-check-label" for="group2">2그룹 (1997년∼2006년)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group3" value="3그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group3">3그룹 (85.1.1∼76.12.31)</label>
+                        <label class="form-check-label" for="group3">3그룹 (1987년∼1996년)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group4" value="4그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group4">4그룹 (75.1.1∼66.12.31)</label>
+                        <label class="form-check-label" for="group4">4그룹 (1977년∼1986년)</label>
                     </div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="group" id="group5" value="5그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group5">5그룹 (65.1.1~)</label>
+                        <label class="form-check-label" for="group5">5그룹 (1967년~1976년)</label>
+                    </div>
+                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
+                        <input class="form-check-input" type="radio" name="group" id="group5" value="6그룹" v-model="formData.group" ref="group">
+                        <label class="form-check-label" for="group5">6그룹 (1966년 이전)</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
@@ -76,60 +87,21 @@
             <div class="mb-3">
                 <label class="form-label fw-bold">6. 종목 1</label>
                 <div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="fr50_1" value="자유형50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="fr50_1">자유형50</label>
+                    <div class="form-check d-inline-block me-3" v-for="(ev, idx) in events" :key="'ev1_'+idx">
+                        <input class="form-check-input" type="radio" name="events1" :id="'ev1_'+idx" :value="ev" v-model="formData.events1" ref="events1">
+                        <label class="form-check-label" :for="'ev1_'+idx">{{ ev }}</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="br50_1" value="평영50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="br50_1">평영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="bk50_1" value="배영50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="bk50_1">배영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events1" id="fl50_1" value="접영50" v-model="formData.events1" ref="events1">
-                        <label class="form-check-label" for="fl50_1">접영50</label>
-                    </div>
-                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
-                    <!--    <input class="form-check-input" type="radio" name="events1" id="pinFr50_1" value="오리발 자유형 50" v-model="formData.events1" ref="events1">-->
-                    <!--    <label class="form-check-label" for="pinFr50_1">핀자유형 50</label>-->
-                    <!--</div>-->
-                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
-                    <!--    <input class="form-check-input" type="radio" name="events1" id="pinFl50_1" value="오리발 접영 50" v-model="formData.events1" ref="events1">-->
-                    <!--    <label class="form-check-label" for="pinFl50_1">핀접영 50</label>-->
-                    <!--</div>-->
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 6">{{errorMessage[0]}}</p>
             </div>
+
             <div class="mb-3">
                 <label class="form-label fw-bold">7. 종목 2</label>
                 <div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="fr50_2" value="자유형50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="fr50_2">자유형50</label>
+                    <div class="form-check d-inline-block me-3" v-for="(ev, idx) in events" :key="'ev2_'+idx">
+                        <input class="form-check-input" type="radio" name="events2" :id="'ev2_'+idx" :value="ev" v-model="formData.events2" ref="events2">
+                        <label class="form-check-label" :for="'ev2_'+idx">{{ ev }}</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="br50_2" value="평영50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="br50_2">평영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="bk50_2" value="배영50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="bk50_2">배영50</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="events2" id="fl50_2" value="접영50" v-model="formData.events2" ref="events1">
-                        <label class="form-check-label" for="fl50_2">접영50</label>
-                    </div>
-                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
-                    <!--    <input class="form-check-input" type="radio" name="events2" id="pinFr50_2" value="오리발 자유형 50" v-model="formData.events2" ref="events1">-->
-                    <!--    <label class="form-check-label" for="pinFr50_2">핀자유형 50</label>-->
-                    <!--</div>-->
-                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
-                    <!--    <input class="form-check-input" type="radio" name="events2" id="pinFl50_2" value="오리발 접영 50" v-model="formData.events2" ref="events1">-->
-                    <!--    <label class="form-check-label" for="pinFl50_2">핀접영 50</label>-->
-                    <!--</div>-->
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
             </div>
@@ -160,10 +132,10 @@
             <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 8">{{errorMessage[0]}}</p>-->
             <!--</div>-->
             <div class="mb-3">
-                <label for="size" class="form-label fw-bold">9. 돈낼거</label>
+                <label for="size" class="form-label fw-bold">9. 대회 참가비</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
-                    <option value="" disabled>돈낼거 확인</option>
-                    <option value="장소, 시간 확인함">대회비 3만</option>
+                    <option value="" disabled>대회 참가비 확인</option>
+                    <option value="대회 참가비 확인함">대회 참가비 3만원</option>
                 </select>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
@@ -249,8 +221,8 @@
                 class="boxstyle6"
                 style="font-size: 20px; "
             >
-                <a href="https://open.kakao.com/o/p8go0RUh" target="_blank" style="text-decoration: none; color: inherit;">
-                    보노보노 사직 대회 채팅방 (실명)
+                <a href="https://open.kakao.com/o/gkA9Izfi" target="_blank" style="text-decoration: none; color: inherit;">
+                    ZONE5 창원 대회 채팅방 (실명)
                 </a>
             </div>
         </div>
@@ -284,7 +256,8 @@
 
                 <!-- 하단 사용자 정보 -->
                 <div class="font-weight-bold mt-1">
-                    {{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ formatPhone(item.phone) }},
+                    <!--{{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ formatPhone(item.phone) }},-->
+                    {{ item.name }}, {{ item.age }}, {{ formatPhone(item.phone) }},
                 </div>
                 <div class="font-weight-bold">
                     {{ item.group }}, {{ item.events1 }}, {{ item.events2 }}
@@ -295,283 +268,183 @@
 </template>
 
 <script>
-import { getDatabase, ref, onValue } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
+import { getDatabase, ref, set, get, onValue, push, remove, update } from "firebase/database";
+import * as XLSX from 'xlsx-js-style';
 
 export default {
     data(){
         return {
-            apiUrl : "https://bonobono-e6ed4-default-rtdb.asia-southeast1.firebasedatabase.app/swimming_competition.json",
+            dbPath: "competition",
+            apiData: [], // DB 데이터를 바로 사용
             formData  :{
                 checked      :'',
                 name      :'',
                 age      :'',
-                sex      :'',
+                // sex      :'',
                 phone      :'',
                 group      :'',
                 events1      :'',
                 events2      :'',
-                tsize      :'',
+                // tsize      :'',
                 paid   :"",
                 ok:'',
                 liabilityAgreement: ''
             },
-            firstComeLimit: 100,
-            deadline: new Date('2025-11-5T23:59:59'),
+            groups: [
+                { id: 'group1', val: '1그룹', text: '1그룹 (고등학생∼2007년)' },
+                { id: 'group2', val: '2그룹', text: '2그룹 (1997년∼2006년)' },
+                { id: 'group3', val: '3그룹', text: '3그룹 (1987년∼1996년)' },
+                { id: 'group4', val: '4그룹', text: '4그룹 (1977년∼1986년)' },
+                { id: 'group5', val: '5그룹', text: '5그룹 (1967년~1976년)' },
+                { id: 'group6', val: '6그룹', text: '6그룹 (1966년 이전)' },
+            ],
+            events: ['자유형50', '평영50', '배영50', '접영50', '핀자유형50', '핀접영50'],
+            firstComeLimit: 50,
+            deadline: new Date('2026-02-13T13:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
-            apiData:[],
-            result   :'',
-            applicantCount: 0, // 전역 변수 초기화
-            errorMessage:'',
-            db: null, // 데이터베이스 참조 추가
-            accountText: '79420390777 카카오뱅크 배하정 30,0000원'
+            errorMessage: ['', 0],
+            accountText: '3333-20-4133950 카카오뱅크 노원기 30,000원'
         };
     },
     mounted(){
-        this.updateRemainingTime();
-        this.intervalId = setInterval(() => {
-            this.updateRemainingTime(); // 화살표 함수로 'this' 바인딩
-        }, 1000); // 1초마다 갱신
-
-        this.db = getDatabase(); // Firebase 데이터베이스 초기화
+        this.startTimer();
         this.getData();
-        // 데이터 변경 감지를 위해 리스너 추가
-        const dataRef = ref(this.db, 'swimming_competition'); // cheering 경로에 대한 참조
-        onValue(dataRef, (snapshot) => {
-            const getData = snapshot.val() || {};
-            this.apiData = Object.keys(getData)
-                .filter(key => key !== 'swimming_competition_exemptCount') // exemptCount를 제외
-                .map(key => ({
-                    key: key, // Firebase에서의 고유 키
-                    ...getData[key] // 나머지 데이터
-                }));
-        });
+
     },
     beforeDestroy() {
-        clearInterval(this.intervalId); // 인터벌 중지
+        if (this.intervalId) clearInterval(this.intervalId);
     },
     methods:{
-        updateRemainingTime() {
-            const now = new Date();
-            const timeDiff = this.deadline - now; // 마감 시간과 현재 시간의 차이
-            if (timeDiff <= 0) {
-                this.isDeadlinePassed = true;  // 마감 시간이 지나면 true로 설정
-                this.remainingTime = ""; // 마감되었을 때
-            } else {
-                const totalSeconds = Math.floor(timeDiff / 1000); // 전체 초
-                const hours = Math.floor(totalSeconds / 3600); // 총 시간
-                const minutes = Math.floor((totalSeconds % 3600) / 60); // 분
-                const seconds = totalSeconds % 60; // 초
-
-                this.isDeadlinePassed = false;  // 마감 시간이 지나지 않으면 false
-                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;  // 총 시간, 분, 초로 표시
-            }
-        },
-        updateChecked(item) {
-            if (item) {
-                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${item.key}.json`, {
-                    ...item, // 기존 데이터와 checked 상태 포함
-                    checked: item.checked // checked 속성을 포함하여 업데이트
-                })
-                     .catch(error => {
-                    console.error('출석체크 업데이트 오류:', error);
-                });
-            } else {
-                console.error('출석체크 오류:', item.key);
-            }
-        },
-        // togglePayment(key) {
-        //     const item = this.apiData[key];
-        //     item.paid = !item.paid;
-        //
-        //     // Firebase에 상태 업데이트
-        //     this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, item)
-        //     .then(() => {
-        //         console.log('입금 상태가 업데이트되었습니다.');
-        //     })
-        //         .catch(error => {
-        //         console.error('입금 상태 업데이트 오류:', error);
-        //     });
-        // },
-        validateForm() {
-            const { name, sex, age, phone, group, events1, events2, tsize, ok, liabilityAgreement } = this.formData;
-
-            if (!name) {
-                this.showMessage("와타시노 나마에와.." , 1); // 사용자에게 메시지 표시
-                this.$refs.name.focus(); // 이름 입력 필드에 포커스
-                this.$refs.name.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!sex) {
-                this.showMessage("남잔교 여잔교" , 2); // 사용자에게 메시지 표시
-                this.$refs.sex.focus(); // 이름 입력 필드에 포커스
-                this.$refs.sex.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!age) {
-                this.showMessage("매살이고" , 3); // 사용자에게 메시지 표시
-                this.$refs.age.focus(); // 이름 입력 필드에 포커스
-                this.$refs.age.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!phone) {
-                this.showMessage("저기 맘에들어서 그러는데 폰번호좀.." , 4); // 사용자에게 메시지 표시
-                this.$refs.phone.focus(); // 이름 입력 필드에 포커스
-                this.$refs.phone.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!group) {
-                this.showMessage("몇그룹 출전?" , 5); // 사용자에게 메시지 표시
-                this.$refs.group.focus(); // 이름 입력 필드에 포커스
-                this.$refs.group.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!events1) {
-                this.showMessage("종목 1 골라보이소" , 6); // 사용자에게 메시지 표시
-                this.$refs.events1.focus(); // 이름 입력 필드에 포커스
-                this.$refs.events1.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!events2) {
-                this.showMessage("종목 2 골라보이소" , 7); // 사용자에게 메시지 표시
-                this.$refs.events2.focus(); // 이름 입력 필드에 포커스
-                this.$refs.events2.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            // if (!tsize) {
-            //     this.showMessage("티샤스 골라야지" , 8); // 사용자에게 메시지 표시
-            //     this.$refs.tsize.focus(); // 이름 입력 필드에 포커스
-            //     this.$refs.tsize.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-            //     return false;
-            // }
-            if (!ok) {
-                this.showMessage("돈 확인!!!", 9);
-                this.$refs.sizeSelect.focus(); // 수업 선택 드롭다운에 포커스
-                this.$refs.sizeSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            if (!liabilityAgreement) {
-                this.showMessage("면책 동의좀 해주이소..", 10);
-                this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
-                this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
-                return false;
-            }
-            return true; // 모든 필드가 유효한 경우
-        },
-
-        showMessage(message , no) {
-            // 메시지를 화면에 표시하는 로직을 구현합니다.
-            // 예를 들어, Vue의 data 속성이나 상태 관리 라이브러리를 사용하여 메시지를 표시할 수 있습니다.
-            this.errorMessage = [message, no]; // errorMessage는 화면에 표시할 메시지
-            // 추가적인 UI 로직을 구현하여 사용자에게 알림을 줄 수 있습니다.
-        },
-
         getData(){
-            this.$axios.get(this.apiUrl).then(response => {
-                const apiData = response.data || {};
-                this.apiData = Object.keys(apiData)
-                    .filter(key => key !== 'swimming_competition_exemptCount') // exemptCount를 제외
-                    .map(key => ({
-                        key: key, // Firebase에서의 고유 키
-                        ...apiData[key] // 나머지 데이터
-                    })
-                );
-                console.log(' this.apiData',  this.apiData)
-            }).catch(error => {
-                console.error("신청자 목록 가져오기 오류:", error);
+            const db = getDatabase();
+            const dbRef = ref(db, this.dbPath);
+            onValue(dbRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    // Firebase 객체를 배열로 변환하고 key 포함
+                    this.apiData = Object.keys(data).map(key => ({
+                        key,
+                        ...data[key]
+                    }));
+                } else {
+                    this.apiData = [];
+                }
             });
         },
-        submitForm(){
-            if(!this.validateForm()){
+        // 타이머 로직
+        startTimer() {
+            this.updateRemainingTime();
+            this.intervalId = setInterval(this.updateRemainingTime, 1000);
+        },
+        updateRemainingTime() {
+            const now = new Date();
+            const timeDiff = this.deadline - now;
+
+            if (timeDiff <= 0) {
+                this.isDeadlinePassed = true;
+                this.remainingTime = "마감되었습니다.";
+                clearInterval(this.intervalId);
+            } else {
+                const totalSeconds = Math.floor(timeDiff / 1000);
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+            }
+        },
+        // 폼 유효성 검사
+        validateForm() {
+            const { name, age, phone, group, events1, events2, ok, liabilityAgreement } = this.formData;
+            const checks = [
+                { val: name, msg: "성함을 입력해주세요", no: 1, ref: 'name' },
+                { val: age, msg: "생년월일 형식을 확인해주세요", no: 3, ref: 'age' },
+                { val: phone, msg: "전화번호를 입력해주세요", no: 4, ref: 'phone' },
+                { val: group, msg: "그룹을 선택해주세요", no: 5, ref: 'group' },
+                { val: events1, msg: "종목 1을 선택해주세요", no: 6, ref: 'events1' },
+                { val: events2, msg: "종목 2를 선택해주세요", no: 7, ref: 'events2' },
+                { val: ok, msg: "입금 확인을 선택해주세요", no: 9, ref: 'sizeSelect' },
+                { val: liabilityAgreement === 'agree', msg: "면책 동의가 필요합니다", no: 10, ref: 'agreeRadio' }
+            ];
+
+            for (let check of checks) {
+                if (!check.val) {
+                    this.errorMessage = [check.msg, check.no];
+                    this.$refs[check.ref].focus();
+                    return false;
+                }
+            }
+            return true;
+        },
+
+        submitForm() {
+            if (!this.validateForm()) return;
+            if (this.apiData.length >= this.firstComeLimit) {
+                alert("정원이 초과되었습니다.");
                 return;
             }
 
-            const bearData = {
-                name              :this.formData.name,
-                sex               :this.formData.sex,
-                age               :this.formData.age,
-                phone             :this.formData.phone,
-                group             :this.formData.group,
-                events1           :this.formData.events1,
-                events2           :this.formData.events2,
-                // tsize             :this.formData.tsize,
+            const db = getDatabase();
+            const newListRef = push(ref(db, this.dbPath));
 
-                paid              :false,
-                ok                :this.formData.ok,
-                liabilityAgreement: this.formData.liabilityAgreement // 면책 동의 추가
-            };
-
-            this.$axios.post(this.apiUrl, bearData).then(() => {
-                this.result = '신청완료!';
-                alert(this.result)
-                this.getData(); // 신청자 목록 갱신
-                this.formData = {
-                    name              :'',
-                    sex               :'',
-                    age               :'',
-                    phone             :'',
-                    group            :'',
-                    events1              :'',
-                    events2              :'',
-                    // tsize              :'',
-                    paid              :'',
-                    ok                :'',
-                    liabilityAgreement: '' // 초기화
-                };
-            }).catch(error => {
-                console.error('데이터 저장 오류:', error);
-                this.result = '데이터 저장 오류가 발생했습니다.';
-                alert(this.result)
+            set(newListRef, { ...this.formData, paid: false })
+            .then(() => {
+                alert("신청이 완료되었습니다!");
+                this.resetForm();
+            })
+             .catch((error) => {
+                console.error("저장 오류:", error);
+                alert("저장에 실패했습니다.");
             });
         },
-        formatJumin(jumin) {
-            if (!jumin || jumin.length < 8) return jumin; // 예외 처리
-            return jumin.slice(0, 6) + '-' + jumin.charAt(7) + '*******';
-        },
-        // 전화번호 포맷 (맨 뒤 4자리 가리기)
-        formatPhone(phone) {
-            if (!phone || phone.length < 4) return phone; // 예외 처리
-            return phone.slice(0, -4) + '****';
-        },
         togglePayment(key) {
-            const applicant = this.apiData.find(item => item.key === key);
-            if (applicant) {
-                applicant.paid = !applicant.paid; // 토글
-                // Firebase에 변경 사항 저장
-                this.$axios.put(`${this.apiUrl.replace('.json', '')}/${key}.json`, applicant)
-                .then(() => {
-                    this.getData(); // 신청자 목록 갱신
-                })
-                     .catch(error => {
-                    console.error('입금 상태 업데이트 오류:', error);
-                });
-            } else {
-                console.error('해당 키에 대한 신청자를 찾을 수 없습니다:', key);
-            }
-        },
-        copyAccountNumber(event) {
-            event.preventDefault(); // 기본 동작 방지
-            // 참조된 계좌번호 텍스트 가져오기
+            const item = this.apiData.find(i => i.key === key);
+            if (!item) return;
 
-
-            // 클립보드에 텍스트 복사
-            navigator.clipboard.writeText(this.accountText)
+            const db = getDatabase();
+            update(ref(db, `${this.dbPath}/${key}`), { paid: !item.paid })
             .then(() => {
-                alert("계좌번호가 복사되었습니다: ");
+                console.log("상태가 업데이트되었습니다.");
             })
-                      .catch(error => {
-                console.error("계좌번호 복사 실패:", error);
+             .catch((error) => {
+                console.error("업데이트 실패:", error);
             });
         },
         deleteApplicant(key) {
-            if (!confirm("신청자를 삭제하시겠습니까?")) return;
-            // Firebase에서 데이터 삭제
-            this.$axios.delete(`${this.apiUrl.replace('.json', '')}/${key}.json`).then(() => {
-                this.getData(); // 신청자 목록 갱신
-            }).catch(error => {
-                console.error('삭제 오류:', error);
+            if (!confirm("정말 삭제하시겠습니까?")) return;
+
+            const db = getDatabase();
+            remove(ref(db, `${this.dbPath}/${key}`))
+            .then(() => {
+                alert("삭제되었습니다.");
+            })
+             .catch((error) => {
+                console.error("삭제 실패:", error);
             });
         },
+        resetForm() {
+            this.formData = {
+                name: '', age: '', phone: '', group: '',
+                events1: '', events2: '', paid: false, ok: '',
+                liabilityAgreement: ''
+            };
+            this.errorMessage = ['', 0];
+        },
+        formatPhone(phone) {
+            if (!phone) return '';
+
+            // 1. 숫자만 남기기 (010-3637-1234 -> 01036371234)
+            const cleanNumber = phone.replace(/[^0-9]/g, '');
+
+            // 2. 가운데 4자리를 마스킹 (01036371234 -> 010-****-1234)
+            // $1: 앞 3자리(010), $2: 가운데 3~4자리, $3: 마지막 4자리
+            return cleanNumber.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-****-$3');
+        },
+        copyAccountNumber() {
+            navigator.clipboard.writeText(this.accountText)
+            .then(() => alert("계좌번호가 복사되었습니다."))
+                      .catch(() => alert("복사 실패"));
+        }
     }
 };
 </script>

@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import * as XLSX from "xlsx"; // 추가
+import * as XLSX from 'xlsx-js-style';
 
 import { getDatabase, ref, onValue, remove, update } from "firebase/database"; // Firebase SDK에서 필요한 모듈을 임포트합니다.
 
@@ -227,7 +227,7 @@ export default {
                 return;
             }
 
-            // 엑셀용 데이터 변환
+            // 1. 데이터 생성 (기존 방식)
             const excelData = this.apiData.map((item, index) => ({
                 번호: index + 1,
                 가입일 : item.regDt,
@@ -240,13 +240,42 @@ export default {
                 회비: item.paid ? "입금완료" : "미입금"
             }));
 
-            // 워크시트 생성
+            // 2. 워크시트 생성
             const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+            this.apiData.forEach((item, index) => {
+                const rowIndex = index + 2; // 헤더가 1행이므로 데이터는 2행부터 시작
+
+                // --- 조건 1: 미입금인 경우 (회비 열 - I열) ---
+                if (!item.paid) {
+                    const paidCellRef = `I${rowIndex}`; // I열
+                    if (worksheet[paidCellRef]) {
+                        worksheet[paidCellRef].s = {
+                            fill: { fgColor: { rgb: "FFFF00" } }, // 노란색
+                            font: { bold: true, color: { rgb: "FF0000" } },
+                            alignment: { horizontal: "center" }
+                        };
+                    }
+                }
+
+                // --- 조건 2: 월회원인 경우 (회원타입 열 - H열) ---
+                if (item.membershipType === '월회원') {
+                    const typeCellRef = `H${rowIndex}`; // H열
+                    if (worksheet[typeCellRef]) {
+                        worksheet[typeCellRef].s = {
+                            fill: { fgColor: { rgb: "CCFFCC" } }, // 연두색 (Light Green)
+                            font: { bold: true },
+                            alignment: { horizontal: "center" }
+                        };
+                    }
+                }
+            });
+
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "회원신청자_명단");
 
-            // 파일 다운로드
-            XLSX.writeFile(workbook, "보노보노_회원신청자_명단.xlsx");
+            // 4. 파일 다운로드
+            XLSX.writeFile(workbook, "ZONE5_회원신청자_명단.xlsx");
         }
     }
 };

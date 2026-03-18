@@ -79,10 +79,10 @@
                         <input class="form-check-input" type="radio" name="membershipType" id="yearType" value="연회원" v-model="formData.membershipType" ref="membershipType">
                         <label class="form-check-label" for="yearType">연회원 (1년 5만원)</label>
                     </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="membershipType" id="monthType" value="월회원" v-model="formData.membershipType" ref="monthType">
-                        <label class="form-check-label" for="monthType">월회원 (매월 5천원)</label>
-                    </div>
+                    <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
+                    <!--    <input class="form-check-input" type="radio" name="membershipType" id="monthType" value="월회원" v-model="formData.membershipType" ref="monthType">-->
+                    <!--    <label class="form-check-label" for="monthType">월회원 (매월 5천원)</label>-->
+                    <!--</div>-->
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
@@ -95,7 +95,7 @@
                     </p>
                     <p style="margin:8px 0;">
                         <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
-                        - 월 회원: 5,000원<br>
+                        <!-- - 월 회원: 5,000원<br>-->
                         - 연 회원: 50,000원<br>
                     </p>
 
@@ -108,8 +108,8 @@
 
                     <p style="margin:8px 0;">
                         <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>단체/게스트</strong><br>
-                        - 게스트: 20,000원<br>
-                        - 단체: 15,000원 (별도 문의)<br>
+                        - 게스트: 25,000원<br>
+                        - 단체: 별도 문의<br>
                         - 참가 전일까지 입금
                     </p>
 

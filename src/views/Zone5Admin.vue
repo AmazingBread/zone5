@@ -8,9 +8,20 @@
                 ZONE5 관리자 화면
             </div>
         </div>
+        <div style="margin: 24px 0">
+            <h5>성장반 인원수 제한</h5>
+            <input
+                type="number"
+                v-model.number="growthLimit"
+                class="form-control mb-1"
+                style="height: 3em; width: 100px; text-align: center;"
+                @input="updateLimit($event.target.value)"
+            />
+        </div>
 
         <!-- 날짜 선택 및 이름 입력 -->
         <div style="margin: 24px 0">
+            <h5>날짜 선택 및 이름 입력</h5>
             <div class="mb-3">
                 <div
                     class="d-flex align-items-center"
@@ -124,10 +135,18 @@ export default {
             apiData: [], // DB 데이터를 바로 사용
             userName: "",
             selectedDates: [],
+            settingsPath: "zone5_settings", // 설정값 경로 추가
         };
+    },
+    computed: {
+        // Vuex에서 실시간으로 값 가져오기
+        growthLimit() {
+            return this.$store.state.growthLimit;
+        }
     },
     mounted() {
         this.loadUserData();
+        this.loadSettings(); // 설정값 로드 추가
     },
     methods: {
         loadUserData() {
@@ -143,11 +162,39 @@ export default {
                 this.apiData = data;
             });
         },
+        // 1. 설정값(인원 제한) 불러오기
+        loadSettings() {
+            const db = getDatabase();
+            const limitRef = ref(db, `${this.settingsPath}/growthLimit`);
+
+            // 실시간 리스너 연결
+            onValue(limitRef, (snapshot) => {
+                const val = snapshot.val();
+                if (val !== null) {
+                    this.growthLimit = val;
+                    // Vuex를 사용 중이라면 여기서 store에도 반영
+                    this.$store.commit('SET_GROWTH_LIMIT', val);
+                }
+            });
+        },
         updateDate(index) {
             const newDate = this.apiData[index].date.trim();
             if (!newDate) return;
             const db = getDatabase();
             set(ref(db, this.dbPath), this.apiData);
+        },
+        // 2. 인원 제한 수정 시 DB 저장
+        updateLimit(newVal) {
+            const limit = Number(newVal);
+            if (this.growthLimit < 1) {
+                alert("최소 1명 이상이어야 합니다.");
+                this.growthLimit = 1;
+            }
+            const db = getDatabase();
+            set(ref(db, `${this.settingsPath}/growthLimit`), limit)
+            .then(() => {
+                console.log("인원 제한 업데이트 완료");
+            });
         },
         submit() {
             const name = this.userName.trim();

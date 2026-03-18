@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    growthLimit: 12,
     waterTempData: '',
     waterRecordTime: '',
     suonDataSet: [
@@ -25,8 +26,15 @@ const store = new Vuex.Store({
       },
     ]
   },
-  getters: {},
-  mutations: {},
+  getters: {
+    getGrowthLimit: (state) => state.growthLimit
+  },
+  mutations: {
+    SET_GROWTH_LIMIT(state, payload) {
+      // payload가 null이나 undefined일 경우 대비
+      state.growthLimit = payload !== null ? Number(payload) : 12;
+    }
+  },
   actions: {},
 });
 

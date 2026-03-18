@@ -80,19 +80,32 @@
         <!--     data-ad-client="ca-pub-3070394175069308"-->
         <!--     data-ad-slot="2576132492"></ins>-->
         <div class="col-12">
-            <!--<div class="col-12 p-1" >-->
-            <!--    <div-->
-            <!--        class="boxstyle3 diary"-->
-            <!--        style="font-size: 30px; height: 250px;"-->
-            <!--        @click="$router.push('/super_bono')"-->
-            <!--    >-->
-            <!--        <p>📢 1:1 영법 피드백 📢</p>-->
-            <!--        <p>-->
-            <!--        10월 11일 토요일 새빅7시<br>-->
-            <!--        정관 아쿠아 50레인-->
-            <!--        </p>-->
-            <!--    </div>-->
-            <!--</div>-->
+            <div class="col-12 p-1" >
+                <div
+                    class="boxstyle3 diary"
+                    style="font-size: 30px; height: 250px;"
+                    @click="$router.push('/swimming_competition')"
+                >
+                    <p>📢 창원 클럽 대항전 📢</p>
+                    <p>
+                    26년 3월 29일<br>
+                    팀 ZONE5 신청
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 p-1" >
+                <div
+                    class="boxstyle5 diary"
+                    style="font-size: 30px; height: 250px;"
+                    @click="$router.push('/swimming_competition2')"
+                >
+                    <p>📢 창원 클럽 대항전 📢</p>
+                    <p>
+                        26년 3월 29일<br>
+                        팀 ZONE4 신청
+                    </p>
+                </div>
+            </div>
             <!--<div class="thumbnail-box">-->
             <!--    <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/super_bono')"/>-->
             <!--    <p class="text-center mt-2 text-primary">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크📣📣 </p>-->
