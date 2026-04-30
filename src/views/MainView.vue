@@ -43,6 +43,16 @@
         <!--        <img src="@/assets/image/요헤미티.png" class="img-fluid" alt="썸네일" @click="$router.push('/group_buying')"/>-->
         <!--    </div>-->
         <!--</div>-->
+        <div class="link-list">
+            <a href="https://www.moolbono.com/swimsize/" class="link-card">
+                <div class="card-content">
+                    <div class="thumb-box">
+                        <img src="https://www.moolbono.com/img/swimsize.0b14dccd.png">
+                    </div>
+                    <span class="link-title">수영복 사이즈 계산기 💗</span>
+                </div>
+            </a>
+        </div>
         <div class="col-12 p-1">
             <div
                 class="boxstyle6"
@@ -79,38 +89,38 @@
         <!--     data-ad-format="fluid"-->
         <!--     data-ad-client="ca-pub-3070394175069308"-->
         <!--     data-ad-slot="2576132492"></ins>-->
-        <div class="col-12">
-            <div class="col-12 p-1" >
-                <div
-                    class="boxstyle3 diary"
-                    style="font-size: 30px; height: 250px;"
-                    @click="$router.push('/swimming_competition')"
-                >
-                    <p>📢 창원 클럽 대항전 📢</p>
-                    <p>
-                    26년 3월 29일<br>
-                    팀 ZONE5 신청
-                    </p>
-                </div>
-            </div>
-            <div class="col-12 p-1" >
-                <div
-                    class="boxstyle5 diary"
-                    style="font-size: 30px; height: 250px;"
-                    @click="$router.push('/swimming_competition2')"
-                >
-                    <p>📢 창원 클럽 대항전 📢</p>
-                    <p>
-                        26년 3월 29일<br>
-                        팀 ZONE4 신청
-                    </p>
-                </div>
-            </div>
-            <!--<div class="thumbnail-box">-->
-            <!--    <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/super_bono')"/>-->
-            <!--    <p class="text-center mt-2 text-primary">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크📣📣 </p>-->
-            <!--</div>-->
-        </div>
+        <!--<div class="col-12">-->
+        <!--    <div class="col-12 p-1" >-->
+        <!--        <div-->
+        <!--            class="boxstyle3 diary"-->
+        <!--            style="font-size: 30px; height: 250px;"-->
+        <!--            @click="$router.push('/swimming_competition')"-->
+        <!--        >-->
+        <!--            <p>📢 창원 클럽 대항전 📢</p>-->
+        <!--            <p>-->
+        <!--            26년 3월 29일<br>-->
+        <!--            팀 ZONE5 신청-->
+        <!--            </p>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--    <div class="col-12 p-1" >-->
+        <!--        <div-->
+        <!--            class="boxstyle5 diary"-->
+        <!--            style="font-size: 30px; height: 250px;"-->
+        <!--            @click="$router.push('/swimming_competition2')"-->
+        <!--        >-->
+        <!--            <p>📢 창원 클럽 대항전 📢</p>-->
+        <!--            <p>-->
+        <!--                26년 3월 29일<br>-->
+        <!--                팀 ZONE4 신청-->
+        <!--            </p>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--    &lt;!&ndash;<div class="thumbnail-box">&ndash;&gt;-->
+        <!--    &lt;!&ndash;    <img src="@/assets/image/superbono.jpg" class="img-fluid" alt="썸네일" @click="$router.push('/super_bono')"/>&ndash;&gt;-->
+        <!--    &lt;!&ndash;    <p class="text-center mt-2 text-primary">📣📣슈퍼보노 7월 12일 7시 정관 아쿠아드림파크📣📣 </p>&ndash;&gt;-->
+        <!--    &lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
         <!--헤더 영역-->
         <!--<div class="col-12 p-1">-->

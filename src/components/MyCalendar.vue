@@ -1,33 +1,34 @@
 <template>
     <div class="calendar">
-        <!-- 헤더 -->
         <div class="calendar-header">
-            <button @click="prevMonth">&lt;</button>
+            <button @click="prevMonth" class="nav-btn">&lt;</button>
             <div class="month-year">{{ currentYear }}년 {{ currentMonth + 1 }}월</div>
-            <button @click="nextMonth">&gt;</button>
+            <button @click="nextMonth" class="nav-btn">&gt;</button>
         </div>
 
-        <!-- 요일 -->
         <div class="weekdays">
-            <div v-for="day in weekDays" :key="day" class="weekday">{{ day }}</div>
+            <div class="weekday sun">일</div>
+            <div class="weekday sat">토</div>
         </div>
 
-        <!-- 날짜 -->
         <div class="days">
             <div
-                v-for="(date, index) in calendarDays"
+                v-for="(date, index) in weekendOnlyDays"
                 :key="index"
                 :class="[
-          'day',
-          {
-            'other-month': date.otherMonth,
-            'event-day': events[`${date.year}-${date.month + 1}-${date.date}`]
-          }
-        ]"
+                  'day',
+                  {
+                    'other-month': date.otherMonth,
+                    'event-day': events[`${date.year}-${date.month + 1}-${date.date}`]
+                  }
+                ]"
             >
-                <div class="date-number">{{ date.date }}</div>
+                <div class="date-number" :class="{ 'txt-sun': date.dayIndex === 0, 'txt-sat': date.dayIndex === 6 }">
+                    {{ date.date }}
+                </div>
+
                 <div class="event-text">
-                    <div v-for="(evt, idx) in events[`${date.year}-${date.month + 1}-${date.date}`] || []" :key="idx">
+                    <div v-for="(evt, idx) in events[`${date.year}-${date.month + 1}-${date.date}`] || []" :key="idx" class="evt-item">
                         {{ evt }}
                     </div>
                 </div>
@@ -38,73 +39,76 @@
 
 <script>
 export default {
-    name: "MyCalendar", // ESLint 규칙 맞춤
+    name: "MyWeekendCalendar",
     data() {
         return {
             currentYear: new Date().getFullYear(),
             currentMonth: new Date().getMonth(),
-            weekDays: ['일', '월', '화', '수', '목', '금', '토'],
-
-            // JSON 이벤트 데이터
             events: {
                 '2026-1-11': ['훈련+허남강습'],
                 '2026-1-25': ['훈련+수영균강습'],
                 '2026-2-8': ['선수반+성장반 박정현'],
                 '2026-2-22': ['선수반+성장반 이건희'],
+                '2026-3-15': ['선수반-노원기', '성장반-허남'],
+                '2026-3-22': ['선수반-허남', '성장반-박정현'],
+                '2026-3-29': ['창원대회'],
+                '2026-4-4': ['경주마라톤'],
+                '2026-4-5': ['선수반-노원기', '성장반-허남'],
+                '2026-4-12': ['선수반-노원기', '성장반-이건희', '생체특강-박정현'],
+                '2026-4-26': ['김세희 특강'],
+                '2026-5-17': ['성장반 허남'],
+                '2026-5-24': ['생체훈련 박정현, 스바'],
+                '2026-5-31': ['성장반 이건희'],
             },
         };
     },
     computed: {
-        calendarDays() {
+        weekendOnlyDays() {
             const days = [];
             const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
             const lastDate = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
             const prevLastDate = new Date(this.currentYear, this.currentMonth, 0).getDate();
 
-            // 이전 달 채우기
             for (let i = firstDay - 1; i >= 0; i--) {
-                days.push({
-                    date: prevLastDate - i,
-                    otherMonth: true,
-                    year: this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear,
-                    month: this.currentMonth === 0 ? 11 : this.currentMonth - 1,
-                });
-            }
-
-            // 이번 달
-            for (let i = 1; i <= lastDate; i++) {
-                days.push({ date: i, otherMonth: false, year: this.currentYear, month: this.currentMonth });
-            }
-
-            // 다음 달 채우기
-            const nextDays = 7 - (days.length % 7);
-            if (nextDays < 7) {
-                for (let i = 1; i <= nextDays; i++) {
-                    days.push({
-                        date: i,
-                        otherMonth: true,
-                        year: this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear,
-                        month: this.currentMonth === 11 ? 0 : this.currentMonth + 1,
-                    });
+                const date = prevLastDate - i;
+                const month = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
+                const year = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
+                const dayIndex = new Date(year, month, date).getDay();
+                if (dayIndex === 0 || dayIndex === 6) {
+                    days.push({ date, otherMonth: true, year, month, dayIndex });
                 }
             }
 
+            for (let i = 1; i <= lastDate; i++) {
+                const dayIndex = new Date(this.currentYear, this.currentMonth, i).getDay();
+                if (dayIndex === 0 || dayIndex === 6) {
+                    days.push({ date: i, otherMonth: false, year: this.currentYear, month: this.currentMonth, dayIndex });
+                }
+            }
+
+            for (let i = 1; i <= 14; i++) {
+                const month = this.currentMonth === 11 ? 0 : this.currentMonth + 1;
+                const year = this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear;
+                const dayIndex = new Date(year, month, i).getDay();
+                if (dayIndex === 0 || dayIndex === 6) {
+                    days.push({ date: i, otherMonth: true, year, month, dayIndex });
+                }
+                if (days.length % 2 === 0 && days.length >= 4) break;
+            }
             return days;
         },
     },
     methods: {
         prevMonth() {
             if (this.currentMonth === 0) {
-                this.currentMonth = 11;
-                this.currentYear--;
+                this.currentMonth = 11; this.currentYear--;
             } else {
                 this.currentMonth--;
             }
         },
         nextMonth() {
             if (this.currentMonth === 11) {
-                this.currentMonth = 0;
-                this.currentYear++;
+                this.currentMonth = 0; this.currentYear++;
             } else {
                 this.currentMonth++;
             }
@@ -119,71 +123,92 @@ export default {
     margin: 0 auto;
     padding: 10px;
     font-family: Arial, sans-serif;
+    color: #333;
 
     .calendar-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
 
-        button {
-            padding: 0px 8px;
-            font-size: 16px;
+        .nav-btn {
+            padding: 4px 10px;
+            font-size: 14px;
             cursor: pointer;
-            border:1px solid #666;
-            background:#fff;
-            border-radius:50%;
+            border: 1px solid #eee;
+            background: #fff;
+            border-radius: 4px;
         }
 
-        .month-year {
-            font-size: 18px;
-            font-weight: bold;
-        }
+        .month-year { font-size: 18px; font-weight: bold; }
     }
 
     .weekdays {
         display: flex;
+        border-top: 1px solid #333;
         .weekday {
             flex: 1;
             text-align: center;
             font-weight: bold;
-            font-size:12px;
-            padding: 5px 0;
-            background: #f5fcf9;
-            border: 1px solid #ddd;
+            font-size: 12px;
+            padding: 8px 0;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            border-left: 1px solid #eee;
+            &:last-child { border-right: 1px solid #eee; }
+            &.sun { color: #ff5e5e; }
+            &.sat { color: #4a90e2; }
         }
     }
 
     .days {
         display: flex;
         flex-wrap: wrap;
+        border-left: 1px solid #eee;
 
         .day {
-            width: 14.28%;
-            border: 1px solid #ddd;
+            position: relative;
+            width: 50%;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
             box-sizing: border-box;
-            padding: 2px;
-            background-color: #fff; // 기본 흰색
+            padding: 8px;
+            background-color: #fff;
 
             &.other-month {
                 background: #fafafa;
-                color: #bbb;
+                /* 숫자의 색상과 텍스트 전체를 연하게 처리 */
+                .date-number { opacity: 0.3; }
+                .event-text { opacity: 0.3; }
             }
 
             &.event-day {
-                background-color: #e6edff; // 이벤트 있는 날 연한 핑크
+                background-color: #f4f7ff;
             }
 
             .date-number {
-                text-align: right;
-                font-size: 12px;
-                margin-bottom: 2px;
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                font-size: 13px;
+                font-weight: bold;
+                &.txt-sun { color: #ff5e5e; }
+                &.txt-sat { color: #4a90e2; }
             }
 
             .event-text {
-                font-size: 10px;
-                min-height: 40px;
-                padding: 2px;
+                font-size: 11px;
+                min-height: 45px;
+
+                .evt-item {
+                    margin-bottom: 4px;
+                    padding-bottom: 4px;
+                    word-break: break-all;
+                    padding-right: 22px;
+                    color: #000;
+                    line-height: 1.4;
+                    &:last-child { border-bottom: none; }
+                }
             }
         }
     }
