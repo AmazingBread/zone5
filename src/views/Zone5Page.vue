@@ -110,8 +110,12 @@
             <h5 class="form-label fw-bold">ZONE5 훈련 안내</h5>
             <div style="font-size:14px; padding:10px; line-height:1.7; max-width:400px;">
                 <p style="margin:4px 0;">
-                    📅 <strong>일요일 오전 6시 ~ 8시 (2시간)</strong><br>
-                    📍 부산 해운대구 선수촌로 122 지하1층 (편의점쪽)
+                    📅 <strong>일요일 오전 7시 ~ 9시 (2시간)</strong><br>
+                    📍 1. 만덕 카멜리아 (덕천로 257 지하2층)<br>
+                    📍 무료 주차 2시간 (차량 등록 필수)<br>
+                    <br>
+                    📍 2. 동래 클래스윔 (명장로20번길 98)<br>
+                    📍 무료 주차 3시간 (차량 등록 필수)<br>
                 </p>
                 <p style="margin:8px 0;">
                     <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
@@ -168,7 +172,13 @@
             </div>
 
             <p ref="accountText" style="font-size:15px; font-weight:bold; color:#1a1a1a; margin:0 0 10px;">
-                3333-20-4133950 카카오뱅크 노원기
+                3333-20-4133950 카카오뱅크 노원기<br><br>
+                입금시 이름날짜강습반<br>
+                예시)<br>
+                - 노원기 17 선수<br>
+                - 노원기 17 성장<br>
+                - 노원기 연회비<br>
+                - 노원기 게스트<br>
             </p>
 
             <div style="background:#f1f5f9; border-radius:4px; padding:8px 10px;">

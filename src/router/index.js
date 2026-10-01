@@ -21,6 +21,7 @@ import SignUp from "../views/SignUp.vue";
 import SignUpAdmin from "../views/SignUpAdmin.vue";
 import BearView from "../views/BearView.vue";
 import OpenWaterView from "../views/OpenWaterView.vue";
+import SwimmingRecord from "../views/SwimmingRecord.vue";
 import SwimmingCompetition from "../views/SwimmingCompetition.vue";
 import SwimmingCompetition2 from "../views/SwimmingCompetition2.vue";
 import SwimmingCompetition3 from "../views/SwimmingCompetition3.vue";
@@ -182,6 +183,12 @@ const routes = [
     name: "SwimTrainingPlan",
     component: SwimTrainingPlan,
     meta: { title: '보노보노 수영훈련계획표' }, // 타이틀 설정
+  },
+  {
+    path: "/swimming_record",
+    name: "SwimmingRecord",
+    component: SwimmingRecord,
+    meta: { title: '수영기록' }, // 타이틀 설정
   },
   {
     path: "/swimming_competition",

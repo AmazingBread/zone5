@@ -44,7 +44,7 @@
         <!--    </div>-->
         <!--</div>-->
         <div class="link-list">
-            <a href="https://www.moolbono.com/swimsize/" class="link-card">
+            <a href="https://www.swimvirus.com/swimsize" class="link-card">
                 <div class="card-content">
                     <div class="thumb-box">
                         <img src="https://www.moolbono.com/img/swimsize.0b14dccd.png">
@@ -52,6 +52,15 @@
                     <span class="link-title">수영복 사이즈 계산기 💗</span>
                 </div>
             </a>
+        </div>
+        <div class="col-12 p-1">
+            <div
+                class="boxstyle1 diary"
+                style="font-size: 20px;"
+                @click="$router.push('/fit_diary_zone_five')"
+            >
+                ZONE5/보노보노 마일리지 이벤트
+            </div>
         </div>
         <div class="col-12 p-1">
             <div
@@ -96,13 +105,14 @@
         <!--            style="font-size: 30px; height: 250px;"-->
         <!--            @click="$router.push('/swimming_competition')"-->
         <!--        >-->
-        <!--            <p>📢 창원 클럽 대항전 📢</p>-->
+        <!--            <p>📢 포항 대회 📢</p>-->
         <!--            <p>-->
-        <!--            26년 3월 29일<br>-->
-        <!--            팀 ZONE5 신청-->
+        <!--            26년 6월 21일<br>-->
+        <!--            신청서 작성-->
         <!--            </p>-->
         <!--        </div>-->
         <!--    </div>-->
+        <!--</div>-->
         <!--    <div class="col-12 p-1" >-->
         <!--        <div-->
         <!--            class="boxstyle5 diary"-->
@@ -133,15 +143,7 @@
         <!--    </div>-->
         <!--</div>-->
 
-        <!--<div class="col-12 p-1">-->
-        <!--    <div-->
-        <!--        class="boxstyle2 diary"-->
-        <!--        style="font-size: 20px;"-->
-        <!--        @click="$router.push('/fit_diary_zone_five')"-->
-        <!--    >-->
-        <!--        ZONE5-->
-        <!--    </div>-->
-        <!--</div>-->
+
         <!--<div class="col-12 p-1">-->
         <!--    <div-->
         <!--        class="boxstyle3"-->

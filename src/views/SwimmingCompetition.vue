@@ -7,10 +7,10 @@
                     style="font-size: 30px; height: 250px;"
                     @click="$router.push('/swimming_competition')"
                 >
-                    <p>📢 창원 클럽 대항전 📢</p>
+                    <p>📢 포항 대회 📢</p>
                     <p>
-                        26년 3월 29일<br>
-                        팀 ZONE5 신청
+                        26년 6월 21일<br>
+                        신청서 작성
                     </p>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                신청마감 2월 11일 오후 4시 까지
+                신청마감 5월 15일 오후 1시 까지
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 class="boxstyle5"
                 style="font-size: 20px; "
             >
-                팀명 ZONE5 (50명제한)
+                팀명 ZONE5
             </div>
         </div>
 
@@ -39,53 +39,28 @@
                 <input type="text" class="form-control" id="name" v-model="formData.name" ref="name" placeholder="홍길동">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 1">{{errorMessage[0]}}</p>
             </div>
-            <!--<div class="mb-3">-->
-            <!--    <label for="sex" class="form-label fw-bold">2. 성별(남,여)로 입력</label>-->
-            <!--    <input type="text" class="form-control" id="sex" v-model="formData.sex" ref="sex">-->
-            <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>-->
-            <!--</div>-->
             <div class="mb-3">
-                <label for="age" class="form-label fw-bold">3. 생년월일(800523-1)</label>
-                <input type="text" class="form-control" id="age" v-model="formData.age" ref="age" placeholder="800523-1">
+                <label for="age" class="form-label fw-bold">2. 생년월일(910721)</label>
+                <input type="text" class="form-control" id="age" v-model="formData.age" ref="age" placeholder="910721">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label fw-bold">4. 저나보노(010-3637-1234)</label>
-                <input type="text" class="form-control" id="phone" v-model="formData.phone" ref="phone" placeholder="010-3637-1234">
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
-            </div>
-            <div class="mb-3">
-                <label class="form-label fw-bold">5. 나이에 맞는 본인 그룹 선택</label>
+                <label class="form-label fw-bold">3. 본인 그룹 선택</label>
                 <div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group1" value="1그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group1">1그룹 (고등학생∼2007년)</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group2" value="2그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group2">2그룹 (1997년∼2006년)</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group3" value="3그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group3">3그룹 (1987년∼1996년)</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group4" value="4그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group4">4그룹 (1977년∼1986년)</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group5" value="5그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group5">5그룹 (1967년~1976년)</label>
-                    </div>
-                    <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
-                        <input class="form-check-input" type="radio" name="group" id="group5" value="6그룹" v-model="formData.group" ref="group">
-                        <label class="form-check-label" for="group5">6그룹 (1966년 이전)</label>
+                    <div class="form-check d-inline-block me-3" v-for="g in groups" :key="g.id">
+                        <input class="form-check-input" type="radio" :name="'group'" :id="g.id" :value="g.val" v-model="formData.group" ref="group">
+                        <label class="form-check-label" :for="g.id">{{ g.val }}</label>
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label class="form-label fw-bold">6. 종목 1</label>
+                <label for="sex" class="form-label fw-bold">4. 성별(남,여)로 입력</label>
+                <input type="text" class="form-control" id="sex" v-model="formData.sex" ref="sex">
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">5. 종목 1</label>
                 <div>
                     <div class="form-check d-inline-block me-3" v-for="(ev, idx) in events" :key="'ev1_'+idx">
                         <input class="form-check-input" type="radio" name="events1" :id="'ev1_'+idx" :value="ev" v-model="formData.events1" ref="events1">
@@ -96,7 +71,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label fw-bold">7. 종목 2</label>
+                <label class="form-label fw-bold">6. 종목 2</label>
                 <div>
                     <div class="form-check d-inline-block me-3" v-for="(ev, idx) in events" :key="'ev2_'+idx">
                         <input class="form-check-input" type="radio" name="events2" :id="'ev2_'+idx" :value="ev" v-model="formData.events2" ref="events2">
@@ -104,6 +79,11 @@
                     </div>
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label fw-bold">7. 연락처(010-3637-1234)</label>
+                <input type="text" class="form-control" id="phone" v-model="formData.phone" ref="phone" placeholder="010-3637-1234">
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>
             </div>
             <!--<div class="mb-3">-->
             <!--    <label class="form-label fw-bold">8. 티샤스 사이즈</label>-->
@@ -132,7 +112,7 @@
             <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 8">{{errorMessage[0]}}</p>-->
             <!--</div>-->
             <div class="mb-3">
-                <label for="size" class="form-label fw-bold">9. 대회 참가비</label>
+                <label for="size" class="form-label fw-bold">대회 참가비</label>
                 <select class="form-select" id="size" v-model="formData.ok" ref="sizeSelect">
                     <option value="" disabled>대회 참가비 확인</option>
                     <option value="대회 참가비 확인함">대회 참가비 3만원</option>
@@ -152,7 +132,7 @@
                     </div>
                 </div>
                 <div class="form-control mt-2" style="font-size: 11px; height: 100px; overflow-y: auto; border: 1px solid #ced4da; padding: 0.375rem 0.75rem; border-radius: 0.25rem; white-space: pre-wrap;">
-                    보노보노물보노 동호회(이하 "보노")는 개인의 개별가입과 동시에 "보노"에서 개최하는 모든 행사 및 모임관련 일체(온.오프라인) 행사에 . 본인의  개인정보를 수집 · 이용함을 설명 · 안내 받았으며, "보노"에서 정보를 제공하는 일체의 활동에 대해 면책 동의가 적용된다 것에 동의한다. (게스트: 보노회원이 동반한 회원의 지인 포함)<br>
+                    ZONE5 동호회(이하 "ZONE5")는 개인의 개별가입과 동시에 "보노"에서 개최하는 모든 행사 및 모임관련 일체(온.오프라인) 행사에 . 본인의  개인정보를 수집 · 이용함을 설명 · 안내 받았으며, "보노"에서 정보를 제공하는 일체의 활동에 대해 면책 동의가 적용된다 것에 동의한다. (게스트: 보노회원이 동반한 회원의 지인 포함)<br>
                     <br>
                     이 면책 동의서는 "보노" 모임 시작과 동시에 효력이 발생하며 "보노"에서 주최하는 모든 모임의 안전사고와 재해사고 및 재해 사망사고 시 일체의 책임(민,형사상)을 본 동호회 운영진과 회원 및 모든 참가자에게 그 책임을 전가하지 못하며 또한 본인 이외에 법적 대리인(직계존속 등)도 그 책임을 본 동호회에 전가하지 아니한다. 사고자는 본인의 자발적인 동호회행사에 참가하였으며, 모든 책임은 본인의 과실로 인정한다.(게스트: 회원이 동반한 회원의 지인에게도 동일하게 적용됨)<br>
                     <br>
@@ -221,12 +201,17 @@
                 class="boxstyle6"
                 style="font-size: 20px; "
             >
-                <a href="https://open.kakao.com/o/gkA9Izfi" target="_blank" style="text-decoration: none; color: inherit;">
-                    ZONE5 창원 대회 채팅방 (실명)
+                <a href="https://open.kakao.com/o/geI5UOti" target="_blank" style="text-decoration: none; color: inherit;">
+                    ZONE5 포항 대회 채팅방 (실명)
                 </a>
             </div>
         </div>
         <div class="mt-3">
+            <div class="mt-3 text-right">
+                <button class="btn btn-primary btn-sm" @click="downloadExcel">
+                    📥 신청자 엑셀 다운로드
+                </button>
+            </div>
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">대회 신청자 {{apiData.length}}명</p>
             <div
                 v-for="(item) in apiData.slice().reverse()"
@@ -257,10 +242,7 @@
                 <!-- 하단 사용자 정보 -->
                 <div class="font-weight-bold mt-1">
                     <!--{{ item.name }}, {{ item.sex }}, {{ item.age }}, {{ formatPhone(item.phone) }},-->
-                    {{ item.name }}, {{ item.age }}, {{ formatPhone(item.phone) }},
-                </div>
-                <div class="font-weight-bold">
-                    {{ item.group }}, {{ item.events1 }}, {{ item.events2 }}
+                    {{ item.name }} / {{ item.group }} / {{ item.age }} / {{ item.events1 }} / {{ item.events2 }}
                 </div>
             </div>
         </div>
@@ -280,7 +262,7 @@ export default {
                 checked      :'',
                 name      :'',
                 age      :'',
-                // sex      :'',
+                sex      :'',
                 phone      :'',
                 group      :'',
                 events1      :'',
@@ -291,16 +273,13 @@ export default {
                 liabilityAgreement: ''
             },
             groups: [
-                { id: 'group1', val: '1그룹', text: '1그룹 (고등학생∼2007년)' },
-                { id: 'group2', val: '2그룹', text: '2그룹 (1997년∼2006년)' },
-                { id: 'group3', val: '3그룹', text: '3그룹 (1987년∼1996년)' },
-                { id: 'group4', val: '4그룹', text: '4그룹 (1977년∼1986년)' },
-                { id: 'group5', val: '5그룹', text: '5그룹 (1967년~1976년)' },
-                { id: 'group6', val: '6그룹', text: '6그룹 (1966년 이전)' },
+                { id: 'g1', val: '1그룹' }, { id: 'g2', val: '2그룹' },
+                { id: 'g3', val: '3그룹' }, { id: 'g4', val: '4그룹' },
+                { id: 'g5', val: '5그룹' }, { id: 'g6', val: '6그룹' }
             ],
-            events: ['자유형50', '평영50', '배영50', '접영50', '핀자유형50', '핀접영50'],
-            firstComeLimit: 50,
-            deadline: new Date('2026-02-13T13:59:59'),
+            events: ['자유형', '평영', '배영', '접영', '핀자유형', '핀접영'],
+            firstComeLimit: 100,
+            deadline: new Date('2026-05-15T12:59:59'),
             remainingTime: "계산 중...", // 남은 시간 초기값
             isDeadlinePassed: false, // 마감 여부를 체크하는 변수
             errorMessage: ['', 0],
@@ -344,37 +323,54 @@ export default {
             if (timeDiff <= 0) {
                 this.isDeadlinePassed = true;
                 this.remainingTime = "마감되었습니다.";
-                clearInterval(this.intervalId);
-            } else {
-                const totalSeconds = Math.floor(timeDiff / 1000);
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
-                this.remainingTime = `${hours}시간 ${minutes}분 ${seconds}초`;
+                if (this.intervalId) clearInterval(this.intervalId);
+                return;
+            }
+
+            const totalSeconds = Math.floor(timeDiff / 1000);
+            const days = Math.floor(totalSeconds / (3600 * 24));
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            // 1. 2일(48시간) 이상 남았을 때
+            if (days >= 2) {
+                this.remainingTime = `마감 ${days}일 전`;
+            }
+            // 2. 1일(24시간) 이상 2일 미만 남았을 때 (D-1 구간)
+            else if (days === 1) {
+                this.remainingTime = `마감 1일 전`;
+            }
+            // 3. 당일 (24시간 미만 남았을 때) -> 실시간 카운트다운
+            else {
+                // 시간 단위가 0일 때는 분/초만 노출하거나, 00시간으로 노출
+                const hDisplay = hours > 0 ? `${hours}시간 ` : "";
+                this.remainingTime = `마감 ${hDisplay}${minutes}분 ${seconds}초 전`;
             }
         },
         // 폼 유효성 검사
         validateForm() {
-            const { name, age, phone, group, events1, events2, ok, liabilityAgreement } = this.formData;
-            const checks = [
-                { val: name, msg: "성함을 입력해주세요", no: 1, ref: 'name' },
-                { val: age, msg: "생년월일 형식을 확인해주세요", no: 3, ref: 'age' },
-                { val: phone, msg: "전화번호를 입력해주세요", no: 4, ref: 'phone' },
-                { val: group, msg: "그룹을 선택해주세요", no: 5, ref: 'group' },
-                { val: events1, msg: "종목 1을 선택해주세요", no: 6, ref: 'events1' },
-                { val: events2, msg: "종목 2를 선택해주세요", no: 7, ref: 'events2' },
-                { val: ok, msg: "입금 확인을 선택해주세요", no: 9, ref: 'sizeSelect' },
-                { val: liabilityAgreement === 'agree', msg: "면책 동의가 필요합니다", no: 10, ref: 'agreeRadio' }
-            ];
-
-            for (let check of checks) {
-                if (!check.val) {
-                    this.errorMessage = [check.msg, check.no];
-                    this.$refs[check.ref].focus();
-                    return false;
-                }
-            }
+            const f = this.formData;
+            if (!f.name) return this.setError("성함을 입력해주세요", 1, 'name');
+            if (!f.age || f.age.length < 6) return this.setError("생년월일(800523) 형식을 확인해주세요", 2, 'age');
+            if (!f.group) return this.setError("그룹을 선택해주세요", 3, 'group');
+            if (!f.sex) return this.setError("성별을 입력해주세요", 4, 'sex');
+            if (!f.events1) return this.setError("종목 1을 선택해주세요", 5, 'events1');
+            if (!f.events2) return this.setError("종목 2를 선택해주세요", 6, 'events2');
+            if (!f.phone) return this.setError("연락처를 입력해주세요", 7, 'phone');
+            if (!f.ok) return this.setError("참가비 확인을 선택해주세요", 8, 'sizeSelect');
+            if (f.liabilityAgreement !== 'agree') return this.setError("면책 동의가 필요합니다", 9, 'agreeRadio');
             return true;
+        },
+
+        setError(msg, no, refName) {
+            this.errorMessage = [msg, no];
+            if (this.$refs[refName]) {
+                // 라디오 버튼 그룹의 경우 배열로 올 수 있음
+                const target = Array.isArray(this.$refs[refName]) ? this.$refs[refName][0] : this.$refs[refName];
+                target.focus();
+            }
+            return false;
         },
 
         submitForm() {
@@ -424,8 +420,15 @@ export default {
         },
         resetForm() {
             this.formData = {
-                name: '', age: '', phone: '', group: '',
-                events1: '', events2: '', paid: false, ok: '',
+                name: '',
+                age: '',
+                sex: '', // 추가됨
+                phone: '',
+                group: '',
+                events1: '',
+                events2: '',
+                paid: false,
+                ok: '',
                 liabilityAgreement: ''
             };
             this.errorMessage = ['', 0];
@@ -444,6 +447,33 @@ export default {
             navigator.clipboard.writeText(this.accountText)
             .then(() => alert("계좌번호가 복사되었습니다."))
                       .catch(() => alert("복사 실패"));
+        },
+        downloadExcel() {
+            if (!this.apiData.length) {
+                alert("다운로드할 신청자가 없습니다.");
+                return;
+            }
+
+            // 엑셀용 데이터 변환
+            const excelData = this.apiData.map((item, index) => ({
+                번호: index + 1,
+                이름: item.name,
+                생년월일: item.age,
+                그룹: item.group,
+                성별: item.sex,
+                종목1: item.events1,
+                종목2: item.events2,
+                전화번호: item.phone,
+                대회비: item.paid ? "입금완료" : "미입금"
+            }));
+
+            // 워크시트 생성
+            const worksheet = XLSX.utils.json_to_sheet(excelData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "zone5 포항대회 신청자명단");
+
+            // 파일 다운로드
+            XLSX.writeFile(workbook, "zone5 포항대회 신청자명단.xlsx");
         }
     }
 };
