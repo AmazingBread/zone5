@@ -43,16 +43,16 @@
         <!--        <img src="@/assets/image/요헤미티.png" class="img-fluid" alt="썸네일" @click="$router.push('/group_buying')"/>-->
         <!--    </div>-->
         <!--</div>-->
-        <div class="link-list">
-            <a href="https://www.swimvirus.com/swimsize" class="link-card">
-                <div class="card-content">
-                    <div class="thumb-box">
-                        <img src="https://www.moolbono.com/img/swimsize.0b14dccd.png">
-                    </div>
-                    <span class="link-title">수영복 사이즈 계산기 💗</span>
-                </div>
-            </a>
-        </div>
+        <!--<div class="link-list">-->
+        <!--    <a href="https://www.swimvirus.com/swimsize" class="link-card">-->
+        <!--        <div class="card-content">-->
+        <!--            <div class="thumb-box">-->
+        <!--                <img src="https://www.moolbono.com/img/swimsize.0b14dccd.png">-->
+        <!--            </div>-->
+        <!--            <span class="link-title">수영복 사이즈 계산기 💗</span>-->
+        <!--        </div>-->
+        <!--    </a>-->
+        <!--</div>-->
         <div class="col-12 p-1">
             <div
                 class="boxstyle1 diary"
