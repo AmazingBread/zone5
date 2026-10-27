@@ -1,7 +1,7 @@
 <template>
     <div class="mobile-detail signup-page training-page">
         <header class="detail-hero"><router-link to="/" class="back-link">‹ 홈으로</router-link><span class="detail-eyebrow">JOIN THE ZONE5 TEAM</span><h1>함께할수록,<br>더 즐거운 수영.</h1><p>회원 정보를 입력하고 ZONE5와 함께 시작해 보세요.</p></header>
-        <div class="signup-membership-summary"><span>ZONE5 연회원</span><strong>60,000<small>원 / 1년</small></strong><p>훈련 참가비는 별도입니다.</p></div>
+        <div class="signup-membership-summary"><span>ZONE5 연회원</span><strong>60,000<small>원 / 1년</small></strong><p>중간 가입 시: 12월까지 남은 개월 수 × 5,000원<br>훈련 참가비는 별도입니다.</p></div>
         <form @submit.prevent="submitForm">
             <section class="form-section"><h2 class="section-title">01. 계정 정보</h2><p class="field-help">아이디와 비밀번호는 향후 로그인에 사용됩니다.</p>
             <div class="mb-3">
@@ -71,7 +71,7 @@
             <details class="info-disclosure"><summary>훈련 장소 및 운영비 안내</summary>        <section class="training-info guide-card">
             <h2>훈련 안내</h2><p class="guide-lead">일요일 오전 7:00–9:00 · 2시간</p>
             <div class="guide-block"><h3>훈련 장소</h3><div class="venue"><strong>만덕 카멜리아</strong><span>덕천로 257 지하 2층</span><small>무료 주차 2시간 · 차량 등록 필수</small></div><div class="venue"><strong>동래 클래스윔</strong><span>명장로20번길 98</span><small>무료 주차 3시간 · 차량 등록 필수</small></div></div>
-            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
+            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div></dl><p class="guide-note membership-proration">중간 가입 시: 12월까지 남은 개월 수 × 5,000원</p><dl class="fee-list"><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
             <div class="guide-block"><h3>프로그램</h3><div class="program-description"><strong>훈련반</strong><p>드릴 + 인터벌 2,500–3,000m 후 스타트 연습<br>핀 사용 가능</p></div><div class="program-description"><strong>특강반</strong><p>드릴 + 교정 1,000–1,500m 후 스타트 연습<br>매회 강사 교대 강습 · 훈련 스케줄 참조</p></div></div>
             <a class="contact-link" href="tel:01058228122">문의 <strong>010-5822-8122</strong><span>노원기 ↗</span></a>
         </section>
@@ -107,7 +107,7 @@
                 {{apiData.length === firstComeLimit ? '회원신청마감' : '회원신청'}}
                 <span style="font-weight: bold; padding-left:10px;" v-if="apiData.length < firstComeLimit">{{ remainingTime }}</span>
             </button>
-            <section class="account-info guide-card"><div class="account-heading"><h2>연회비 입금 안내</h2><button type="button" class="copy-account" @click="copyAccountNumber">계좌 복사</button></div><div class="account-number" ref="accountText"><small>카카오뱅크 · 노원기</small><strong>3333-20-4133950</strong></div><p class="field-help">연회비 60,000원 · 입금 시 신청자 이름을 적어 주세요.</p><p class="signup-refund">연회비는 환불되지 않습니다.</p></section>
+            <section class="account-info guide-card"><div class="account-heading"><h2>연회비 입금 안내</h2><button type="button" class="copy-account" @click="copyAccountNumber">계좌 복사</button></div><div class="account-number" ref="accountText"><small>카카오뱅크 · 노원기</small><strong>3333-20-4133950</strong></div><p class="field-help">연회비 60,000원<br>중간 가입 시: 12월까지 남은 개월 수 × 5,000원<br>입금 시 신청자 이름을 적어 주세요.</p><p class="signup-refund">연회비는 환불되지 않습니다.</p></section>
         </form>
         <a class="signup-chat" href="https://open.kakao.com/o/gR5X0kdi" target="_blank" rel="noopener noreferrer"><span><strong>ZONE5 카카오톡 채팅방</strong><small>이름으로 참여해 주세요</small></span><span aria-hidden="true">↗</span></a>
         <div class="mt-3" v-if="apiData.length === 0">

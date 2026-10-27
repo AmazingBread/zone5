@@ -99,7 +99,7 @@
         <section class="training-info guide-card">
             <h2>훈련 안내</h2><p class="guide-lead">일요일 오전 7:00–9:00 · 2시간</p>
             <div class="guide-block"><h3>훈련 장소</h3><div class="venue"><strong>만덕 카멜리아</strong><span>덕천로 257 지하 2층</span><small>무료 주차 2시간 · 차량 등록 필수</small></div><div class="venue"><strong>동래 클래스윔</strong><span>명장로20번길 98</span><small>무료 주차 3시간 · 차량 등록 필수</small></div></div>
-            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
+            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div></dl><p class="guide-note membership-proration">중간 가입 시: 12월까지 남은 개월 수 × 5,000원</p><dl class="fee-list"><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
             <div class="guide-block"><h3>프로그램</h3><div class="program-description"><strong>훈련반</strong><p>드릴 + 인터벌 2,500–3,000m 후 스타트 연습<br>핀 사용 가능</p></div><div class="program-description"><strong>특강반</strong><p>드릴 + 교정 1,000–1,500m 후 스타트 연습<br>매회 강사 교대 강습 · 훈련 스케줄 참조</p></div></div>
             <a class="contact-link" href="tel:01058228122">문의 <strong>010-5822-8122</strong><span>노원기 ↗</span></a>
         </section>
