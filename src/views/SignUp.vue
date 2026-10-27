@@ -1,50 +1,29 @@
 <template>
-    <div>
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle6"
-                style="font-size: 20px; "
-            >
-                ZONE5 회원신청
-            </div>
-        </div>
-        <!--<div class="col-12 p-1">-->
-        <!--    <div-->
-        <!--        class="boxstyle3"-->
-        <!--        style="font-size: 20px; "-->
-        <!--    >-->
-        <!--        신청마감 9월 7일 까지-->
-        <!--    </div>-->
-        <!--</div>-->
-
-        <!--<div class="col-12 p-1">-->
-        <!--    <div-->
-        <!--        class="boxstyle5"-->
-        <!--        style="font-size: 20px; "-->
-        <!--    >-->
-        <!--        팀명 zone5-->
-        <!--    </div>-->
-        <!--</div>-->
-        <p style="height: 50px;"></p>
+    <div class="mobile-detail signup-page training-page">
+        <header class="detail-hero"><router-link to="/" class="back-link">‹ 홈으로</router-link><span class="detail-eyebrow">JOIN THE ZONE5 TEAM</span><h1>함께할수록,<br>더 즐거운 수영.</h1><p>회원 정보를 입력하고 ZONE5와 함께 시작해 보세요.</p></header>
+        <div class="signup-membership-summary"><span>ZONE5 연회원</span><strong>60,000<small>원 / 1년</small></strong><p>훈련 참가비는 별도입니다.</p></div>
         <form @submit.prevent="submitForm">
+            <section class="form-section"><h2 class="section-title">01. 계정 정보</h2><p class="field-help">아이디와 비밀번호는 향후 로그인에 사용됩니다.</p>
             <div class="mb-3">
-                <label for="userId" class="form-label fw-bold">1. 아이디 (향후 로그인 기능 사용)</label>
-                <input type="text" class="form-control" id="userId" v-model="formData.userId" ref="userId">
+                <label for="userId" class="form-label fw-bold">아이디</label>
+                <input type="text" class="form-control" id="userId" autocomplete="username" placeholder="사용할 아이디" v-model="formData.userId" ref="userId">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 1">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label fw-bold">2. 비밀번호 (향후 로그인 기능 사용)</label>
-                <input type="password" class="form-control" id="password" v-model="formData.password" ref="password">
+                <label for="password" class="form-label fw-bold">비밀번호</label>
+                <input type="password" class="form-control" id="password" autocomplete="new-password" placeholder="비밀번호 입력" v-model="formData.password" ref="password">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="confirmPassword" class="form-label fw-bold">2-1. 비밀번호 확인</label>
-                <input type="password" class="form-control" id="confirmPassword" v-model="formData.confirmPassword" ref="confirmPassword">
+                <label for="confirmPassword" class="form-label fw-bold">비밀번호 확인</label>
+                <input type="password" class="form-control" id="confirmPassword" autocomplete="new-password" placeholder="비밀번호 다시 입력" v-model="formData.confirmPassword" ref="confirmPassword">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 2">{{errorMessage[0]}}</p>
             </div>
+            </section>
+            <section class="form-section"><h2 class="section-title">02. 기본 정보</h2>
             <div class="mb-3">
-                <label for="userName" class="form-label fw-bold">3. 이름 (실명)</label>
-                <input type="text" class="form-control" id="userName" v-model="formData.userName" ref="userName">
+                <label for="userName" class="form-label fw-bold">이름</label>
+                <input type="text" class="form-control" id="userName" autocomplete="name" placeholder="실명을 입력해 주세요" v-model="formData.userName" ref="userName">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 3">{{errorMessage[0]}}</p>
             </div>
             <!--<div class="mb-3">-->
@@ -53,18 +32,18 @@
             <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 4">{{errorMessage[0]}}</p>-->
             <!--</div>-->
             <div class="mb-3">
-                <label for="sex" class="form-label fw-bold">4. 성별(남,여)로 입력</label>
-                <input type="text" class="form-control" id="sex" v-model="formData.sex" ref="sex">
+                <label for="sex" class="form-label fw-bold">성별</label>
+                <input type="text" class="form-control" id="sex" placeholder="남 또는 여" v-model="formData.sex" ref="sex">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 5">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="age" class="form-label fw-bold">5. 생년월일 (910102)</label>
-                <input type="text" class="form-control" id="age" v-model="formData.age" ref="age">
+                <label for="age" class="form-label fw-bold">생년월일</label>
+                <input type="text" class="form-control" id="age" inputmode="numeric" maxlength="6" placeholder="예: 910102 (6자리)" v-model="formData.age" ref="age">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 6">{{errorMessage[0]}}</p>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label fw-bold">6. 전화번호(010-3637-1234)</label>
-                <input type="text" class="form-control" id="phone" v-model="formData.phone" ref="phone">
+                <label for="phone" class="form-label fw-bold">전화번호</label>
+                <input type="text" class="form-control" id="phone" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" v-model="formData.phone" ref="phone">
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 7">{{errorMessage[0]}}</p>
             </div>
             <!--<div class="mb-3">-->
@@ -72,12 +51,14 @@
             <!--    <input type="text" class="form-control" id="area" v-model="formData.area" ref="area">-->
             <!--    <p class="text-danger mt-2" v-if="errorMessage[1] === 8">{{errorMessage[0]}}</p>-->
             <!--</div>-->
+            </section>
+            <section class="form-section membership-section"><h2 class="section-title">03. 회원 유형</h2>
             <div class="mb-3">
-                <label class="form-label fw-bold">7. 회비 형식 선택</label>
+                <label class="form-label fw-bold">회비 형식 선택</label>
                 <div>
                     <div class="form-check d-inline-block me-3"> <!-- d-inline-block을 사용하여 인라인 블록으로 설정 -->
                         <input class="form-check-input" type="radio" name="membershipType" id="yearType" value="연회원" v-model="formData.membershipType" ref="membershipType">
-                        <label class="form-check-label" for="yearType">연회원 (1년 5만원)</label>
+                        <label class="form-check-label" for="yearType">연회원 (1년 6만원)</label>
                     </div>
                     <!--<div class="form-check d-inline-block me-3"> &lt;!&ndash; d-inline-block을 사용하여 인라인 블록으로 설정 &ndash;&gt;-->
                     <!--    <input class="form-check-input" type="radio" name="membershipType" id="monthType" value="월회원" v-model="formData.membershipType" ref="monthType">-->
@@ -86,57 +67,16 @@
                 </div>
                 <p class="text-danger mt-2" v-if="errorMessage[1] === 9">{{errorMessage[0]}}</p>
             </div>
-            <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <h5 class="form-label fw-bold">ZONE5 훈련 안내</h5>
-                <div style="font-size:14px; padding:10px; line-height:1.7; max-width:400px;">
-                    <p style="margin:4px 0;">
-                        📅 <strong>일요일 오전 6시 ~ 8시 (2시간)</strong><br>
-                        📍 부산 해운대구 선수촌로 122 지하1층 (편의점쪽)
-                    </p>
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
-                        <!-- - 월 회원: 5,000원<br>-->
-                        - 연 회원: 50,000원<br>
-                    </p>
-
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">2.</span> <strong>프로그램별 운영비</strong><br>
-                        - 훈련: 15,000원 (1회)<br>
-                        - 강습: 20,000원 (1회)<br>
-                        - 참가 전일까지 입금
-                    </p>
-
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>단체/게스트</strong><br>
-                        - 게스트: 25,000원<br>
-                        - 단체: 별도 문의<br>
-                        - 참가 전일까지 입금
-                    </p>
-
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">4.</span> <strong>레인 안내</strong><br>
-                        - 선수반 1~4레인: 선수반 운영<br>
-                        - 5~6레인:  성장반 운영 (접영 가능자 대상)
-                    </p>
-
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">5.</span> <strong>선수반</strong><br>
-                        - 드릴 + 인터벌 2,500~3,000m 후 스타트 연습<br>
-                        - 핀 사용 가능
-                    </p>
-                    <p style="margin:8px 0;">
-                        <span style="font-weight:bold; color:#2a5bd7;">6.</span> <strong>성장반</strong><br>
-                        - 드릴 + 교정 1,000 ~ 1,500m 후 스타트 연습<br>
-                        - 매회 강사님 교대로 강습 (훈련스케쥴 참조)
-                    </p>
-
-                    <p style="margin:8px 0;">
-                        ❗ 문의: 010-5822-8122 (노원기)
-                    </p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label fw-bold">면책 동의</label>
+            </section>
+            <details class="info-disclosure"><summary>훈련 장소 및 운영비 안내</summary>        <section class="training-info guide-card">
+            <h2>훈련 안내</h2><p class="guide-lead">일요일 오전 7:00–9:00 · 2시간</p>
+            <div class="guide-block"><h3>훈련 장소</h3><div class="venue"><strong>만덕 카멜리아</strong><span>덕천로 257 지하 2층</span><small>무료 주차 2시간 · 차량 등록 필수</small></div><div class="venue"><strong>동래 클래스윔</strong><span>명장로20번길 98</span><small>무료 주차 3시간 · 차량 등록 필수</small></div></div>
+            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
+            <div class="guide-block"><h3>프로그램</h3><div class="program-description"><strong>훈련반</strong><p>드릴 + 인터벌 2,500–3,000m 후 스타트 연습<br>핀 사용 가능</p></div><div class="program-description"><strong>특강반</strong><p>드릴 + 교정 1,000–1,500m 후 스타트 연습<br>매회 강사 교대 강습 · 훈련 스케줄 참조</p></div></div>
+            <a class="contact-link" href="tel:01058228122">문의 <strong>010-5822-8122</strong><span>노원기 ↗</span></a>
+        </section>
+</details>
+            <section class="form-section"><h2 class="section-title">04. 면책 동의</h2>
                 <div class="d-flex justify-content-end">
                     <div class="form-check me-3">
                         <input class="form-check-input" type="radio" name="liabilityAgreement" id="agree" value="agree" v-model="formData.liabilityAgreement" ref="agreeRadio">
@@ -147,7 +87,7 @@
                         <label class="form-check-label" for="disagree">비동의</label>
                     </div>
                 </div>
-                <div class="form-control mt-2" style="font-size: 11px; height: 100px; overflow-y: auto; border: 1px solid #ced4da; padding: 0.375rem 0.75rem; border-radius: 0.25rem; white-space: pre-wrap;">
+                <div class="waiver-text mt-3" tabindex="0" aria-label="면책 동의 내용">
                     ZONE5 훈련팀(이하 "ZONE5")는 개인의 개별가입과 동시에 "ZONE5"에서 개최하는 모든 행사 및 모임관련 일체(온.오프라인) 행사에 . 본인의  개인정보를 수집 · 이용함을 설명 · 안내 받았으며, "ZONE5"에서 정보를 제공하는 일체의 활동에 대해 면책 동의가 적용된다 것에 동의한다. (게스트: ZONE5회원이 동반한 회원의 지인 포함)<br>
                     <br>
                     이 면책 동의서는 "ZONE5" 모임 시작과 동시에 효력이 발생하며 "ZONE5"에서 주최하는 모든 모임의 안전사고와 재해사고 및 재해 사망사고 시 일체의 책임(민,형사상)을 본 동호회 운영진과 회원 및 모든 참가자에게 그 책임을 전가하지 못하며 또한 본인 이외에 법적 대리인(직계존속 등)도 그 책임을 본 훈련팀에 전가하지 아니한다. 사고자는 본인의 자발적인 행사에 참가하였으며, 모든 책임은 본인의 과실로 인정한다.(게스트: 회원이 동반한 회원의 지인에게도 동일하게 적용됨)<br>
@@ -155,39 +95,21 @@
                     비록 자필서명이 없더라도 면책동의 후 행사신청 또는 참석 시 본 훈련팀에 면책동의를 한것으로 간주한다.<br>
                     이에 각 개인은 면책동의에 대한  설명 · 안내 받았으며, 상기의 면책동의서 사항에 다시 한번 동의함을 확인한다.<br>
                 </div>
-                <p class="text-danger mt-2" v-if="errorMessage[1] === 10">{{errorMessage[0]}}</p>
-            </div>
+                <p class="text-danger mt-2" v-if="errorMessage[1] === 10" role="alert">{{errorMessage[0]}}</p>
+            </section>
 
             <button
                 type="submit"
-                class="btn w-100"
+                class="primary-action signup-submit"
                 :class="apiData.length === firstComeLimit ? 'btn-danger' : 'btn-primary'"
                 :disabled="apiData.length === firstComeLimit"
             >
                 {{apiData.length === firstComeLimit ? '회원신청마감' : '회원신청'}}
                 <span style="font-weight: bold; padding-left:10px;" v-if="apiData.length < firstComeLimit">{{ remainingTime }}</span>
             </button>
-            <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-                <label class="form-label fw-bold">입금 계좌번호 안내</label> <button type="button" class="btn btn-sm btn-outline-secondary" @click="copyAccountNumber" style="font-size:10px">계좌번호 복사</button>
-                <p class="highlighted-text" ref="accountText">3333-20-4133950 카카오뱅크 노원기</p>
-                <div class="refund-policy">
-                    <p>※ 환불규정</p>
-                    <ul>
-                        <li>환불 불가</li>
-                    </ul>
-                </div>
-            </div>
+            <section class="account-info guide-card"><div class="account-heading"><h2>연회비 입금 안내</h2><button type="button" class="copy-account" @click="copyAccountNumber">계좌 복사</button></div><div class="account-number" ref="accountText"><small>카카오뱅크 · 노원기</small><strong>3333-20-4133950</strong></div><p class="field-help">연회비 60,000원 · 입금 시 신청자 이름을 적어 주세요.</p><p class="signup-refund">연회비는 환불되지 않습니다.</p></section>
         </form>
-        <div class="col-12 p-1">
-            <div
-                class="boxstyle6"
-                style="font-size: 20px; "
-            >
-                <a href="https://open.kakao.com/o/gR5X0kdi" target="_blank" style="text-decoration: none; color: inherit;">
-                    카톡 채팅방 참여 - 이름
-                </a>
-            </div>
-        </div>
+        <a class="signup-chat" href="https://open.kakao.com/o/gR5X0kdi" target="_blank" rel="noopener noreferrer"><span><strong>ZONE5 카카오톡 채팅방</strong><small>이름으로 참여해 주세요</small></span><span aria-hidden="true">↗</span></a>
         <div class="mt-3" v-if="apiData.length === 0">
             <p style="font-size: 12px; padding: 0 0 0 10px; text-align: right; margin-top:20px;">회원 {{apiData.length}}명</p>
             <div
@@ -332,13 +254,13 @@ export default {
             const { userId, password, confirmPassword, userName, sex, age, phone, membershipType, ok, liabilityAgreement } = this.formData;
 
             if (!userId) {
-                this.showMessage("로그인할때 id 있어야지" , 1); // 사용자에게 메시지 표시
+                this.showMessage("아이디를 입력해 주세요." , 1); // 사용자에게 메시지 표시
                 this.$refs.userId.focus(); // 이름 입력 필드에 포커스
                 this.$refs.userId.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!password) {
-                this.showMessage("로그인할때 비번 있어야지" , 2); // 사용자에게 메시지 표시
+                this.showMessage("비밀번호를 입력해 주세요." , 2); // 사용자에게 메시지 표시
                 this.$refs.password.focus(); // 이름 입력 필드에 포커스
                 this.$refs.password.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -347,7 +269,7 @@ export default {
                 return false;
             }
             if (!userName) {
-                this.showMessage("실명 적어주이소.." , 3); // 사용자에게 메시지 표시
+                this.showMessage("이름을 입력해 주세요." , 3); // 사용자에게 메시지 표시
                 this.$refs.userName.focus(); // 이름 입력 필드에 포커스
                 this.$refs.userName.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -359,19 +281,19 @@ export default {
             //     return false;
             // }
             if (!sex) {
-                this.showMessage("남잔교 여잔교" , 5); // 사용자에게 메시지 표시
+                this.showMessage("성별을 입력해 주세요." , 5); // 사용자에게 메시지 표시
                 this.$refs.sex.focus(); // 이름 입력 필드에 포커스
                 this.$refs.sex.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!age) {
-                this.showMessage("매살이고" , 6); // 사용자에게 메시지 표시
+                this.showMessage("생년월일을 입력해 주세요." , 6); // 사용자에게 메시지 표시
                 this.$refs.age.focus(); // 이름 입력 필드에 포커스
                 this.$refs.age.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!phone) {
-                this.showMessage("저기 맘에들어서 그러는데 폰번호좀.." , 7); // 사용자에게 메시지 표시
+                this.showMessage("전화번호를 입력해 주세요." , 7); // 사용자에게 메시지 표시
                 this.$refs.phone.focus(); // 이름 입력 필드에 포커스
                 this.$refs.phone.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -383,13 +305,13 @@ export default {
             //     return false;
             // }
             if (!membershipType) {
-                this.showMessage("연회원 월회원 골라 골라.." , 9); // 사용자에게 메시지 표시
+                this.showMessage("회원 유형을 선택해 주세요." , 9); // 사용자에게 메시지 표시
                 this.$refs.membershipType.focus(); // 이름 입력 필드에 포커스
                 this.$refs.membershipType.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
             }
             if (!liabilityAgreement) {
-                this.showMessage("면책 동의좀 해주이소..", 10);
+                this.showMessage("면책 동의 여부를 선택해 주세요.", 10);
                 this.$refs.agreeRadio.focus(); // 면책 동의 라디오 버튼에 포커스
                 this.$refs.agreeRadio.scrollIntoView({ behavior: 'smooth', block: 'center' }); // 입력 필드로 부드럽게 스크롤
                 return false;
@@ -495,7 +417,3 @@ export default {
     }
 };
 </script>
-
-<style>
-/* 스타일 추가 (예: form 스타일링) */
-</style>

@@ -1,13 +1,8 @@
 <template>
-    <div>
-        <p
-            class="text-center"
-            style="font-size: 22px; font-weight: bold;"
-        >
-            ZONE5/보노보노 마일리지 이벤트
-        </p>
-
-        <!-- 상품 안내 -->
+    <div class="mobile-detail mileage-page">
+        <header class="detail-hero"><router-link to="/" class="back-link">‹ 홈으로</router-link><span class="detail-eyebrow">ZONE5 × 보노보노</span><h1>꾸준한 운동이<br>포인트가 되는 순간.</h1><p>운동을 기록하고, 함께 목표를 채워 보세요.</p><button type="button" class="primary-action" @click="showRegisterModal = true">마일리지 신규신청 <span aria-hidden="true">↗</span></button></header>
+        <div class="point-guide"><span>수영 <strong>100m</strong></span><span>러닝 <strong>400m</strong></span><span>피트니스 <strong>10분</strong></span><b>각 1포인트</b></div>
+        <details class="info-disclosure event-guide"><summary>상품과 참여 방법 알아보기</summary>        <!-- 상품 안내 -->
         <div class="card mb-4">
             <div
                 class="card-header bg-warning text-white font-weight-bold"
@@ -119,6 +114,7 @@
             </div>
         </div>
 
+</details>
         <!-- 회원 목록 -->
         <h5
             style="
@@ -129,7 +125,7 @@
                 padding-top: 30px;
             "
         >
-            🔥 MEMBER LIST
+            참여 멤버 · 랭킹
             <span style="text-align: right; font-size: 14px;">
                 {{ allRecords.length }}명 참가중
             </span>
@@ -147,32 +143,10 @@
                 :class="{ 'fit-rival': isRival(index) }"
             >
                 <div class="fit-user-header">
-                    <span>
-                        {{ index + 1 }}. {{ userName }}
-
-                        <span style="color: #e44; font-weight: bold;">
-                            {{ getTotalPoints(user) }}pt
-                        </span>
-
-                        <span
-                            style="
-                                color: #f5a623;
-                                font-weight: bold;
-                                font-size: 12px;
-                                margin-left: 4px;
-                            "
-                        >
-                            🎟️ {{ getTickets(user) }}장
-                        </span>
-                    </span>
-
-                    <button
-                        class="fit-certify-button"
-                        @click="goToEdit(userName)"
-                    >
-                        추가/수정
-                    </button>
+                    <div class="member-identity"><span class="rank-number">{{ index + 1 }}</span><strong class="member-name">{{ userName }}</strong><span v-if="isRival(index)" class="rival-badge"><span aria-hidden="true">⚔</span> 라이벌</span></div>
+                    <button type="button" class="fit-certify-button" :aria-label="userName + ' 운동 기록 추가 및 수정'" @click="goToEdit(userName)">추가/수정 <span aria-hidden="true">↗</span></button>
                 </div>
+                <div class="member-score"><strong>{{ getTotalPoints(user) }}<small>pt</small></strong><span class="ticket-count">응모권 {{ getTickets(user) }}장</span></div>
 
                 <div style="padding: 6px 4px; font-size: 14px;">
                     <span style="margin-right: 16px;">
@@ -205,8 +179,8 @@
 
         <!-- 이름 등록 모달 -->
         <div v-if="showRegisterModal" class="fit-register-backdrop">
-            <div class="fit-register-box">
-                <h2 class="fit-register-title">💪 인증 신청</h2>
+            <div class="fit-register-box" role="dialog" aria-modal="true" aria-labelledby="register-title">
+                <h2 id="register-title" class="fit-register-title">💪 인증 신청</h2>
 
                 <input
                     v-model="userName"

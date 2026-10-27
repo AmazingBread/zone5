@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="mobile-detail mileage-edit">
+        <router-link to="/fit_diary_zone_five" class="back-link">‹ 마일리지 목록</router-link>
         <!--<div style="height: 30px"></div>-->
         <p class="text-center" style="font-size: 22px; font-weight: bold">{{currentMonth}}월 마일리지 이벤트</p>
         <p class="text-center" style="font-size: 22px; font-weight: bold; padding-bottom: 20px;">
@@ -7,9 +8,9 @@
             - {{ userName }} -
         </p>
         <div class="fit-header-row mt-1">
-            <div class="btn btn-primary w-100" @click="saveUserData">💾 저장하기</div>
+            <button type="button" class="primary-action" @click="saveUserData">운동 기록 저장하기</button>
         </div>
-        <table class="fit-table">
+        <p class="record-help">날짜별 운동량을 입력한 뒤 저장해 주세요. 🍀 럭키데이는 포인트 2배!</p><table class="fit-table">
             <thead>
             <tr>
                 <th>{{ currentMonth }}월</th>
@@ -35,9 +36,9 @@
             <tbody>
             <tr v-for="(day, index) in daysInMonth" :key="index" :class="{ 'today-row': isToday(day), 'lucky-row': isLuckyDay(day) }">
                 <td style="width:60px;">{{ day }}일<span v-if="isLuckyDay(day)" title="럭키데이 (포인트 2배)"> 🍀</span></td>
-                <td><input type="number" v-model="records[day].swim" style="width:80px"/></td>
-                <td><input type="number" v-model="records[day].run" style="width:80px"/></td>
-                <td><input type="number" v-model="records[day].gym" style="width:80px"/></td>
+                <td><input type="number" v-model="records[day].swim" inputmode="decimal" :aria-label="day + '일 수영 거리(m)'"/></td>
+                <td><input type="number" v-model="records[day].run" inputmode="decimal" :aria-label="day + '일 러닝 거리(m)'"/></td>
+                <td><input type="number" v-model="records[day].gym" inputmode="decimal" :aria-label="day + '일 피트니스 시간(분)'"/></td>
                 <td style="font-size:13px; color:#555;">
                     {{ getDayPoints(day) }}
                 </td>
@@ -45,10 +46,10 @@
             </tbody>
         </table>
         <div class="fit-header-row mt-3">
-            <div class="btn btn-primary w-100" @click="saveUserData">💾 저장하기</div>
+            <button type="button" class="primary-action" @click="saveUserData">운동 기록 저장하기</button>
         </div>
         <div class="fit-header-row mt-1" style="display: flex; justify-content: flex-end; align-items: center;">
-            <div class=" btn btn-danger" @click="deleteUser(userName)">삭제</div>
+            <button type="button" class="btn btn-outline-danger" @click="deleteUser(userName)">참여 기록 삭제</button>
         </div>
         <!-- 이름 등록 모달 -->
         <div v-if="showRegisterModal" class="modal-backdrop">

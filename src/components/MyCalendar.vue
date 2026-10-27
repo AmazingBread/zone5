@@ -1,17 +1,21 @@
 <template>
     <div class="calendar">
+<section v-if="nextEvent" class="next-event"><span class="eyebrow">다가오는 일정</span><p>{{ nextEvent.month }}월 {{ nextEvent.day }}일 · {{ nextEvent.weekday }}</p><strong>{{ nextEvent.title }}</strong></section>
+<div class="section-heading"><h2>우리의 일정</h2><span>훈련 · 대회</span></div>
         <div class="calendar-header">
-            <button @click="prevMonth" class="nav-btn">&lt;</button>
-            <div class="month-year">{{ currentYear }}년 {{ currentMonth + 1 }}월</div>
-            <button @click="nextMonth" class="nav-btn">&gt;</button>
+            <button @click="prevMonth" class="nav-btn" aria-label="이전 달">‹</button>
+            <div class="month-year" aria-live="polite">{{ currentYear }}년 {{ currentMonth + 1 }}월</div>
+            <button @click="nextMonth" class="nav-btn" aria-label="다음 달">›</button>
         </div>
 
-        <div class="weekdays">
+        <div class="view-switch"><button :class="{ active: viewMode === 'list' }" :aria-pressed="viewMode === 'list'" @click="viewMode = 'list'">일정 목록</button><button :class="{ active: viewMode === 'calendar' }" :aria-pressed="viewMode === 'calendar'" @click="viewMode = 'calendar'">주말 달력</button></div>
+<div v-if="viewMode === 'list'" class="schedule-list" aria-live="polite"><div v-for="(event,index) in monthEvents" :key="index" class="schedule-row"><div class="schedule-date"><strong>{{ event.day }}</strong><span>{{ event.weekday }}</span></div><div class="schedule-info"><span>{{ event.title.includes('대회') ? '대회' : '훈련' }}</span><strong>{{ event.title }}</strong></div></div><div v-if="!monthEvents.length" class="empty-state"><strong>이번 달은 등록된 일정이 없어요</strong><p>다른 달의 훈련과 대회 일정을 확인해 보세요.</p><button @click="nextMonth">다음 달 보기 →</button></div></div>
+<div v-if="viewMode === 'calendar'" class="weekdays">
             <div class="weekday sun">일</div>
             <div class="weekday sat">토</div>
         </div>
 
-        <div class="days">
+        <div v-if="viewMode === 'calendar'" class="days">
             <div
                 v-for="(date, index) in weekendOnlyDays"
                 :key="index"
@@ -38,22 +42,38 @@
 </template>
 
 <script>
+import { getDatabase, ref, onValue } from "firebase/database";
+import { CALENDAR_PATH, defaultCalendarEvents, calendarEventsFrom } from "@/utils/calendar-events";
 export default {
     name: "MyWeekendCalendar",
     data() {
         return {
+            viewMode: 'list',
             currentYear: new Date().getFullYear(),
             currentMonth: new Date().getMonth(),
-            events: {
-                // '2026-8-2': ['동래 클래스윔 7시'],
-                // '2026-8-16': ['만덕 카멜리아 7시'],
-                // '2026-8-23': ['고성대회'],
-                '2026-10-11': ['만덕 카멜리아 7시'],
-                '2026-10-24': ['만덕 카멜리아 7시'],
-            },
+            events: defaultCalendarEvents(),
+            unsubscribeCalendar: null,
         };
     },
+    mounted() {
+        this.unsubscribeCalendar = onValue(ref(getDatabase(), CALENDAR_PATH), snapshot => {
+            this.events = calendarEventsFrom(snapshot.val());
+        }, () => { /* Keep the existing schedule visible if reading fails. */ });
+    },
+    beforeDestroy() {
+        if (this.unsubscribeCalendar) this.unsubscribeCalendar();
+    },
     computed: {
+        allEvents() {
+            return Object.keys(this.events).reduce((result,key) => {
+                const [year,month,day] = key.split('-').map(Number);
+                const date = new Date(year,month-1,day);
+                this.events[key].forEach(title => result.push({year,month,day,date,title,weekday:['일요일','월요일','화요일','수요일','목요일','금요일','토요일'][date.getDay()]}));
+                return result;
+            },[]).sort((a,b) => a.date-b.date);
+        },
+        monthEvents() { return this.allEvents.filter(event => event.year === this.currentYear && event.month === this.currentMonth+1); },
+        nextEvent() { const today=new Date(); today.setHours(0,0,0,0); return this.allEvents.find(event => event.date >= today); },
         weekendOnlyDays() {
             const days = [];
             const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
@@ -204,4 +224,19 @@ export default {
         }
     }
 }
+</style>
+<style scoped>
+.calendar { max-width:none; padding:0; color:#18201c; font-family:inherit; }
+.next-event { padding:20px; background:#f2f6eb; border:1px solid #e4ebda; border-radius:18px; margin-bottom:28px; }
+.eyebrow { font-size:12px; color:#536149; font-weight:700; } .next-event p { font-size:12px; color:#626f59; margin:14px 0 6px; } .next-event strong { font-size:18px; line-height:1.5; overflow-wrap:anywhere; }
+.section-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; } .section-heading h2 { font-size:21px; font-weight:800; margin:0; } .section-heading > span { font-size:12px; color:#778073; }
+.calendar .calendar-header .nav-btn { width:44px; height:44px; padding:0; border:1px solid #e4e8df; border-radius:12px; font-size:25px; color:#18201c; }
+.calendar .calendar-header .month-year { font-size:17px; }
+.view-switch { display:flex; padding:4px; background:#f1f3ef; border-radius:12px; margin-bottom:16px; } .view-switch button { flex:1; min-height:44px; background:transparent; border:0; border-radius:9px; color:#687264; font-size:13px; font-weight:700; cursor:pointer; } .view-switch button.active { background:white; color:#18201c; box-shadow:0 2px 5px #18201c0a; }
+.schedule-list { border:1px solid #e5e9e0; border-radius:16px; overflow:hidden; } .schedule-row { display:flex; align-items:center; gap:16px; padding:18px 16px; border-bottom:1px solid #edf0e8; } .schedule-row:last-child { border-bottom:0; }
+.schedule-date { min-width:44px; display:grid; text-align:center; gap:2px; } .schedule-date strong { font-size:25px; line-height:1.2; } .schedule-date span { font-size:11px; color:#737d6d; }
+.schedule-info { display:grid; gap:6px; } .schedule-info > span { font-size:11px; color:#647255; } .schedule-info strong { font-size:15px; line-height:1.5; overflow-wrap:anywhere; }
+.empty-state { text-align:center; padding:26px 14px; } .empty-state strong { font-size:14px; } .empty-state p { font-size:12px; line-height:1.6; color:#727b6c; margin:8px 0 12px; } .empty-state button { min-height:44px; border:0; background:#f2f6eb; border-radius:9px; padding:0 16px; font-size:12px; color:#344b20; font-weight:700; cursor:pointer; }
+.calendar .weekdays { border-top:0; border-radius:12px 12px 0 0; overflow:hidden; } .calendar .days .day { min-height:88px; } .calendar .days .day .date-number { position:static; margin-bottom:7px; font-size:14px; } .calendar .days .day .event-text { font-size:12px; min-height:34px; } .calendar .days .day .event-text .evt-item { padding-right:0; word-break:normal; overflow-wrap:anywhere; } .calendar .days .day.event-day { background:#f2f7e8; } .calendar .days .day.other-month .date-number, .calendar .days .day.other-month .event-text { opacity:1; color:#717b69; }
+.calendar button:focus-visible { outline:3px solid #719b29; outline-offset:2px; }
 </style>

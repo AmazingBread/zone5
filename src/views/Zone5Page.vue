@@ -1,24 +1,17 @@
 <template>
-<div>
-    <img src="@/assets/image/전체.png" class="img-fluid" alt="썸네일" >
-    <div class="col-12 p-1">
-        <div
-            class="boxstyle2"
-            style="font-size: 20px; "
-        >
-            ZONE5 훈련신청서 작성
-        </div>
-    </div>
-
+<div class="mobile-detail training-page">
+    <header class="detail-hero"><router-link to="/" class="back-link">‹ 홈으로</router-link><span class="detail-eyebrow">TRAIN WITH ZONE5</span><h1>함께하는 훈련,<br>여기서 시작해요.</h1><p>날짜와 반을 선택하고 훈련을 신청해 주세요.</p></header>
+    <div class="program-image"><img src="@/assets/image/전체.png" class="img-fluid" alt="ZONE5 훈련 프로그램 안내"></div>
     <!-- 날짜 선택 및 이름 입력 -->
-    <div style="margin: 24px 0">
-        <div class="mb-5">
-            <h4 class="d-block font-weight-bold mb-2 text-center">훈련 날짜 선택</h4>
+    <div class="application-form">
+        <div class="form-section">
+            <h4 class="section-title">01. 훈련 날짜 선택</h4>
             <div
-                class="mb-2 d-flex align-items-center"
+                class="date-option"
+                :class="{ selected: selectedDates.includes(dateObj.date) }"
                 v-for="(dateObj, index) in apiData"
                 :key="index"
-                style="padding-left:30px;"
+
             >
                 <input
                     class="form-check-input"
@@ -34,35 +27,35 @@
             </div>
         </div>
         <!-- 클래스 선택 -->
-        <div class="mb-3">
-            <h4 class="d-block font-weight-bold mb-3 text-center">선수반/성장반 선택</h4>
-            <div class="d-flex justify-content-center align-items-center mt-3" style="gap: 30px;">
-                <div class="form-check">
+        <div class="form-section">
+            <h4 class="section-title">02. 훈련반 / 특강반 선택</h4>
+            <div class="class-options">
+                <div class="form-check class-option">
                     <input
                         class="form-check-input"
                         type="radio"
                         id="training"
-                        value="선수반"
+                        value="훈련반"
                         v-model="selectedClass"
                         style="width: 20px; height: 20px;"
                     >
                     <label class="form-check-label" for="training" style="font-size:16px; font-weight:bold; cursor:pointer;">
-                        &nbsp;선수반
+                        &nbsp;훈련반
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check class-option">
                     <input
                         class="form-check-input"
                         type="radio"
                         id="lesson"
-                        value="성장반"
+                        value="특강반"
                         v-model="selectedClass"
                         style="width: 20px; height: 20px;"
                     >
                     <label class="form-check-label" for="lesson"
                            style="font-size:16px; font-weight:bold; cursor:pointer;"
                     >
-                        &nbsp;성장반
+                        &nbsp;특강반
                         <span v-if="isGrowthClassFull" style="color: red; font-size: 12px; font-weight: normal;">
             (선택 날짜 중 마감 있음)
         </span>
@@ -71,8 +64,11 @@
             </div>
 
         </div>
-        <div>
+        <div class="form-section">
+            <label for="training-name" class="section-title">03. 신청자 이름</label>
             <input
+                id="training-name"
+                autocomplete="name"
                 type="text"
                 class="form-control mb-3"
                 placeholder="이름을 입력하세요"
@@ -83,7 +79,7 @@
 
         <div class="mb-3">
             <label class="form-label fw-bold">면책 동의</label>
-            <div class="form-control mt-2" style="font-size: 11px; height: 100px; overflow-y: auto; border: 1px solid #ced4da; padding: 0.375rem 0.75rem; border-radius: 0.25rem; white-space: pre-wrap;">
+            <div class="waiver-text" tabindex="0">
                 본 면책동의서는 스타트 강습 및 자율 스타트 연습에 참여하기 전 반드시 읽고 동의해야 하며, 카카오톡 투표에 참여한 순간 동의한 것으로 간주됩니다.<br><br>
                 1.본인은 스타트 강습 및 자율 스타트 연습 중 발생할 수 있는 사고와 상해에 대해 책임을 스스로 지겠다는 것에 동의합니다.<br><br>
                 2.강습 진행 전/중 사고나 환경적 요인으로 강습이 중단될 수 있음을 이해하며 동의합니다.<br><br>
@@ -98,198 +94,54 @@
             </div>
         </div>
         <div>
-            <div
-                class="boxstyle3"
-                style="font-size: 20px; "
-                @click="submit"
-            >
-                신청하기
-            </div>
+            <button type="button" class="primary-action" @click="submit">훈련 신청하기 <span aria-hidden="true">↗</span></button>
         </div>
-        <div style="background:#f6faff; border:1px solid #eee; border-radius: 2px; padding:10px; margin: 30px 0">
-            <h5 class="form-label fw-bold">ZONE5 훈련 안내</h5>
-            <div style="font-size:14px; padding:10px; line-height:1.7; max-width:400px;">
-                <p style="margin:4px 0;">
-                    📅 <strong>일요일 오전 7시 ~ 9시 (2시간)</strong><br>
-                    📍 1. 만덕 카멜리아 (덕천로 257 지하2층)<br>
-                    📍 무료 주차 2시간 (차량 등록 필수)<br>
-                    <br>
-                    📍 2. 동래 클래스윔 (명장로20번길 98)<br>
-                    📍 무료 주차 3시간 (차량 등록 필수)<br>
-                </p>
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">1.</span> <strong>연회비</strong><br>
-                    <!-- - 월 회원: 5,000원<br>-->
-                    - 연 회원: 50,000원<br>
-                </p>
-
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">2.</span> <strong>프로그램별 운영비</strong><br>
-                    - 훈련: 15,000원 (1회)<br>
-                    - 강습: 20,000원 (1회)<br>
-                    - 참가 전일까지 입금
-                </p>
-
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">3.</span> <strong>단체/게스트</strong><br>
-                    - 게스트: 25,000원<br>
-                    - 단체: 별도 문의<br>
-                    - 참가 전일까지 입금
-                </p>
-
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">4.</span> <strong>레인 안내</strong><br>
-                    - 선수반 1~4레인: 선수반 운영<br>
-                    - 5~6레인:  성장반 운영 (접영 가능자 대상)
-                </p>
-
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">5.</span> <strong>선수반</strong><br>
-                    - 드릴 + 인터벌 2,500~3,000m 후 스타트 연습<br>
-                    - 핀 사용 가능
-                </p>
-                <p style="margin:8px 0;">
-                    <span style="font-weight:bold; color:#2a5bd7;">6.</span> <strong>성장반</strong><br>
-                    - 드릴 + 교정 1,000 ~ 1,500m 후 스타트 연습<br>
-                    - 매회 강사님 교대로 강습 (훈련스케쥴 참조)
-                </p>
-
-                <p style="margin:8px 0;">
-                    ❗ 문의: 010-5822-8122 (노원기)
-                </p>
-            </div>
-        </div>
-        <div style="font-size:15px; background:#f9fbfd; border:1px solid #e5e8eb; border-radius:6px; padding:14px 16px; margin:24px 0; max-width:420px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <label class="form-label fw-bold" style="margin:0;">💳 입금 계좌번호 안내</label>
-                <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                    @click="copyAccountNumber"
-                    style="font-size:11px; padding:2px 6px;">
-                    입금 계좌번호 복사
-                </button>
-            </div>
-
-            <p ref="accountText" style="font-size:15px; font-weight:bold; color:#1a1a1a; margin:0 0 10px;">
-                3333-20-4133950 카카오뱅크 노원기<br><br>
-                입금시 이름날짜강습반<br>
-                예시)<br>
-                - 노원기 17 선수<br>
-                - 노원기 17 성장<br>
-                - 노원기 연회비<br>
-                - 노원기 게스트<br>
-            </p>
-
-            <div style="background:#f1f5f9; border-radius:4px; padding:8px 10px;">
-                <p style="font-size:13px; font-weight:bold; margin:0 0 4px; color:#333;">※ 환불 규정</p>
-                <ul style="font-size:13px; margin:0; padding-left:18px; line-height:2.2;">
-                    <li>날짜 변경 및 환불 가능</li>
-                    <li style="font-size:13px;">
-                        입금 후
-                        <span style="font-size:12px; background:#ffec99; color:#7a5900; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ffd324;">
-                            미입금
-                        </span>
-                        &nbsp;→
-                        <span style="font-size:12px; background:#81c784; color:#1b5e20; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #4caf50;">
-                            입완
-                        </span>
-                        &nbsp;버튼 셀프 클릭
-                    </li>
-                    <li style="font-size:13px;">
-                        날짜 변경은
-                        <span style="font-size:12px; background:#ff4d4f; color:#ffffff; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f;">
-                            삭제
-                        </span>
-                        &nbsp;후 다시
-                        <span style="font-size:12px; background:#ff69b4; color:#ffffff; padding:1px 8px; border-radius:12px; font-weight:bold; border:1px solid #ff1493;">
-                            신청
-                        </span>
-                    </li>
-                    <li>당일 불참 시 환불 불가</li>
-                </ul>
-            </div>
-        </div>
-
+        <section class="training-info guide-card">
+            <h2>훈련 안내</h2><p class="guide-lead">일요일 오전 7:00–9:00 · 2시간</p>
+            <div class="guide-block"><h3>훈련 장소</h3><div class="venue"><strong>만덕 카멜리아</strong><span>덕천로 257 지하 2층</span><small>무료 주차 2시간 · 차량 등록 필수</small></div><div class="venue"><strong>동래 클래스윔</strong><span>명장로20번길 98</span><small>무료 주차 3시간 · 차량 등록 필수</small></div></div>
+            <div class="guide-block"><h3>회비 및 운영비</h3><dl class="fee-list"><div><dt>연회비</dt><dd>60,000원 <small>/ 연</small></dd></div><div><dt>훈련반</dt><dd>15,000원 <small>/ 회</small></dd></div><div><dt>특강반</dt><dd>20,000원 <small>/ 회</small></dd></div><div><dt>게스트</dt><dd>25,000원 <small>/ 회</small></dd></div><div><dt>단체</dt><dd>별도 문의</dd></div></dl><p class="guide-note">참가 전일까지 입금해 주세요.</p></div>
+            <div class="guide-block"><h3>프로그램</h3><div class="program-description"><strong>훈련반</strong><p>드릴 + 인터벌 2,500–3,000m 후 스타트 연습<br>핀 사용 가능</p></div><div class="program-description"><strong>특강반</strong><p>드릴 + 교정 1,000–1,500m 후 스타트 연습<br>매회 강사 교대 강습 · 훈련 스케줄 참조</p></div></div>
+            <a class="contact-link" href="tel:01058228122">문의 <strong>010-5822-8122</strong><span>노원기 ↗</span></a>
+        </section>
+        <section class="account-info guide-card">
+            <div class="account-heading"><h2>입금 안내</h2><button type="button" class="copy-account" @click="copyAccountNumber">계좌 복사</button></div>
+            <div class="account-number" ref="accountText"><small>카카오뱅크 · 노원기</small><strong>3333-20-4133950</strong></div>
+            <div class="guide-block"><h3>입금자명은 이렇게 적어 주세요</h3><p class="guide-note">이름 + 훈련 날짜 + 신청 반</p><div class="deposit-example">노원기 17 훈련반 <span>또는</span> 노원기 17 특강</div></div>
+            <div class="guide-block"><h3>입금 확인 및 변경·환불</h3><ul class="refund-list"><li>입금 후 아래 신청자 목록에서 <span class="inline-status">미입금</span> 버튼을 눌러 <span class="inline-status complete">입금완료</span>로 변경해 주세요.</li><li>날짜를 변경하려면 기존 신청의 <strong>×</strong> 버튼을 눌러 삭제한 뒤 다시 신청해 주세요.</li><li>날짜 변경 및 환불이 가능합니다. <strong class="refund-warning">당일 불참 시에는 환불되지 않습니다.</strong></li></ul></div>
+        </section>
     </div>
 
     <!-- 신청자 목록 -->
-    <div v-for="(dateObj, dateIdx) in apiData" :key="dateIdx" class="mb-3">
-        <h6>{{ dateIdx + 1 }}. {{ dateObj.date }} ({{ dateObj.user?.length || 0 }}명)</h6>
+    <h2 class="section-title roster-title">함께 훈련하는 멤버</h2>
+    <div v-for="(dateObj, dateIdx) in apiData" :key="dateIdx" class="roster-card mb-3">
+        <header class="roster-heading"><div><span class="roster-date">{{ rosterHeading(dateObj.date).date }}</span><h3 v-if="rosterHeading(dateObj.date).detail">{{ rosterHeading(dateObj.date).detail }}</h3></div><span class="roster-count">{{ dateObj.user?.length || 0 }}명</span></header>
 
-        <div v-if="dateObj.user && dateObj.user.length" style="padding:10px; border:1px solid #dee2e6; border-radius:10px; margin-bottom:10px;">
+        <div v-if="dateObj.user && dateObj.user.length" class="roster-body">
             <!-- 훈련반 표시 (한 번만) -->
-            <div v-if="dateObj.user.some(u => u.class === '선수반')" style="width:100%; font-weight:bold; margin-bottom:4px;">
-                선수반 ({{ dateObj.user.filter(u => u.class === '선수반').length }}명)
+            <div v-if="dateObj.user.some(u => u.class === '훈련반')" class="roster-class-label">
+                훈련반 <span>{{ dateObj.user.filter(u => u.class === '훈련반').length }}</span>
             </div>
-            <div class="d-flex flex-wrap">
-                <div
-                    v-for="(user, userIdx) in dateObj.user"
-                    :key="userIdx"
-                    v-if="user.class === '선수반'"
-                    class="mb-2"
-                    style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
-                >
-                    <!-- 입금 상태 버튼 -->
-                    <button
-                        class="btn"
-                        :class="{ 'paid': user.paid, 'unpaid': !user.paid }"
-                        style="padding:0.2rem 0.5rem; font-size:10px; margin-right:8px; border-radius:12px; font-weight:bold; border:1px solid;"
-                        @click="togglePayment(dateIdx, userIdx)"
-                    >
-                        {{ user.paid ? '입완' : '미입금' }}
-                    </button>
-
-                    <!-- 이름 -->
-                    <div class="font-weight-bold" style="flex:1; text-align:center;">{{ user.name }}</div>
-
-                    <!-- 삭제 버튼 -->
-                    <button
-                        @click="deleteApplicant(dateIdx, userIdx)"
-                        class="btn"
-                        style="padding:0.2rem 0.5rem; font-size:10px; margin-left:8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f; background:#ff4d4f; color:#ffffff;"
-                    >
-                        삭제
-                    </button>
+            <div class="applicant-grid">
+                <div v-for="(user, userIdx) in dateObj.user" :key="userIdx" v-if="user.class === '훈련반'" class="applicant-row">
+                    <span class="applicant-name">{{ user.name }}</span>
+                    <button type="button" class="payment-status" :class="{ 'is-paid': user.paid }" :aria-label="user.name + ' 입금 상태 변경: ' + (user.paid ? '입금완료' : '미입금')" @click="togglePayment(dateIdx, userIdx)">{{ user.paid ? '입금완료' : '미입금' }}</button>
+                    <button type="button" class="remove-applicant" :aria-label="user.name + ' 신청 삭제'" @click="deleteApplicant(dateIdx, userIdx)">×</button>
                 </div>
             </div>
 
             <!-- 강습반 표시 -->
-            <div v-if="dateObj.user.some(u => u.class === '성장반')" style="width:100%; font-weight:bold; margin:10px 0 4px 0;">
-                성장반 ({{ dateObj.user.filter(u => u.class === '성장반').length }}명)
+            <div v-if="dateObj.user.some(u => u.class === '특강반')" class="roster-class-label">
+                특강반 <span>{{ dateObj.user.filter(u => u.class === '특강반').length }}</span>
             </div>
-            <div class="d-flex flex-wrap">
-                <div
-                    v-for="(user, userIdx) in dateObj.user"
-                    :key="userIdx + '-lesson'"
-                    v-if="user.class === '성장반'"
-                    class="mb-2"
-                    style="padding:10px; border:1px solid #dee2e6; border-radius:20px; font-size:15px; width: calc(50% - 8px); margin-right: 8px; display:flex; align-items:center;"
-                >
-                    <!-- 입금 상태 버튼 -->
-                    <button
-                        class="btn"
-                        :class="{ 'paid': user.paid, 'unpaid': !user.paid }"
-                        style="padding:0.2rem 0.5rem; font-size:10px; margin-right:8px; border-radius:12px; font-weight:bold; border:1px solid;"
-                        @click="togglePayment(dateIdx, userIdx)"
-                    >
-                        {{ user.paid ? '입완' : '미입금' }}
-                    </button>
-
-                    <!-- 이름 -->
-                    <div class="font-weight-bold" style="flex:1; text-align:center;">{{ user.name }}</div>
-
-                    <!-- 삭제 버튼 -->
-                    <button
-                        @click="deleteApplicant(dateIdx, userIdx)"
-                        class="btn"
-                        style="padding:0.2rem 0.5rem; font-size:10px; margin-left:8px; border-radius:12px; font-weight:bold; border:1px solid #ff1f1f; background:#ff4d4f; color:#ffffff;"
-                    >
-                        삭제
-                    </button>
+            <div class="applicant-grid">
+                <div v-for="(user, userIdx) in dateObj.user" :key="userIdx + '-lesson'" v-if="user.class === '특강반'" class="applicant-row">
+                    <span class="applicant-name">{{ user.name }}</span>
+                    <button type="button" class="payment-status" :class="{ 'is-paid': user.paid }" :aria-label="user.name + ' 입금 상태 변경: ' + (user.paid ? '입금완료' : '미입금')" @click="togglePayment(dateIdx, userIdx)">{{ user.paid ? '입금완료' : '미입금' }}</button>
+                    <button type="button" class="remove-applicant" :aria-label="user.name + ' 신청 삭제'" @click="deleteApplicant(dateIdx, userIdx)">×</button>
                 </div>
             </div>
         </div>
+        <p v-else class="roster-empty">아직 신청한 멤버가 없어요.</p>
     </div>
 
 </div>
@@ -320,7 +172,7 @@ export default {
         },
         // 2. 반(선수반/성장반)을 선택할 때 체크
         selectedClass(newVal) {
-            if (newVal === '성장반') {
+            if (newVal === '특강반') {
                 this.checkGrowthLimit();
             }
         }
@@ -336,7 +188,7 @@ export default {
                 const targetDay = this.apiData.find(d => d.date === selectedDate);
                 if (targetDay && targetDay.user) {
                     // 해당 날짜의 성장반 인원 계산
-                    const count = targetDay.user.filter(u => u.class === '성장반').length;
+                    const count = targetDay.user.filter(u => u.class === '특강반').length;
                     return count >= limit; // 12명 이상이면 true
                 }
                 return false;
@@ -344,6 +196,11 @@ export default {
         }
     },
     methods: {
+        rosterHeading(value) {
+            const text = String(value || '일정 안내');
+            const match = text.match(/^(\d+월\s*\d+일(?:\s*\([^)]*\))?)\s*(.*)$/);
+            return match ? { date: match[1], detail: match[2] } : { date: text, detail: '' };
+        },
         loadSettings() {
             const db = getDatabase();
             const limitRef = ref(db, `${this.settingsPath}/growthLimit`);
@@ -359,8 +216,8 @@ export default {
         // 마감 체크 공통 로직
         checkGrowthLimit() {
             const limit = this.$store.state.growthLimit;
-            if (this.selectedClass === '성장반' && this.isGrowthClassFull) {
-                alert(`선택하신 날짜 중 이미 성장반이 마감(${limit}명)된 날이 포함되어 있어 선택이 취소됩니다. 해당 날짜를 제외하거나 선수반을 선택해 주세요.`);
+            if (this.selectedClass === '특강반' && this.isGrowthClassFull) {
+                alert(`선택하신 날짜 중 이미 특강반이 마감(${limit}명)된 날이 포함되어 있어 선택이 취소됩니다. 해당 날짜를 제외하거나 훈련반을 선택해 주세요.`);
                 this.$nextTick(() => {
                     this.selectedClass = ''; // 선택 해제
                 });
@@ -477,3 +334,5 @@ export default {
     border-color: #ffd324 !important;
 }
 </style>
+
+<style src="../styles/mobile-detail.css"></style>
