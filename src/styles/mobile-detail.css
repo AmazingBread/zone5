@@ -156,3 +156,7 @@
 .training-page .applicant-grid .payment-status.is-paid { background:#e8f0ff; color:#2563eb; }
 .training-page .applicant-grid .payment-status { background:#ffecef; color:#e0526d; }
 .training-page .roster-empty { margin:12px 0 0; font-size:12px; color:#94a3b8; }
+
+.training-page .applicant-grid .applicant-row { align-items:center; }
+.training-page .applicant-grid .payment-status { display:inline-flex; align-items:center; justify-content:center; height:22px; line-height:1; }
+.training-page .applicant-grid .remove-applicant { width:14px; min-width:14px; height:22px; font-family:Arial,sans-serif; font-size:14px; font-weight:400; line-height:1; padding:0; align-self:center; }
